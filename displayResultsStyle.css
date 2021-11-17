@@ -1,0 +1,51 @@
+/*
+Author: Kaiser
+Date last edited: 11/2/2021
+*/
+
+/* Sets defaults */
+body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Quicksand', sans-serif;
+  background-image: url("iceland.jpg");
+  background-size: cover;
+  color: black;
+}
+
+/* Controls the words on the website */
+section {
+  float: center;
+  margin: 3%;
+  border-width: 5px;
+  border-color: black;
+  background-color: rgba(0, 0, 255, 0.493);
+  border-style: solid;
+}
+pre {
+  background-color: rgba(0, 0, 255, 0.781);
+  max-height: 60vh;
+  overflow: auto;
+  border-top-width: 5px;
+  border-color: black;  
+  border-style: solid;
+}
+
+header a {
+  margin: 5px;
+  color: black;
+  text-decoration: none;
+  background: linear-gradient(to right, brown, #ffad06);
+  border: 0;
+  padding: 5px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+p {
+  margin: 5px;
+}
+h2 {
+  font-weight: bold;
+}
+
