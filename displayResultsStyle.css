@@ -6,7 +6,7 @@ Date last edited: 11/2/2021
 /* Sets defaults */
 body {
   height: 100%;
-  width: 100%;
+  width: 99%;
   font-family: 'Quicksand', sans-serif;
   background-image: url("mushroomforest.jpg");
   background-size: cover;

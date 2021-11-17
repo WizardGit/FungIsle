@@ -10,7 +10,8 @@ body {
   font-family: 'Quicksand', sans-serif;
   background-image: url("forestjeep.jpg");
   background-size: cover;
-  color: black;
+  color: black;  
+  font-weight: bold;
 }
 /* Controls the words on the website */
 section {
@@ -32,11 +33,13 @@ section h1 {
   border-bottom: 5px;
   border-bottom-width: 5px;
   border-bottom-style: solid;
+  padding: 10px;
 }
 input[type=text]{  
   display: block;
+  width: 80%;
   border-radius: 5px;
-  padding: 5px;
+  padding: 10px;
   border: 0px;
   margin: 5px;
 }
@@ -50,4 +53,10 @@ input[type=submit], input[type=reset] {
 }
 p {
   margin: 5px;
+}
+h2 {
+  margin-left: 10px;
+}
+a {
+  color: red;
 }
