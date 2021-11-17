@@ -1,6 +1,6 @@
 <?php
 //Enter your database information here and the name of the backup file
-$mysqlDatabaseName ='practice';
+$mysqlDatabaseName ='stores7';
 $mysqlUserName ='kaisers';
 $mysqlPassword ='hamburger';
 $mysqlHostName ='ix.cs.uoregon.edu';

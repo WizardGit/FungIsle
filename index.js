@@ -3,7 +3,6 @@ function backup()
 {
     location.href = 'SQLDump.php';
 }*/
-window.onbeforeunload = closingCode();
-function closingCode(){
-    location.href = 'SQLRecover.php';
-}
+window.addEventListener("beforeunload", function(e){
+    location.href = 'SQLDump.php';
+ }, false);
