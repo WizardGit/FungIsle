@@ -1,6 +1,6 @@
 <?php
 $server = "ix.cs.uoregon.edu";
-$dbname ="stores7";
+$dbname ="practice";
 $user = "guest";
 $pass = "guest";
 $port="3522";
