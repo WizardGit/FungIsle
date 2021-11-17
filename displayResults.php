@@ -36,11 +36,19 @@ print $query;
 <?php
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 print "<pre>";
+$post = array();
 while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
 {
   print "\n";
-  print "$row";
+  $posts[] = $row;
 }
+foreach ($posts as $row) 
+        { 
+            foreach ($row as $element)
+            {
+                print $element."<br>";
+            }
+        }
 print "</pre>";
 mysqli_free_result($result);
 mysqli_close($conn);
