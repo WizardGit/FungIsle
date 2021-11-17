@@ -36,13 +36,10 @@ print $query;
 <?php
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 print "<pre>";
-$SelFieldNameArray = array();
-//MYSQL_NUM retrieves all your rows in numbered indexes so you can
-//easily loop through them
-$row = mysql_fetch_array($result,MYSQL_NUM); 
-foreach($row as $k=>$v) {
-    $SelFieldNameArray[] = array('field_name'.($k+1)=>$row[$k]);
-    print $SelFieldNameArray[]
+while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
+{
+  print "\n";
+  print "$row";
 }
 print "</pre>";
 mysqli_free_result($result);
