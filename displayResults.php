@@ -42,13 +42,13 @@ while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
   print "\n";
   $posts[] = $row;
 }
-foreach ($posts as $row) 
-        { 
-            foreach ($row as $element)
-            {
-                print $element."<br>";
-            }
-        }
+foreach ($posts as $r) 
+{ 
+  foreach ($r as $element)
+  {
+    print $element."<br>";
+  }
+}
 print "</pre>";
 mysqli_free_result($result);
 mysqli_close($conn);
