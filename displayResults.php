@@ -42,6 +42,7 @@ while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
   print "\n";
   $posts[] = $row;
 }
+print_r($posts);
 foreach ($posts as $r) 
 { 
   foreach ($r as $element)
