@@ -36,23 +36,14 @@ print $query;
 <?php
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 print "<pre>";
-$post = array();
 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 {
-  print "\n";
-  $posts[] = $row;
   foreach ($row as $element)
   {
-    print $element."<br>";
+    print $element;
+    print "<br>";
   }
   print("ha");
-}
-foreach ($posts as $r) 
-{ 
-  foreach ($r as $element)
-  {
-    print $element."<br>";
-  }
 }
 print "</pre>";
 mysqli_free_result($result);
