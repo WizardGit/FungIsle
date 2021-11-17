@@ -40,10 +40,9 @@ while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 {
   foreach ($row as $element)
   {
-    print $element;
-    print "<br>";
+    print $element;    
   }
-  print("ha");
+  print "<br>";
 }
 print "</pre>";
 mysqli_free_result($result);
