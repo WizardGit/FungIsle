@@ -20,11 +20,10 @@ or die('Error connecting to MySQL server.');
   <a href="index.html">Back to Home Page</a>
     
 <?php  
-$state = $_POST['state'];
+$query = $_POST['query'];
 $state = mysqli_real_escape_string($conn, $state);
 // this is a small attempt to avoid SQL injection
 // better to use prepared statements
-$query = "update dep_policy set age=100 where pname='kaiser'";
 ?>
 
 <p> <h2>The query:</h2> <p>
@@ -37,7 +36,14 @@ print $query;
 <?php
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 print "<pre>";
-
+$SelFieldNameArray = array();
+//MYSQL_NUM retrieves all your rows in numbered indexes so you can
+//easily loop through them
+$row = mysql_fetch_array($result,MYSQL_NUM); 
+foreach($row as $k=>$v) {
+    $SelFieldNameArray[] = array('field_name'.($k+1)=>$row[$k]);
+    print $SelFieldNameArray[]
+}
 print "</pre>";
 mysqli_free_result($result);
 mysqli_close($conn);
