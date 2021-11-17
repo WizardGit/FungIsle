@@ -37,7 +37,7 @@ print $query;
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 print "<pre>";
 $post = array();
-while($row = mysqli_fetch_array($result, MYSQLI_BOTH))
+while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 {
   print "\n";
   $posts[] = $row;
