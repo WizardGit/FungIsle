@@ -16,6 +16,7 @@ body {
 /* Controls the words on the website */
 section {
   float: center;
+  padding: 5px;
   margin: 3%;
   border-width: 5px;
   border-color: black;
@@ -32,7 +33,6 @@ pre {
 }
 
 a {
-  margin: 10px;
   color: black;
   text-decoration: none;
   background: linear-gradient(to right, brown, #ffad06);

@@ -13,7 +13,7 @@ or die('Error connecting to MySQL server.');
 <html lang="en">
 <head>
   <title>Another Simple PHP-MySQL Program</title>
-  <link rel="stylesheet" href="displayResultsStyle.css?v=<?php echo time(); ?>"> 
+  <link rel="stylesheet" href="displayStyle.css?v=<?php echo time(); ?>"> 
   </head>  
   <body>
   <section>
