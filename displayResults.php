@@ -40,7 +40,7 @@ while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 {
   foreach ($row as $element)
   {
-    print $element;    
+    print $element." ";    
   }
   print "<br>";
 }
