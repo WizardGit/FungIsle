@@ -39,10 +39,14 @@ $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 //print ($hel);
 print "<pre>";
 
-for($i = 0; $i < mysql_num_fields($result); $i++) {
-  $field_info = mysql_fetch_field($result, $i);
-  echo "<th>{$field_info->name}</th>";
-}
+$columns = array();
+$resultset = array();
+while ($row = mysql_fetch_assoc($result)) {
+    if (empty($columns)) {
+        $columns = array_keys($row);
+    }
+  }
+  print_r($columns);
 
 
 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
