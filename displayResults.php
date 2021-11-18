@@ -43,7 +43,7 @@ print "<br>";
 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 {  
   foreach ($row as $element)
-    print $element." "; 
+  printf("[%' 8s]",$element); 
   
   print "<br>";
 }
