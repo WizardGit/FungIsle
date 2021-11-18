@@ -18,13 +18,11 @@ or die('Error connecting to MySQL server.');
   <body>
   <section>
   <a href="index.html">Back to Home Page</a>
-    
-<?php  
-$query = $_POST['query'];
-?>
 
 <p> <h2>The query:</h2> <p>
 <?php
+$query = $_POST['query'];
+$queryAtt = "SHOW COLUMNS FROM dep_policy";
 print $query;
 ?>
 
@@ -32,38 +30,25 @@ print $query;
 <p>
 <?php
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+$resultAtt = mysqli_query($conn,$sql);
 
+print "<pre>";
 
-
-$sql = "SHOW COLUMNS FROM dep_policy";
-$result = mysqli_query($conn,$sql);
-while($row = mysqli_fetch_array($result)){
+while($row = mysqli_fetch_array($resultAtt))
+{
     print $row['Field']."<br>";
 }
 
-
-
-
-
-//$hel =  mysql_field_name($result, 0);
-//print ($hel);
-print "<pre>";
 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
-{
-  
+{  
   $arr[] = $row;
   print_r($arr);
   foreach ($row as $element)
-  {
-    print $element." ";    
-    
-  }
+    print $element." "; 
   
-  //print($columnArr);
   print "<br>";
 }
-//$columnArr = array_column($result, 'COLUMN_NAME');
-//print_r($columnArr);
+
 print "</pre>";
 mysqli_free_result($result);
 mysqli_close($conn);
