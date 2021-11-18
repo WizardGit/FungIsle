@@ -36,14 +36,14 @@ print "<pre>";
 
 while($row = mysqli_fetch_array($resultAtt))
 {
-  printf("[%' 8s]",$row['Field']);
+  printf("[%'- 8s]",$row['Field']);
 }
 print "<br>";
 
 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 {  
   foreach ($row as $element)
-  printf("[%' 8s]",$element); 
+  printf("[%'- 8s]",$element); 
   
   print "<br>";
 }
