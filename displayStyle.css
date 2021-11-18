@@ -16,7 +16,7 @@ body {
 /* Controls the words on the website */
 section {
   float: center;
-  padding: 5px;
+  padding: 10px;
   margin: 3%;
   border-width: 5px;
   border-color: black;
@@ -40,7 +40,6 @@ a {
   padding: 5px;
   border-radius: 3px;
   font-weight: bold;
-  margin: 5px;
 }
 
 p {
