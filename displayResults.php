@@ -52,6 +52,8 @@ while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
   print($columnArr);
   print "<br>";
 }
+$columnArr = array_column($result, 'COLUMN_NAME');
+print_r($columnArr);
 print "</pre>";
 mysqli_free_result($result);
 mysqli_close($conn);
