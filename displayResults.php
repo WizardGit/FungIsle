@@ -36,14 +36,12 @@ print "<pre>";
 
 while($row = mysqli_fetch_array($resultAtt))
 {
-    print "|".$row['Field'];
+    print $row['Field']." ".;
 }
 print "<br>";
 
 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 {  
-  $arr[] = $row;
-  print_r($arr);
   foreach ($row as $element)
     print $element." "; 
   
