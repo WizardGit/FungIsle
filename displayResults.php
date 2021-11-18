@@ -16,43 +16,40 @@ or die('Error connecting to MySQL server.');
   <link rel="stylesheet" href="displayStyle.css?v=<?php echo time(); ?>"> 
   </head>  
   <body>
-  <section>
-  <a href="index.html">Back to Home Page</a>
+    <section>
+      <a href="index.html">Back to Home Page</a>
+      <p> <h2>The query:</h2> <p>
+      <?php
+        $query = $_POST['query'];
+        $queryAtt = "SHOW COLUMNS FROM dep_policy";
+        print $query;
+      ?>
 
-<p> <h2>The query:</h2> <p>
-<?php
-$query = $_POST['query'];
-$queryAtt = "SHOW COLUMNS FROM dep_policy";
-print $query;
-?>
+      <p> <h2>Result of query:</h2> <p>
 
-<p> <h2>Result of query:</h2> <p>
-<p>
-<?php
-$result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-$resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));
+      <?php
+        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+        $resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));
 
-print "<pre>";
+        print "<pre>";
 
-while($row = mysqli_fetch_array($resultAtt))
-{
-  printf("[%- 8s]",$row['Field']);
-}
-print "<br>";
+        while($row = mysqli_fetch_array($resultAtt))
+        {
+          printf("[%- 8s]",$row['Field']);
+        }
+        print "<br>";
 
-while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
-{  
-  foreach ($row as $element)
-  printf("[%-' 8s]",$element); 
-  
-  print "<br>";
-}
+        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+        {  
+          foreach ($row as $element)
+          printf("[%- 8s]",$element);   
+          print "<br>";
+        }
 
-print "</pre>";
-mysqli_free_result($result);
-mysqli_close($conn);
-?>
-</p>
-</section>
-</body>
+        print "</pre>";
+        mysqli_free_result($result);
+        mysqli_close($conn);
+      ?>
+    </section>
+  </body>
 </html>	  
