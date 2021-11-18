@@ -35,9 +35,11 @@ print $query;
 <p>
 <?php
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+print mysql_field_name($result, 1);
 print "<pre>";
 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 {
+  
   $arr[] = $row;
   print_r($arr);
   foreach ($row as $element)
@@ -45,7 +47,7 @@ while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
     print $element." ";    
     
   }
-  print(mysql_field_name($result, 1));
+  
   print($columnArr);
   print "<br>";
 }
