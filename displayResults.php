@@ -38,6 +38,8 @@ $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 print "<pre>";
 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 {
+  $arr[] = $row;
+  print_r($arr);
   foreach ($row as $element)
   {
     print $element." ";    
