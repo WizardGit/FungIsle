@@ -28,10 +28,11 @@ section img {
 }
 /* Controls the main header */
 section h1 {
+  margin: 0px;
   border-bottom-width: 5px;
   border-bottom-style: solid;
   text-align: center;
-  width: 100%;
+  background-color: red;
 }
 input[type=text]{  
   display: block;
