@@ -35,7 +35,8 @@ print $query;
 <p>
 <?php
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-print mysql_field_name($result, 1);
+$hel =  mysql_field_name($result, 0);
+print ($hel);
 print "<pre>";
 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 {
