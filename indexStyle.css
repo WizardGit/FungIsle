@@ -32,7 +32,7 @@ section h1 {
   border-bottom-width: 5px;
   border-bottom-style: solid;
   text-align: center;
-  background-color: red;
+  padding: 10px;
 }
 input[type=text]{  
   display: block;
