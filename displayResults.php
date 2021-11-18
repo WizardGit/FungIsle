@@ -36,7 +36,7 @@ print "<pre>";
 
 while($row = mysqli_fetch_array($resultAtt))
 {
-    print $row['Field']." ";
+  printf("[%' 8s]",$row['Field']);
 }
 print "<br>";
 
