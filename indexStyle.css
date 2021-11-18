@@ -21,16 +21,17 @@ section {
   border-width: 5px;
   border-color: black;
   background-color: rgba(0, 0, 255, 0.493);
-  border-style: solid;  
+  border-style: solid; 
+}
+section img {
+  width: 95%;
 }
 /* Controls the main header */
 section h1 {
   font-size: 3em;
   margin: 0px;
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  width: 100%;
   text-align: center;
-  border-bottom: 5px;
   border-bottom-width: 5px;
   border-bottom-style: solid;
   padding: 10px;
