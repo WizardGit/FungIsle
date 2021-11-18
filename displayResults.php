@@ -38,20 +38,6 @@ WHERE `TABLE_SCHEMA`='practice'
     AND `TABLE_NAME`='dep_policy';    ";
 $newr = mysqli_query($conn, $queryr)
 
-while($row = mysqli_fetch_array($newr, MYSQLI_ASSOC))
-{
-  
-  $arr[] = $row;
-  print_r($arr);
-  foreach ($row as $element)
-  {
-    print $element." ";    
-    
-  }
-  
-  //print($columnArr);
-  print "<br>";
-}
 
 
 
