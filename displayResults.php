@@ -43,7 +43,10 @@ while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
   foreach ($row as $element)
   {
     print $element." ";    
+    
   }
+  $columnArr = array_column($arr, 'COLUMN_NAME');
+  print($columnArr);
   print "<br>";
 }
 print "</pre>";
