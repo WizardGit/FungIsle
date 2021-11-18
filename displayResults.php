@@ -21,9 +21,6 @@ or die('Error connecting to MySQL server.');
     
 <?php  
 $query = $_POST['query'];
-$state = mysqli_real_escape_string($conn, $state);
-// this is a small attempt to avoid SQL injection
-// better to use prepared statements
 ?>
 
 <p> <h2>The query:</h2> <p>
@@ -35,13 +32,35 @@ print $query;
 <p>
 <?php
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+$queryr = "
+SELECT `COLUMN_NAME` 
+FROM `INFORMATION_SCHEMA`.`COLUMNS` 
+WHERE `TABLE_SCHEMA`='practice' 
+    AND `TABLE_NAME`='dep_policy';
+    ";
+$newr = mysqli_query($conn, $queryr)
+
+while($row = mysqli_fetch_array($newr, MYSQLI_ASSOC))
+{
+  
+  $arr[] = $row;
+  print_r($arr);
+  foreach ($row as $element)
+  {
+    print $element." ";    
+    
+  }
+  
+  //print($columnArr);
+  print "<br>";
+}
+
+
+
+
 //$hel =  mysql_field_name($result, 0);
 //print ($hel);
 print "<pre>";
-
-print (mysql_num_fields($result));
-
-
 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 {
   
