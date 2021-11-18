@@ -31,6 +31,7 @@ section h1 {
   border-bottom-width: 5px;
   border-bottom-style: solid;
   text-align: center;
+  width: 100%;
 }
 input[type=text]{  
   display: block;
