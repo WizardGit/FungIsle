@@ -40,7 +40,8 @@ $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 print "<pre>";
 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 {
-  
+  $field_info = mysql_fetch_field($result, $i);
+    print($field_info->name);
   $arr[] = $row;
   print_r($arr);
   foreach ($row as $element)
@@ -52,8 +53,8 @@ while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
   //print($columnArr);
   print "<br>";
 }
-$columnArr = array_column($result, 'COLUMN_NAME');
-print_r($columnArr);
+//$columnArr = array_column($result, 'COLUMN_NAME');
+//print_r($columnArr);
 print "</pre>";
 mysqli_free_result($result);
 mysqli_close($conn);
