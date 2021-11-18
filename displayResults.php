@@ -36,8 +36,9 @@ print "<pre>";
 
 while($row = mysqli_fetch_array($resultAtt))
 {
-    print $row['Field']."<br>";
+    print "|".$row['Field'];
 }
+print "<br>";
 
 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
 {  
