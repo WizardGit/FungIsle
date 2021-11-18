@@ -45,7 +45,7 @@ while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
     print $element." ";    
     
   }
-  mysql_field_name(resource $result, 1);
+  print(mysql_field_name($result, 1));
   print($columnArr);
   print "<br>";
 }
