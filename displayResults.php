@@ -39,14 +39,7 @@ $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 //print ($hel);
 print "<pre>";
 
-$columns = array();
-$resultset = array();
-while ($row = mysql_fetch_assoc($result)) {
-    if (empty($columns)) {
-        $columns = array_keys($row);
-    }
-  }
-  print_r($columns);
+print (mysql_num_fields($result));
 
 
 while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
