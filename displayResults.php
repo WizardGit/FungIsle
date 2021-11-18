@@ -30,7 +30,7 @@ print $query;
 <p>
 <?php
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-$resultAtt = mysqli_query($conn,$sql);
+$resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));
 
 print "<pre>";
 
