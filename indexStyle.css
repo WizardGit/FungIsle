@@ -24,17 +24,13 @@ section {
   border-style: solid; 
 }
 section img {
-  width: 50%;
+  width: 95%;
 }
 /* Controls the main header */
 section h1 {
-  font-size: 3em;
-  margin: 0px;
-  font-family: Georgia, Times, 'Times New Roman', serif;
-  text-align: center;
   border-bottom-width: 5px;
   border-bottom-style: solid;
-  padding: 10px;
+  text-align: center;
 }
 input[type=text]{  
   display: block;
