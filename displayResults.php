@@ -32,12 +32,10 @@ print $query;
 <p>
 <?php
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-$queryr = "
-SELECT `COLUMN_NAME` 
+$queryr = "SELECT `COLUMN_NAME` 
 FROM `INFORMATION_SCHEMA`.`COLUMNS` 
 WHERE `TABLE_SCHEMA`='practice' 
-    AND `TABLE_NAME`='dep_policy';
-    ";
+    AND `TABLE_NAME`='dep_policy';    ";
 $newr = mysqli_query($conn, $queryr)
 
 while($row = mysqli_fetch_array($newr, MYSQLI_ASSOC))
