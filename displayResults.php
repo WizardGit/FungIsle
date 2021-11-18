@@ -35,7 +35,7 @@ $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
 
 
-$sql = "SHOW COLUMNS FROM your-table";
+$sql = "SHOW COLUMNS FROM dep_policy";
 $result = mysqli_query($conn,$sql);
 while($row = mysqli_fetch_array($result)){
     print $row['Field']."<br>";
