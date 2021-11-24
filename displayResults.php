@@ -21,6 +21,7 @@ or die('Error connecting to MySQL server.');
       <p> <h2>The query:</h2> <p>
       <?php
         $query = $_POST['query'];
+        console.log($query);
         $queryAtt = "SHOW COLUMNS FROM dep_policy";
         print $query;
       ?>
