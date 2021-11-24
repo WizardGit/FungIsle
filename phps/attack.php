@@ -63,9 +63,10 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         //reduceHeroHealth(10);
         mysqli_close($conn);
 
-        function writeMsg() {
+        function writeMsg($village) 
+        { $query = "select count(*) as total from Human h where h.role='Henchman' group by h.role";
             echo "Hello world!";
-          }
+        }
         
         // Subtract from one soldier
 
