@@ -22,7 +22,7 @@ or die('Error connecting to MySQL server.');
       <?php
         $query = $_POST['query'];
         console.log($query);
-        $queryAtt = "SHOW COLUMNS FROM dep_policy";
+        /*$queryAtt = "SHOW COLUMNS FROM dep_policy";*/
         print $query;
       ?>
 
@@ -30,16 +30,16 @@ or die('Error connecting to MySQL server.');
 
       <?php
         $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-        $resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));
+        /*$resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));*/
 
         print "<pre>";
-        printf($result);
 
+        /*
         while($row = mysqli_fetch_array($resultAtt))
         {
           printf("[%- 8s]",$row['Field']);
         }
-        print "<br>";
+        print "<br>";*/
 
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
         {  
