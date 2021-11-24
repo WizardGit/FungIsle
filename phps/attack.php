@@ -62,13 +62,17 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
         //reduceHeroHealth(10);
         mysqli_close($conn);
+
+        function writeMsg() {
+            echo "Hello world!";
+          }
         
         // Subtract from one soldier
 
         // Subtract from hero
 
 
-        function getNumHenchmenIn($village)
+        /*function getNumHenchmenIn($village)
         {     
             $query = "select count(*) as total from Human h where h.role='Henchman' group by h.role";
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -87,7 +91,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $newHp =  $row[0] - $dmg;       
             mysqli_free_result($result);
             printf("Hero's new HP should be: %s\n", $newHp);    
-        }
+        }*/
       ?>
     </section>
   </body>
