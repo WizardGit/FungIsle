@@ -58,8 +58,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           print "<br>";
         }
         print "</pre>";
-        mysqli_free_result($result);
-        mysqli_close($conn);
+        mysqli_free_result($result1);
         //end q1
 
         //q2
@@ -73,8 +72,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           print "<br>";
         }
         print "</pre>";
-        mysqli_free_result($result);
-        mysqli_close($conn);
+        mysqli_free_result($result2);
         //end q2
 
         
@@ -89,12 +87,11 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           print "<br>";
         }
         print "</pre>";
-        mysqli_free_result($result);
-        mysqli_close($conn);
+        mysqli_free_result($result);        
         //Print results end
 
 
-
+        mysqli_close($conn);
         
         // Subtract from one soldier
 
