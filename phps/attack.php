@@ -16,7 +16,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
   </head>  
   <body>
     <section>
-      <a href="index.html">Back to Home Page</a>
+      <a href="../index.html">Back to Home Page</a>
       <p> <h2>The query:</h2> <p>
       <?php
         $hero = $_POST['hero'];
