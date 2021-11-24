@@ -37,9 +37,9 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         /* Choose random soldier and decrease their hp by dmg of hero*/
 
         /* Get all the soldiers with their weapons*/
-        printf("hello",$hero);
-        printf("hi:", $village);
-        printf("hi:", $query);
+        printf("Hero:\n",$hero);
+        printf("Village:\n", $village);
+        printf("Query:\n", $query);
 
         printf($query1);
         printf($query2);
