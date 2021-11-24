@@ -47,6 +47,9 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
       <p> <h2>Result of query:</h2> <p>
 
       <?php
+      $totDmg = 0;
+      $newHeroHp = 0;
+      $dmgFromHero = 0;
         //q1
         $result1 = mysqli_query($conn, $query1) or die(mysqli_error($conn));
         print "<pre>";
@@ -54,11 +57,15 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         {  
           
           foreach ($row as $element)
-          printf("[%- 8s]",$element);   
+          {
+            printf("[%- 8s]",$element); 
+            $totDmg += $element;
+          }  
           print "<br>";
         }
         print "</pre>";
         mysqli_free_result($result1);
+        printf("Total Dmg to Hero: %s\n", $totDmg);
         //end q1
 
         //q2
@@ -66,13 +73,26 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         print "<pre>";
         while($row = mysqli_fetch_array($result2, MYSQLI_ASSOC))
         {  
-          
+          $counter = 0;
           foreach ($row as $element)
-          printf("[%- 8s]",$element);   
+          {
+            printf("[%- 8s]",$element);
+            $counter++;
+            if (counter == 2)
+            {
+                $newHeroHp -= $element;
+            }
+            else if (counter == 3)
+            {
+                $dmgFromHero = $element;
+            }
+          }   
           print "<br>";
         }
         print "</pre>";
         mysqli_free_result($result2);
+        printf("Total Dmg to Hero: %s\n", $newHeroHp);
+        printf("Total Dmg to Hero: %s\n", $totDmg);
         //end q2
 
         
