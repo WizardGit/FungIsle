@@ -12,7 +12,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 <html lang="en">
 <head>
   <title>Perform Attack</title>
-  <link rel="stylesheet" href="../StylesdisplayStyle.css?v=<?php echo time(); ?>"> 
+  <link rel="stylesheet" href="../Styles/displayStyle.css?v=<?php echo time(); ?>"> 
   </head>  
   <body>
     <section>
@@ -41,8 +41,9 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
       <?php
 
-    /*function getNumHenchmenIn($village)
+    function getNumHenchmenIn()
     {     
+        $village = "Northland";
         $query = "select count(*) as total from Human h where h.role='Henchman' group by h.role";
         $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
         $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
@@ -51,8 +52,9 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         printf("getNumHenchmenIn: %s\n", $totDmg);
     }
     
-    function reduceHeroHealth($dmg)
+    function reduceHeroHealth()
     {
+        $dmg = "10";
         $query = "select h.health from Human h where h.firstName=";
         $query = $query."'".$hero."';";        
         $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -60,7 +62,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         $newHp =  $row[0] - $dmg;       
         mysqli_free_result($result);
         printf("Hero's new HP should be: %s\n", $newHp);    
-    }*/
+    }
 
         
 
