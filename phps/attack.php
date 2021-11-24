@@ -92,7 +92,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         print "</pre>";
         mysqli_free_result($result2);
         printf("Total Dmg to Hero: %s\n", $newHeroHp);
-        printf("Total Dmg to Hero: %s\n", $totDmg);
+        printf("Total Dmg to Hero: %s\n", $dmgFromHero);
         //end q2
 
         
