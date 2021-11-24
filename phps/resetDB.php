@@ -20,7 +20,7 @@ or die('Error connecting to MySQL server.');
       <a href="index.html">Back to Home Page</a>
       <p> <h2>The query:</h2> <p>
       <?php
-        $query = "UPDATE Human h SET h.health=101 WHERE SaladSN > 4;";
+        $query = "UPDATE Human h SET h.health=101 WHERE h.role='Henchman';";
         $queryAtt = "select * from Human h";
         print $query;
       ?>
