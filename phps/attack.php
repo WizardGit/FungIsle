@@ -64,7 +64,9 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         mysqli_close($conn);
 
         function writeMsg($village) 
-        { $query = "select count(*) as total from Human h where h.role='Henchman' group by h.role";
+        { 
+            $query = "select count(*) as total from Human h where h.role='Henchman' group by h.role";
+            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             echo "Hello world!";
         }
         
