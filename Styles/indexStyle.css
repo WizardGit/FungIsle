@@ -59,3 +59,12 @@ h2 {
 a {
   color: red;
 }
+#controls, #codeview {
+  background-color: green;
+  width: 100%;
+}
+#button {
+  clear: left;
+  float: left;
+  width: 100%;
+}
