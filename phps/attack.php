@@ -69,7 +69,8 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
             $totDmg = $row[0];  
-            echo "Hello world!";
+            mysqli_free_result($result);
+            printf("getNumHenchmenIn: %s\n", $totDmg);
         }
         
         // Subtract from one soldier
