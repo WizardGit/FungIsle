@@ -78,11 +78,11 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           {
             printf("[%- 8s]",$element);
             $counter++;
-            if (counter == 2)
+            if ($counter == 2)
             {
                 $newHeroHp -= $element;
             }
-            else if (counter == 3)
+            else if ($counter == 3)
             {
                 $dmgFromHero = $element;
             }
@@ -91,8 +91,8 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         }
         print "</pre>";
         mysqli_free_result($result2);
-        printf("Total Dmg to Hero: %s\n", $newHeroHp);
-        printf("Total Dmg to Hero: %s\n", $dmgFromHero);
+        printf("Hero's new HPo: %s\n", $newHeroHp);
+        printf("Dmg from Hero: %s\n", $dmgFromHero);
         //end q2
 
         
