@@ -33,6 +33,7 @@ or die('Error connecting to MySQL server.');
         $resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));
 
         print "<pre>";
+        printf($result);
 
         while($row = mysqli_fetch_array($resultAtt))
         {
@@ -42,7 +43,7 @@ or die('Error connecting to MySQL server.');
 
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
         {  
-          printf($row);
+          
           foreach ($row as $element)
           printf("[%- 8s]",$element);   
           print "<br>";
