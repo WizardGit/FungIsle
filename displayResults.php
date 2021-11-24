@@ -42,6 +42,7 @@ or die('Error connecting to MySQL server.');
 
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
         {  
+          printf($row);
           foreach ($row as $element)
           printf("[%- 8s]",$element);   
           print "<br>";
