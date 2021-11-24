@@ -41,28 +41,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
       <?php
 
-    function getNumHenchmenIn()
-    {     
-        $village = "Northland";
-        $query = "select count(*) as total from Human h where h.role='Henchman' group by h.role";
-        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-        $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
-        $totDmg = $row[0];  
-        mysqli_free_result($result);
-        printf("getNumHenchmenIn: %s\n", $totDmg);
-    }
-    
-    function reduceHeroHealth()
-    {
-        $dmg = "10";
-        $query = "select h.health from Human h where h.firstName=";
-        $query = $query."'".$hero."';";        
-        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-        $row = mysqli_fetch_array($result2, MYSQLI_ASSOC));  
-        $newHp =  $row[0] - $dmg;       
-        mysqli_free_result($result);
-        printf("Hero's new HP should be: %s\n", $newHp);    
-    }
+
 
         
 
@@ -87,6 +66,28 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         // Subtract from one soldier
 
         // Subtract from hero
+
+
+        function getNumHenchmenIn($village)
+        {     
+            $query = "select count(*) as total from Human h where h.role='Henchman' group by h.role";
+            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+            $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
+            $totDmg = $row[0];  
+            mysqli_free_result($result);
+            printf("getNumHenchmenIn: %s\n", $totDmg);
+        }
+        
+        function reduceHeroHealth($dmg)
+        {
+            $query = "select h.health from Human h where h.firstName=";
+            $query = $query."'".$hero."';";        
+            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+            $row = mysqli_fetch_array($result2, MYSQLI_ASSOC));  
+            $newHp =  $row[0] - $dmg;       
+            mysqli_free_result($result);
+            printf("Hero's new HP should be: %s\n", $newHp);    
+        }
       ?>
     </section>
   </body>
