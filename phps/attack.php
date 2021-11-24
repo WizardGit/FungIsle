@@ -41,7 +41,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
       <?php
 
-    function getNumHenchmenIn($village)
+    /*function getNumHenchmenIn($village)
     {     
         $query = "select count(*) as total from Human h where h.role='Henchman' group by h.role";
         $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -60,7 +60,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         $newHp =  $row[0] - $dmg;       
         mysqli_free_result($result);
         printf("Hero's new HP should be: %s\n", $newHp);    
-    }
+    }*/
 
         
 
