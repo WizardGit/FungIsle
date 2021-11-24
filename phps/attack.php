@@ -21,6 +21,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
       <?php
         $hero = $_POST['hero'];
         $village = $_POST['village'];
+        $query = $_POST['query'];
         //Count soldiers then multiply that number by 1
         $query1 = "select count(*) as total from Human h where h.role='Henchman' group by h.role";
         //Get name of hero and dmg and hp
@@ -36,8 +37,9 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         /* Choose random soldier and decrease their hp by dmg of hero*/
 
         /* Get all the soldiers with their weapons*/
-        printf($hero);
-        printf($village);
+        printf("hello",$hero);
+        printf("hi:", $village);
+        printf("hi:", $query);
 
         printf($query1);
         printf($query2);
