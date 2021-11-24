@@ -5,7 +5,7 @@ Date last edited: 11/15/2021
 -->
 
 <?php
-include('../Connections/connectionData.txt');
+include('../Connections/connectionDataStrong.txt');
 $conn = mysqli_connect($server, $user, $pass, $dbname, $port)
 or die('Error connecting to MySQL server.');
 ?>
@@ -20,7 +20,7 @@ or die('Error connecting to MySQL server.');
       <a href="index.html">Back to Home Page</a>
       <p> <h2>The query:</h2> <p>
       <?php
-        $query = "UPDATE Human h SET h.health=99 WHERE SaladSN > 4;";
+        $query = "UPDATE Human h SET h.health=101 WHERE SaladSN > 4;";
         $queryAtt = "select * from Human h";
         print $query;
       ?>
