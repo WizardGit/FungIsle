@@ -20,12 +20,10 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
       <p> <h2>The query:</h2> <p>
       <?php
         //Count soldiers then multiply that number by 1
-        $village = $_POST['village'];
-        
+        $village = $_POST['village'];        
 
         //Get name of hero and dmg and hp        
-        $hero = $_POST['hero'];
-        
+        $hero = $_POST['hero'];        
 
         //Display current human status
         $queryAtt = "select * from Human h";
@@ -37,9 +35,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         /* Get all the soldiers with their weapons*/
         printf("Hero: %s\n\n",$hero);
         printf("Village: %s\n\n", $village);
-
-        printf("QR1: %s\n\n", $query1);
-        printf("QR2: %s\n\n", $query2);
       ?>
 
       <p> <h2>Result of query:</h2> <p>
@@ -84,7 +79,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         mysqli_free_result($result);        
         //Print results end
 
-        reduceHeroHealth(10);
+        //reduceHeroHealth(10);
         mysqli_close($conn);
         
         // Subtract from one soldier
