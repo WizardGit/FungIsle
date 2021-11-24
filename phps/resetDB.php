@@ -5,7 +5,7 @@ Date last edited: 11/15/2021
 -->
 
 <?php
-include('./Connections/connectionDataStrong.txt');
+include('./Connections/connectionData.txt');
 $conn = mysqli_connect($server, $user, $pass, $dbname, $port)
 or die('Error connecting to MySQL server.');
 ?>
