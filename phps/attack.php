@@ -68,6 +68,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $query = "select count(*) as total from Human h where h.role='Henchman' group by h.role";
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
+            $totDmg = $row[0];  
             echo "Hello world!";
         }
         
