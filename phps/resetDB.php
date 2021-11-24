@@ -1,19 +1,18 @@
 <!--
 Author: Kaiser
-Original Author: Chris
-Date last edited: 11/15/2021
+Date last edited: 11/24/2021
+Purpose: Reset the FungIsle DB
 -->
 
 <?php
 include('../Connections/connectionDataStrong.txt');
-$conn = mysqli_connect($server, $user, $pass, $dbname, $port)
-or die('Error connecting to MySQL server.');
+$conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error connecting to MySQL server.');
 ?>
 
 <html lang="en">
 <head>
   <title>Reset Database</title>
-  <link rel="stylesheet" href="displayStyle.css?v=<?php echo time(); ?>"> 
+  <link rel="stylesheet" href="../StylesdisplayStyle.css?v=<?php echo time(); ?>"> 
   </head>  
   <body>
     <section>
