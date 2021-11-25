@@ -76,10 +76,10 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             printf("getNumHenchmenIn: %s\n", $totDmg);
         }       
         
-        function reduceHeroHealth($conn, $dmg)
+        function reduceHeroHealth($conn, $hero, $dmg)
         {
             $newHp = 0;
-            $query = "select h.health from Human h where h.firstName='Mushronian'";
+            $query = "select h.health from Human h where h.firstName=";
             $query = $query."'".$hero."';";   
             printf($query);     
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
