@@ -89,7 +89,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             foreach ($row as $element)
                 $newHp =  $element - $dmg;       
             mysqli_free_result($result);
-            printf("Hero's new HP should be: %s\n", $newHp);  
+            printf("Hero's new HP should be: %s <br>", $newHp);  
 
             // Set the new health
             $query = "update Human h set h.health=";
@@ -100,7 +100,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             mysqli_free_result($result);
         }
 
-        /*function reduceHenchmanHealth($conn, $village, $dmg)
+        function reduceHenchmanHealth($conn, $village, $dmg)
         {
             $query = "select h.health, h.SaladSN from Human h where h.role='Henchman' and h.health > 0 limit 1;";
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -117,7 +117,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             mysqli_free_result($result);
             printf("First Henchman Health: %s\n", $totDmg); 
             $newHp = $totDmg - $dmg;
-
+            /*
             // Set the new health
             $query = "update Human h set h.health=";
             $query = $query."'".$newHp."'where h.SaladSN=";
@@ -125,7 +125,8 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             printf($query);     
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             mysqli_free_result($result);
-        }*/
+            */
+        }
 
         function reduceBossHealth($conn, $dmg)
         {
