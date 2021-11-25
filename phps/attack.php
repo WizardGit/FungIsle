@@ -42,7 +42,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
         if (checkVillageStatus($conn, $village) == false)
         {
-          printf("first <br>");
           if($village == "HellCave")
           {
             //get hero dmg
@@ -72,7 +71,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         }
         else
         {
-          printf("You have defeated all of the lands - try Hell's Cave for the final boss fight! <br>");
+          printf("You have already freed this land! <br>");
         }
         printAllHumans($conn);
         mysqli_close($conn); 
@@ -207,6 +206,21 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           return $total;          
         }
 
+        function allVillagesFreed($conn)
+        {
+          // Return true if every village is freed, false if not
+          $query = "select count(*) from Village v  where v.name != 'HellCave';";
+          $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);              
+          foreach ($row as $element)
+          {
+            if($element != 0)
+              return false;
+            else
+              return true;
+          }
+        }
+
         function checkVillageStatus($conn, $village)
         {
           // Return true if $village status is freed, false if not
@@ -222,9 +236,10 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           if ($total == 0)
           {
             //Get Village and set to freed
-            //$query = "update Village v set v.status='freed'";
-            //$result = mysqli_query($conn, $query) or die(mysqli_error($conn));                 
-            //mysqli_free_result($result);
+            $query = "update Village v set v.status='freed' where v.name=";
+            $query = $query."'".$village."';";
+            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));                 
+            mysqli_free_result($result);
             return true;
           }
           else

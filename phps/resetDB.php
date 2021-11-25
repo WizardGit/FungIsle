@@ -21,7 +21,9 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
       <?php
         $query = "UPDATE Human h SET h.health=1000 WHERE h.role='Hero' or h.role='Boss';";
         $query2 = "UPDATE Human h SET h.health=100 WHERE h.role='Henchman';";
+        $query3 = "UPDATE Village v SET v.status='suppressed' WHERE v.VillageID > 0;";
         $queryAtt = "select * from Human h";
+        $queryAtt2 = "select * from Village v";
         print $query;
       ?>
 
@@ -30,7 +32,9 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
       <?php
         $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
         $result2 = mysqli_query($conn, $query2) or die(mysqli_error($conn));
+        $result3 = mysqli_query($conn, $query3) or die(mysqli_error($conn));
         $resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));
+        $resultAtt2 = mysqli_query($conn,$queryAtt2) or die(mysqli_error($conn));
 
         print "<pre>";
 
@@ -38,7 +42,14 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         {  
           
           foreach ($row as $element)
-          printf("[%- 8s]",$element);   
+          printf("[%- 17s]",$element);   
+          print "<br>";
+        }
+        while($row = mysqli_fetch_array($resultAtt2, MYSQLI_ASSOC))
+        {  
+          
+          foreach ($row as $element)
+          printf("[%- 10s]",$element);   
           print "<br>";
         }
 
