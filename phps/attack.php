@@ -111,7 +111,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
               if ($counter == 0)
                 $totDmg = $element; 
               else if ($counter == 1)
-                $SSN = $element
+                $SSN = $element;
               $counter++;
             }    
             mysqli_free_result($result);
