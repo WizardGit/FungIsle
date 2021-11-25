@@ -99,7 +99,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             mysqli_free_result($result);
         }
 
-        function reduceHenchmanHealth($conn, $village, $dmg)
+        /*function reduceHenchmanHealth($conn, $village, $dmg)
         {
             $query = "select h.health, h.SaladSN from Human h where h.role='Henchman' and h.health > 0 limit 1;";
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -124,7 +124,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             printf($query);     
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             mysqli_free_result($result);
-        }
+        }*/
 
         function reduceBossHealth($conn, $dmg)
         {
