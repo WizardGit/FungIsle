@@ -248,9 +248,18 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         function checkVillageStatus($conn, $village)
         {
           // Return true if $village status is freed, false if not
-          $query = "select count(*) as total from Human h inner join Village v on h.Village_ID = v.VillageID 
-          where v.name=";
-          $query = $query."'".$village."' and h.role='Henchman' and h.health>0";
+          if ($village == "HellCave")
+          {
+            $query = "select v.status from Village v where v.name=";
+            $query = $query."'".$village."';";
+          }
+          else
+          {
+            $query = "select count(*) as total from Human h inner join Village v on h.Village_ID = v.VillageID 
+            where v.name=";
+            $query = $query."'".$village."' and h.role='Henchman' and h.health>0";
+          }
+
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);              
           foreach ($row as $element)
