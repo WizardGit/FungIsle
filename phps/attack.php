@@ -142,11 +142,11 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           mysqli_free_result($result);
         }
 
-        function getDamageTotal($conn, $hero)
+        function getDamageTotal($conn, $human)
         {
           // Get the old health
           $query = "select w.attack, h.attackMultiplier from Human h inner join Weapon w on h.Weapon_Name=w.Name where h.firstName=";
-          $query = $query."'".$hero."';"; 
+          $query = $query."'".$human."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);              
           $counter = 0;
@@ -160,7 +160,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           }      
           $total = $dmg * $dmgMult;  
           mysqli_free_result($result);
-          printf("Hero's total Damage is: %s <br>", $total);  
+          printf("Human's total Damage is: %s <br>", $total);  
 
           return $total;          
         }
