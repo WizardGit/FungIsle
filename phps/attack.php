@@ -59,12 +59,12 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         print "</pre>";
         mysqli_free_result($result);        
         //Print results end
-
+        getNumHenchmenIn("Northland");
         //reduceHeroHealth(10);
         mysqli_close($conn);
 
-        function getNumHenchmenIn($village) 
-        { 
+        function getNumHenchmenIn($village)
+        {     
             $query = "select count(*) as total from Human h where h.role='Henchman' group by h.role";
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
@@ -78,15 +78,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         // Subtract from hero
 
 
-        /*function getNumHenchmenIn($village)
-        {     
-            $query = "select count(*) as total from Human h where h.role='Henchman' group by h.role";
-            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-            $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
-            $totDmg = $row[0];  
-            mysqli_free_result($result);
-            printf("getNumHenchmenIn: %s\n", $totDmg);
-        }
+        /*
         
         function reduceHeroHealth($dmg)
         {
