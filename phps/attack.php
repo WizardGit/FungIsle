@@ -83,9 +83,9 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $newHp = 0;
             $query = "select h.health from Human h where h.firstName='Mushronian'";
             $query = $query."'".$hero."';";        
-            /*$result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC));  
-            foreach ($row as $element)
+            /*foreach ($row as $element)
                 $newHp =  $element - $dmg;       
             mysqli_free_result($result);
             printf("Hero's new HP should be: %s\n", $newHp);  */  
