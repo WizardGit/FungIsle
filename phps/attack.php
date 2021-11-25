@@ -80,7 +80,8 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         {
             $newHp = 0;
             $query = "select h.health from Human h where h.firstName='Mushronian'";
-            $query = $query."'".$hero."';";        
+            $query = $query."'".$hero."';";   
+            printf($query);     
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
             print_r($row);
