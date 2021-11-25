@@ -19,7 +19,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
       <a href="index.html">Back to Home Page</a>
       <p> <h2>The query:</h2> <p>
       <?php
-        $query = "UPDATE Human h SET h.health=101 WHERE h.role='Henchman';";
+        $query = "UPDATE Human h SET h.health=1000 WHERE h.role='Hero';";
         $queryAtt = "select * from Human h";
         print $query;
       ?>
