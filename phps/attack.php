@@ -65,7 +65,9 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         // Subtract from hero
         function getNumHenchmenIn($conn, $village)
         {     
-            $query = "select count(*) as total from Human h where h.role='Henchman' group by h.role";
+            $query = "select count(*) as total  from Human h  inner join Village v on h.Village_ID = v.VillageID 
+            where h.role='Henchman' and v.name=";
+            $query = $query."'".$village."';";
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
             foreach ($row as $element)
@@ -93,12 +95,35 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $query = $query."'".$newHp."'where h.firstName=";
             $query = $query."'".$hero."';";  
             printf($query);     
-            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));                 
+            mysqli_free_result($result);
         }
 
         function reduceHenchmanHealth($conn, $village, $dmg)
         {
-            // Reduce first alive henchman by $dmg
+            $query = "select h.health, h.SaladSN from Human h where h.role='Henchman' and h.health > 0 limit 1;";
+            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+            $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
+            $counter = 0;
+            foreach ($row as $element)
+            {
+              if (counter == 0)
+                $totDmg = $element; 
+              else if (counter == 1)
+                $SSN = $element
+              counter++;
+            }    
+            mysqli_free_result($result);
+            printf("First Henchman Health: %s\n", $totDmg); 
+            $newHp = $totDmg - $dmg;
+
+            // Set the new health
+            $query = "update Human h set h.health=";
+            $query = $query."'".$newHp."'where h.SaladSN=";
+            $query = $query."'".$SSN."';";  
+            printf($query);     
+            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+            mysqli_free_result($result);
         }
 
         function reduceBossHealth($conn, $dmg)
