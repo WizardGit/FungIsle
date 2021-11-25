@@ -78,7 +78,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         
         function reduceHeroHealth($conn, $hero, $dmg)
         {
-            $newHp = 0;
             $query = "select h.health from Human h where h.firstName=";
             $query = $query."'".$hero."';";   
             printf($query);     
@@ -89,6 +88,13 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
                 $newHp =  $element - $dmg;       
             mysqli_free_result($result);
             printf("Hero's new HP should be: %s\n", $newHp);  
+
+         
+            $query = "update Human h set h.health=";
+            $query = $query."'".$newHp."'where h.firstName=";
+            $query = $query."'".$hero."';";  
+            printf($query);     
+            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
         }
       ?>
     </section>
