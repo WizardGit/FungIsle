@@ -44,9 +44,9 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
 
         
-getNumHenchmenIn("Northland");
+getNumHenchmenIn($conn, "Northland");
 
-function getNumHenchmenIn($village)
+function getNumHenchmenIn($conn, $village)
         {     
             printf("here");
             $query = "select count(*) as total from Human h where h.role='Henchman' group by h.role";
