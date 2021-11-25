@@ -19,15 +19,13 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
       <a href="../index.html">Back to Home Page</a>
       <p> <h2>The query:</h2> <p>
       <?php
-        //Count soldiers then multiply that number by 1
-        $village = $_POST['village'];        
+        //Get village to attack
+        $village = $_POST['village']; 
+        printf("Village: %s <br>", $village);       
 
-        //Get name of hero and dmg and hp        
+        //Get hero to attack        
         $hero = $_POST['hero'];  
-
-        
-        printf("Hero: %s\n\n",$hero);
-        printf("Village: %s\n\n", $village);
+        printf("Hero: %s <br>",$hero);        
       ?>
 
       <p> <h2>Result of query:</h2> <p>
@@ -39,8 +37,43 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         //reduceBossHealth($conn, 50);
         //checkVillageStatus($conn, $village);
         //getDamageTotal($conn, $hero);
-        printAllHumans($conn);
-        mysqli_close($conn);         
+        //printAllHumans($conn);
+        mysqli_close($conn);     
+        
+
+        if (checkVillageStatus($conn, $village) == false)
+        {
+          if($village == "HellCave")
+          {
+            //get hero dmg
+            $heroDMG = getDamageTotal($conn, $hero);
+            //put hero dmg on boss
+            reduceBossHealth($conn, $heroDMG);
+            //get boss dmg
+            $bossDMG = getDamageTotal($conn, "SaladoreTheTyrant");
+            //put boss dmg on hero
+            reduceHeroHealth($conn, $hero, $bossDMG);
+          }
+          else
+          {
+            //get hero dmg
+            $heroDMG = getDamageTotal($conn, $hero);
+            //put hero dmg on henchman
+            reduceHenchmanHealth($conn, $village, $heroDMG);
+            //get henchman dmg
+            $bossDMG = getNumHenchmenIn($conn, $village);
+            //put henchman dmg on hero
+            reduceHeroHealth($conn, $hero, $bossDMG);
+          }
+        }
+        else if ($village == "HellCave")
+        {
+          printf("You have won!!! <br>");
+        }
+        else
+        {
+          printf("You have defeated all of the lands - try Hell's Cave for the final boss fight! <br>");
+        }
         
         function printAllHumans($conn)
         {
@@ -68,7 +101,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
                 $totDmg = $element;  
             mysqli_free_result($result);
             printf("getNumHenchmenIn: %s <br>", $totDmg);
-
         }       
         
         function reduceHeroHealth($conn, $hero, $dmg)
@@ -105,9 +137,9 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
                 $SSN = $element;
               $counter++;
             }    
-            mysqli_free_result($result);
-            printf("First Henchman Health: %s <br>", $totDmg); 
+            mysqli_free_result($result);            
             $newHp = $totDmg - $dmg;
+            printf("First Henchman Health should be: %s <br>", $newHp); 
             
             // Set the new health
             $query = "update Human h set h.health=";
