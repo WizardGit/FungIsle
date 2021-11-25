@@ -74,9 +74,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
                 $totDmg = $element;  
             mysqli_free_result($result);
             printf("getNumHenchmenIn: %s\n", $totDmg);
-        }
-
-        
+        }       
         
         function reduceHeroHealth($conn, $dmg)
         {
@@ -85,6 +83,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $query = $query."'".$hero."';";        
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
+            print_r($row);
             foreach ($row as $element)
                 $newHp =  $element - $dmg;       
             mysqli_free_result($result);
