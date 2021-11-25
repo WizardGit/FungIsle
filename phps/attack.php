@@ -59,8 +59,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         //Print results end
         //reduceHeroHealth(10);
         mysqli_close($conn);
-
-        
         
         // Subtract from one soldier
 
@@ -78,6 +76,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         
         function reduceHeroHealth($conn, $hero, $dmg)
         {
+            // Get the old health
             $query = "select h.health from Human h where h.firstName=";
             $query = $query."'".$hero."';";   
             printf($query);     
@@ -89,13 +88,29 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             mysqli_free_result($result);
             printf("Hero's new HP should be: %s\n", $newHp);  
 
-         
+            // Set the new health
             $query = "update Human h set h.health=";
             $query = $query."'".$newHp."'where h.firstName=";
             $query = $query."'".$hero."';";  
             printf($query);     
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
         }
+
+        function reduceHenchmanHealth($conn, $village, $dmg)
+        {
+            // Reduce first alive henchman by $dmg
+        }
+
+        function reduceBossHealth($conn, $dmg)
+        {
+            // Reduce boss health by $dmg
+        }
+
+        function checkVillageStatus($conn, $village)
+        {
+            // Return true if $village status is freed, false if not
+        }
+
       ?>
     </section>
   </body>
