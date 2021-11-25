@@ -44,6 +44,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
 
         
+getNumHenchmenIn("Northland");
 
         
         //Print results
@@ -59,7 +60,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         print "</pre>";
         mysqli_free_result($result);        
         //Print results end
-        getNumHenchmenIn("Northland");
         //reduceHeroHealth(10);
         mysqli_close($conn);
 
