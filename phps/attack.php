@@ -48,14 +48,17 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             {
               printf("You have not freed all the main villages yet! <br>");
             }
-            //get hero dmg
-            $heroDMG = getDamageTotal($conn, $hero);
-            //put hero dmg on boss
-            reduceBossHealth($conn, $heroDMG);
-            //get boss dmg
-            $bossDMG = getDamageTotal($conn, "SaladoreTheTyrant");
-            //put boss dmg on hero
-            reduceHeroHealth($conn, $hero, $bossDMG);
+            else
+            {
+              //get hero dmg
+              $heroDMG = getDamageTotal($conn, $hero);
+              //put hero dmg on boss
+              reduceBossHealth($conn, $heroDMG);
+              //get boss dmg
+              $bossDMG = getDamageTotal($conn, "SaladoreTheTyrant");
+              //put boss dmg on hero
+              reduceHeroHealth($conn, $hero, $bossDMG);
+            }
           }
           else
           {
