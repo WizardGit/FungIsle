@@ -79,6 +79,18 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         
         function printAllHumans($conn)
         {
+          $query = "SHOW COLUMNS FROM Human";
+          $result = mysqli_query($conn,$query) or die(mysqli_error($conn));
+          while($row = mysqli_fetch_array($result))
+          {
+            printf("[%- 8s]",$row['Field']);
+          }
+          print "<br>";
+          mysqli_free_result($result); 
+
+
+
+
           $queryAtt = "select * from Human h";
           $resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));
           print "<pre>";
@@ -89,7 +101,8 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             print "<br>";
           }
           print "</pre>";
-          mysqli_free_result($result);           
+          mysqli_free_result($resultAtt); 
+                    
         }
         
         function getNumHenchmenIn($conn, $village)
@@ -142,6 +155,8 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             mysqli_free_result($result);            
             $newHp = $totDmg - $dmg;
             printf("First Henchman Health should be: %s <br>", $newHp); 
+            if ($newHp < 0)
+              $newHp = 0;
             
             // Set the new health
             $query = "update Human h set h.health=";
