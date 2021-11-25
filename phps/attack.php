@@ -73,7 +73,8 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             foreach ($row as $element)
                 $totDmg = $element;  
             mysqli_free_result($result);
-            printf("getNumHenchmenIn: %s\n", $totDmg);
+            printf("getNumHenchmenIn: %s <br>", $totDmg);
+
         }       
         
         function reduceHeroHealth($conn, $hero, $dmg)
