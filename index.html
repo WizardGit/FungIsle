@@ -24,7 +24,7 @@ Date last edited: 11/1/2021
                      <input type="reset" value="Erase">
               </form>
               <div id="controls">
-                     <label for="heroes">Choose hero:</label>
+                     <label id="herolabel" for="heroes">Choose hero:</label>
                      <select name="heroes" id="heroes" onchange="changeHero()">
                             <option value="Mushronian">Mushronian</option>
                             <option value="Amanita">Amanita</option>
@@ -38,12 +38,12 @@ Date last edited: 11/1/2021
                             <option value="HellCave">Hell's Cave</option>
                      </select>
                      <form action="./phps/attack.php" method="POST">   
-                            <input id="heroBox" type="text" name="hero" value="Mushronian">
-                            <input id="villageBox" type="text" name="village" value="Northland">
+                            <input disabled id="heroBox" type="text" name="hero" value="Mushronian">
+                            <input disabled id="villageBox" type="text" name="village" value="Northland">
                             <input type="submit" value="Attack">
                      </form>
                      <form action="./phps/resetDB.php" method="POST">  
-                            <input type="submit" value="reset">
+                            <input id="reset" type="submit" value="reset">
                      </form>
               </div>
               <div id="codeview">

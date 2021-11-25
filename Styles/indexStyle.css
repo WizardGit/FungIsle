@@ -60,8 +60,8 @@ a {
   color: red;
 }
 #controls, #codeview {
-  background-color: green;
   width: 100%;
+  padding-top: 5px;
   border-bottom-width: 5px;
   border-top-width: 5px;
   border-bottom-style: solid;
@@ -71,4 +71,21 @@ a {
   clear: left;
   float: left;
   width: 100%;
+}
+#herolabel {
+  margin-left: 5px;
+}
+
+select {
+  border-radius: 5px;
+  padding: 5px;
+  font-weight: bold;
+}
+input[type="text"][disabled] {
+  color: black;
+  font-weight: bold;
+  background-color: white;
+}
+#reset {
+  display: inline;
 }
