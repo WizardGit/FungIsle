@@ -52,15 +52,12 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         {  
           
           foreach ($row as $element)
-          printf("[%- 20s]",$element);   
+          printf("[%- 17s]",$element);   
           print "<br>";
         }
         print "</pre>";
-        mysqli_free_result($result);        
-        //Print results end
-        //reduceHeroHealth(10);
-        mysqli_close($conn);
-        
+        mysqli_free_result($result); 
+        mysqli_close($conn);        
         
         function getNumHenchmenIn($conn, $village)
         {     
@@ -126,7 +123,20 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
         function reduceBossHealth($conn, $dmg)
         {
-            // Reduce boss health by $dmg
+           // Get the old health
+           $query = "select h.health from Human h where h.firstName='SaladoreTheTyrant'";
+           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);              
+           foreach ($row as $element)
+               $newHp =  $element - $dmg;       
+           mysqli_free_result($result);
+           printf("Boss' new HP should be: %s <br>", $newHp);  
+
+           // Set the new health
+           $query = "update Human h set h.health=";
+           $query = $query."'".$newHp."'where h.firstName='SaladoreTheTyrant'";
+           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));                 
+           mysqli_free_result($result);
         }
 
         function checkVillageStatus($conn, $village)
