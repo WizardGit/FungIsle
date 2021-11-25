@@ -38,7 +38,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         //checkVillageStatus($conn, $village);
         //getDamageTotal($conn, $hero);
         //printAllHumans($conn);
-        mysqli_close($conn);             
+                    
 
         if (checkVillageStatus($conn, $village) == false)
         {
@@ -74,6 +74,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         {
           printf("You have defeated all of the lands - try Hell's Cave for the final boss fight! <br>");
         }
+        mysqli_close($conn); 
         
         function printAllHumans($conn)
         {
