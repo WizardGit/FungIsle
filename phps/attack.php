@@ -39,7 +39,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         //getDamageTotal($conn, $hero);
         //printAllHumans($conn);
                     
-
+        
         if (checkVillageStatus($conn, $village) == false)
         {
           if($village == "HellCave")
@@ -64,14 +64,24 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             //put henchman dmg on hero
             reduceHeroHealth($conn, $hero, $bossDMG);
           }
-        }
+          //updated village status
+          checkVillageStatus($conn, $village);
+        }        
         else if ($village == "HellCave")
         {
-          printf("You have won!!! <br>");
+          printf("You have already won!!! <br>");
+        }
+        else if (allVillagesFreed($conn) == false)
+        {
+          printf("You have already freed this land! Try another. <br>");
+        }
+        else if (allVillagesFreed($conn) == true)
+        {
+          printf("You have freed all the villages! You must confront SaladoreTheTyrant in Hell's Cave! <br>");
         }
         else
         {
-          printf("You have already freed this land! <br>");
+          printf("ERROR");
         }
         printAllHumans($conn);
         mysqli_close($conn); 
@@ -119,6 +129,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
                 $totDmg = $element;  
             mysqli_free_result($result);
             printf("getNumHenchmenIn: %s <br>", $totDmg);
+            return $totDmg;
         }       
         
         function reduceHeroHealth($conn, $hero, $dmg)
@@ -129,8 +140,9 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC);              
             foreach ($row as $element)
-                $newHp =  $element - $dmg;       
+              $newHp =  $element - $dmg;       
             mysqli_free_result($result);
+            printf("dmg: %s <br>", $dmg);
             printf("Hero's new HP should be: %s <br>", $newHp);  
 
             // Set the new health
