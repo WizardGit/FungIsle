@@ -23,16 +23,9 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         $village = $_POST['village'];        
 
         //Get name of hero and dmg and hp        
-        $hero = $_POST['hero'];        
+        $hero = $_POST['hero'];  
 
-        //Display current human status
-        $queryAtt = "select * from Human h";
-
-        /* Get all the soldiers with their weapons*/
-        /* Subtract the dmg from heros hp*/
-        /* Choose random soldier and decrease their hp by dmg of hero*/
-
-        /* Get all the soldiers with their weapons*/
+        
         printf("Hero: %s\n\n",$hero);
         printf("Village: %s\n\n", $village);
       ?>
@@ -40,27 +33,29 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
       <p> <h2>Result of query:</h2> <p>
 
       <?php
-
         //getNumHenchmenIn($conn, $village);
         //reduceHeroHealth($conn, $hero, 10);
         //reduceHenchmanHealth($conn, $village, 50);
         //reduceBossHealth($conn, 50);
         //checkVillageStatus($conn, $village);
-        getDamageTotal($conn, $hero);
-
-        //Print results
-        $resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));
-        print "<pre>";
-        while($row = mysqli_fetch_array($resultAtt, MYSQLI_ASSOC))
-        {  
-          
-          foreach ($row as $element)
-          printf("[%- 17s]",$element);   
-          print "<br>";
+        //getDamageTotal($conn, $hero);
+        printAllHumans($conn);
+        mysqli_close($conn);         
+        
+        function printAllHumans($conn)
+        {
+          $queryAtt = "select * from Human h";
+          $resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));
+          print "<pre>";
+          while($row = mysqli_fetch_array($resultAtt, MYSQLI_ASSOC))
+          {            
+            foreach ($row as $element)
+              printf("[%- 17s]",$element);   
+            print "<br>";
+          }
+          print "</pre>";
+          mysqli_free_result($result);           
         }
-        print "</pre>";
-        mysqli_free_result($result); 
-        mysqli_close($conn);        
         
         function getNumHenchmenIn($conn, $village)
         {     
