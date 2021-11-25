@@ -14,6 +14,7 @@ function reset()
 }
 function changeHero()
 {
+    alert("help)");
     document.getElementById("heroBox").value = document.getElementById("heroes").value;
 }
 function changeVillage()
