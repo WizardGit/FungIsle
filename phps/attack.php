@@ -55,7 +55,7 @@ function getNumHenchmenIn($conn, $village)
             printf("here");
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
             printf("here");
-            $totDmg = $row[0];  
+            $totDmg = $row[1];  
             mysqli_free_result($result);
             printf("getNumHenchmenIn: %s\n", $totDmg);
         }
