@@ -81,19 +81,16 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         {
           $query = "SHOW COLUMNS FROM Human";
           $result = mysqli_query($conn,$query) or die(mysqli_error($conn));
+          print "<pre>";
           while($row = mysqli_fetch_array($result))
           {
             printf("[%- 8s]",$row['Field']);
           }
           print "<br>";
-          mysqli_free_result($result); 
-
-
-
+          mysqli_free_result($result);
 
           $queryAtt = "select * from Human h";
-          $resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));
-          print "<pre>";
+          $resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));          
           while($row = mysqli_fetch_array($resultAtt, MYSQLI_ASSOC))
           {            
             foreach ($row as $element)
@@ -101,8 +98,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             print "<br>";
           }
           print "</pre>";
-          mysqli_free_result($resultAtt); 
-                    
+          mysqli_free_result($resultAtt);                     
         }
         
         function getNumHenchmenIn($conn, $village)
@@ -140,7 +136,9 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
         function reduceHenchmanHealth($conn, $village, $dmg)
         {
-            $query = "select h.health, h.SaladSN from Human h where h.role='Henchman' and h.health > 0 limit 1;";
+            $query = "select h.health, h.SaladSN  from Human h  inner join Village v on h.Village_ID=v.VillageID
+            where h.role='Henchman' and h.health > 0 and v.name=";
+            $query = $query."'".$village."';";
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
             $counter = 0;
@@ -151,7 +149,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
               else if ($counter == 1)
                 $SSN = $element;
               $counter++;
-            }    
+            }   
             mysqli_free_result($result);            
             $newHp = $totDmg - $dmg;
             printf("First Henchman Health should be: %s <br>", $newHp); 
