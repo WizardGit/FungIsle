@@ -74,6 +74,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         {
           printf("You have defeated all of the lands - try Hell's Cave for the final boss fight! <br>");
         }
+        printAllHumans($conn);
         mysqli_close($conn); 
         
         function printAllHumans($conn)
