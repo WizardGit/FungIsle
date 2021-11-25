@@ -41,27 +41,8 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
       <?php
 
+        getNumHenchmenIn($conn, "Northland");
 
-
-        
-getNumHenchmenIn($conn, "Northland");
-
-function getNumHenchmenIn($conn, $village)
-        {     
-            printf("here");
-            $query = "select count(*) as total from Human h where h.role='Henchman' group by h.role";
-            printf("here");
-            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-            printf("here");
-            $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
-            printf("here");
-            print_r($row);
-            $totDmg = $row[1];  
-            mysqli_free_result($result);
-            printf("getNumHenchmenIn: %s\n", $totDmg);
-        }
-
-        
         //Print results
         $resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));
         print "<pre>";
@@ -83,17 +64,27 @@ function getNumHenchmenIn($conn, $village)
         // Subtract from one soldier
 
         // Subtract from hero
-
+        function getNumHenchmenIn($conn, $village)
+        {     
+            $query = "select count(*) as total from Human h where h.role='Henchman' group by h.role";
+            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+            $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
+            foreach ($row as $element)
+                $totDmg = $element;  
+            mysqli_free_result($result);
+            printf("getNumHenchmenIn: %s\n", $totDmg);
+        }
 
         /*
         
-        function reduceHeroHealth($dmg)
+        function reduceHeroHealth($conn, $dmg)
         {
             $query = "select h.health from Human h where h.firstName=";
             $query = $query."'".$hero."';";        
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             $row = mysqli_fetch_array($result2, MYSQLI_ASSOC));  
-            $newHp =  $row[0] - $dmg;       
+            foreach ($row as $element)
+                $newHp =  $row[0] - $dmg;       
             mysqli_free_result($result);
             printf("Hero's new HP should be: %s\n", $newHp);    
         }*/
