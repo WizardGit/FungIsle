@@ -81,11 +81,9 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         {
             // Get the old health
             $query = "select h.health from Human h where h.firstName=";
-            $query = $query."'".$hero."';";   
-            printf($query);     
+            $query = $query."'".$hero."';"; 
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
-            print_r($row);
+            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);              
             foreach ($row as $element)
                 $newHp =  $element - $dmg;       
             mysqli_free_result($result);
@@ -95,7 +93,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $query = "update Human h set h.health=";
             $query = $query."'".$newHp."'where h.firstName=";
             $query = $query."'".$hero."';";  
-            printf($query);     
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));                 
             mysqli_free_result($result);
         }
@@ -115,7 +112,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
               $counter++;
             }    
             mysqli_free_result($result);
-            printf("First Henchman Health: %s\n", $totDmg); 
+            printf("First Henchman Health: %s <br>", $totDmg); 
             $newHp = $totDmg - $dmg;
             
             // Set the new health
