@@ -75,19 +75,19 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             printf("getNumHenchmenIn: %s\n", $totDmg);
         }
 
-        /*
+        
         
         function reduceHeroHealth($conn, $dmg)
         {
             $query = "select h.health from Human h where h.firstName=";
             $query = $query."'".$hero."';";        
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-            $row = mysqli_fetch_array($result2, MYSQLI_ASSOC));  
+            $row = mysqli_fetch_array($result, MYSQLI_ASSOC));  
             foreach ($row as $element)
-                $newHp =  $row[0] - $dmg;       
+                $newHp =  $element - $dmg;       
             mysqli_free_result($result);
             printf("Hero's new HP should be: %s\n", $newHp);    
-        }*/
+        }
       ?>
     </section>
   </body>
