@@ -41,10 +41,11 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
       <?php
 
-        getNumHenchmenIn($conn, $village);
-        reduceHeroHealth($conn, $hero, 10);
-        reduceHenchmanHealth($conn, $village, 50);
-        reduceBossHealth($conn, 50);
+        //getNumHenchmenIn($conn, $village);
+        //reduceHeroHealth($conn, $hero, 10);
+        //reduceHenchmanHealth($conn, $village, 50);
+        //reduceBossHealth($conn, 50);
+        checkVillageStatus($conn, $village);
 
         //Print results
         $resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));
@@ -124,25 +125,44 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
         function reduceBossHealth($conn, $dmg)
         {
-           // Get the old health
-           $query = "select h.health from Human h where h.firstName='SaladoreTheTyrant'";
-           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);              
-           foreach ($row as $element)
-               $newHp =  $element - $dmg;       
-           mysqli_free_result($result);
-           printf("Boss' new HP should be: %s <br>", $newHp);  
+          // Get the old health
+          $query = "select h.health from Human h where h.firstName='SaladoreTheTyrant'";
+          $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);              
+          foreach ($row as $element)
+            $newHp =  $element - $dmg;       
+          mysqli_free_result($result);
+          printf("Boss' new HP should be: %s <br>", $newHp);  
 
-           // Set the new health
-           $query = "update Human h set h.health=";
-           $query = $query."'".$newHp."'where h.firstName='SaladoreTheTyrant'";
-           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));                 
-           mysqli_free_result($result);
+          // Set the new health
+          $query = "update Human h set h.health=";
+          $query = $query."'".$newHp."'where h.firstName='SaladoreTheTyrant'";
+          $result = mysqli_query($conn, $query) or die(mysqli_error($conn));                 
+          mysqli_free_result($result);
         }
 
         function checkVillageStatus($conn, $village)
         {
-            // Return true if $village status is freed, false if not
+          // Return true if $village status is freed, false if not
+          $query = "select count(*) as total from Human h inner join Village v on h.Village_ID = v.VillageID 
+          where v.name=";
+          $query = $query."'".$village."' and h.role='Henchman' and h.health>0";
+          $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);              
+          foreach ($row as $element)
+            $total =  $element;      
+          mysqli_free_result($result);
+          printf("Total: %s <br>", $total); 
+          if ($total == 0)
+          {
+            //Get Village and set to freed
+            //$query = "update Village v set v.status='freed'";
+            //$result = mysqli_query($conn, $query) or die(mysqli_error($conn));                 
+            //mysqli_free_result($result);
+            return true;
+          }
+          else
+            return false;
         }
 
       ?>
