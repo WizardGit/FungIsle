@@ -52,7 +52,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         {  
           
           foreach ($row as $element)
-          printf("[%- 8s]",$element);   
+          printf("[%- 20s]",$element);   
           print "<br>";
         }
         print "</pre>";
@@ -61,9 +61,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         //reduceHeroHealth(10);
         mysqli_close($conn);
         
-        // Subtract from one soldier
-
-        // Subtract from hero
+        
         function getNumHenchmenIn($conn, $village)
         {     
             $query = "select count(*) as total  from Human h  inner join Village v on h.Village_ID = v.VillageID 
