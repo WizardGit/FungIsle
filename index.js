@@ -14,13 +14,9 @@ function reset()
 }
 function changeHero()
 {
-    var h = document.getElementById("heroes");
-    var hb = document.getElementById("heroBox");
-    hb.value = h.value;
+    document.getElementById("heroBox").value = document.getElementById("heroes").value;
 }
 function changeVillage()
 {
-    var v = document.getElementById("villages");
-    var vb = document.getElementById("villageBox");
-    vb.value = v.value;
+    document.getElementById("villageBox").value = document.getElementById("villages").value;
 }
