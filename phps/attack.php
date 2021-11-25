@@ -250,8 +250,9 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           // Return true if $village status is freed, false if not
           if ($village == "HellCave")
           {
-            $query = "select v.status from Village v where v.name=";
-            $query = $query."'".$village."';";
+            $query = "select count(*) as total from Human h inner join Village v on h.Village_ID = v.VillageID 
+            where v.name=";
+            $query = $query."'".$village."' and h.role='Boss' and h.health>0";
           }
           else
           {
