@@ -12,7 +12,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 <html lang="en">
 <head>
   <title>Reset Database</title>
-  <link rel="stylesheet" href="../StylesdisplayStyle.css?v=<?php echo time(); ?>"> 
+  <link rel="stylesheet" href="../Styles/displayStyle.css?v=<?php echo time(); ?>"> 
   </head>  
   <body>
     <section>
