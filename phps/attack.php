@@ -108,11 +108,11 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $counter = 0;
             foreach ($row as $element)
             {
-              if (counter == 0)
+              if ($counter == 0)
                 $totDmg = $element; 
-              else if (counter == 1)
+              else if ($counter == 1)
                 $SSN = $element
-              counter++;
+              $counter++;
             }    
             mysqli_free_result($result);
             printf("First Henchman Health: %s\n", $totDmg); 
