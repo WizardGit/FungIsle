@@ -44,7 +44,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         getNumHenchmenIn($conn, $village);
         reduceHeroHealth($conn, $hero, 10);
         reduceHenchmanHealth($conn, $village, 50);
-        reduceBossHealth($conn, 50)
+        reduceBossHealth($conn, 50);
 
         //Print results
         $resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));

@@ -19,7 +19,8 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
       <a href="../index.html">Back to Home Page</a>
       <p> <h2>The query:</h2> <p>
       <?php
-        $query = "UPDATE Human h SET h.health=1000 WHERE h.role='Hero';";
+        $query = "UPDATE Human h SET h.health=1000 WHERE h.role='Hero' or h.role='Boss';";
+        $query2 = "UPDATE Human h SET h.health=100 WHERE h.role='Henchman';"
         $queryAtt = "select * from Human h";
         print $query;
       ?>
@@ -28,6 +29,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
       <?php
         $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+        $result2 = mysqli_query($conn, $query2) or die(mysqli_error($conn));
         $resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));
 
         print "<pre>";
