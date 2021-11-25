@@ -115,8 +115,8 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
               $counter++;
             }    
             mysqli_free_result($result);
-            printf("First Henchman Health: %s\n", $totDmg); 
-            $newHp = $totDmg - $dmg;
+            //printf("First Henchman Health: %s\n", $totDmg); 
+            //$newHp = $totDmg - $dmg;
             /*
             // Set the new health
             $query = "update Human h set h.health=";
