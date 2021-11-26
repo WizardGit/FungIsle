@@ -367,6 +367,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           {
             $dud = $element;
           }
+          printf("here");
           return $dud;
           mysqli_free_result($result);
         }
