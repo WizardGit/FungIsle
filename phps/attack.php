@@ -53,9 +53,14 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         {
           if($village == "HellCave")
           {
+            $heroPos = getHeroPosition($curr, $hero)
             if(allVillagesFreed($conn) == false)
             {
               printf("You have not freed all the main villages yet! <br>");
+            }
+            else if (($heroPos != $village) && (checkVillageStatus($conn, $heroPos) == "suppressed"))
+            {
+              printf("%s cannot move to %s because they are in %s which has not yet been freed! <br>", $hero, $village, $heroPos);
             }
             else
             {
@@ -347,6 +352,19 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             else
               return true;
           }
+          mysqli_free_result($result);
+        }
+        function getHeroPosition($conn, $hero)
+        {
+          $query = "select v.Name from Human h inner join Village v on v.VillageID=h.Village_ID where h.firstName=";
+          $query = $query."'".$hero."';"; 
+          $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);              
+          foreach ($row as $element)
+          {
+            return $element;
+          }
+          mysqli_free_result($result);
         }
 
         function checkVillageStatus($conn, $village)
