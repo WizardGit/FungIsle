@@ -59,7 +59,7 @@ h2 {
 a {
   color: red;
 }
-#controls, #codeview {
+#codeview {
   width: 100%;
   padding-top: 5px;
   border-bottom-width: 5px;
@@ -80,12 +80,14 @@ select {
   border-radius: 5px;
   padding: 5px;
   font-weight: bold;
-}
-input[type="text"][disabled] {
-  color: black;
-  font-weight: bold;
-  background-color: white;
+  display:block;
+  margin-left: 5px;
 }
 #reset {
   display: inline;
+}
+#attack {
+  clear: both;
+  float: left;
+  display: block;
 }

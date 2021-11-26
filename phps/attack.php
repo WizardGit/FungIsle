@@ -31,7 +31,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
       <p> <h2>Result of query:</h2> <p>
 
       <?php
-        //getNumHenchmenIn($conn, $village);
+        //getHenchmenDamage($conn, $village);
         //reduceHeroHealth($conn, $hero, 10);
         //reduceHenchmanHealth($conn, $village, 50);
         //reduceBossHealth($conn, 50);
@@ -67,9 +67,9 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             //put hero dmg on henchman
             reduceHenchmanHealth($conn, $village, $heroDMG);
             //get henchman dmg
-            $bossDMG = getNumHenchmenIn($conn, $village);
+            $henchDMG = getHenchmenDamage($conn, $village);
             //put henchman dmg on hero
-            reduceHeroHealth($conn, $hero, $bossDMG);
+            reduceHeroHealth($conn, $hero, $henchDMG);
           }
           //updated village status
           checkVillageStatus($conn, $village);
@@ -125,17 +125,25 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           mysqli_free_result($resultAtt);                     
         }
         
-        function getNumHenchmenIn($conn, $village)
+        function getHenchmenDamage($conn, $village)
         {     
-            $query = "select count(*) as total  from Human h  inner join Village v on h.Village_ID = v.VillageID 
+            $query = "select h.attackMultiplier * w.attack as totdmg from Human h  
+            inner join Village v on h.Village_ID = v.VillageID inner join Weapon w on h.Weapon_Name=w.Name
             where h.role='Henchman' and v.name=";
             $query = $query."'".$village."';";
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-            $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
-            foreach ($row as $element)
-                $totDmg = $element;  
+
+            $totDmg = 0;
+            while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+            {            
+              foreach ($row as $element)
+              {
+                $totDmg += $element;
+              }
+            }
+
             mysqli_free_result($result);
-            printf("getNumHenchmenIn: %s <br>", $totDmg);
+            printf("HenchmenDmg: %s <br>", $totDmg);
             return $totDmg;
         }       
         
