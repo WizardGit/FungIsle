@@ -61,6 +61,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             }
             else
             {
+              updateHeroPosition($conn, $hero, $village);
               //Get Hero and Animal Damage
               $totalDMG = getDamageTotal($conn, $hero);
               $totalDMG += getAnimalDamage($conn, $animal, $hero);
@@ -78,6 +79,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           }
           else
           {
+            updateHeroPosition($conn, $hero, $village);
             //Get Hero and Animal Damage
             $totalDMG = getDamageTotal($conn, $hero);
             $totalDMG += getAnimalDamage($conn, $animal, $hero);
@@ -353,25 +355,36 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             else
               return true;
           }
-          //mysqli_free_result($result);
+          mysqli_free_result($result);
+        }
+        function updateHeroPosition($conn, $hero, $village)
+        {
+          $query = "select v.VillageID from Village v where v.name=";
+          $query = $query."'".$village."';"; 
+          $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
+          foreach ($row as $element)
+          {
+            $VID = $element;
+          }
+
+          $query = "update Human h set h.Village_ID=";
+          $query = $query."'".$VID."'where h.firstName="; 
+          $query = $query."'".$hero."';"; 
+          $result = mysqli_query($conn, $query) or die(mysqli_error($conn));       
+          mysqli_free_result($result);
         }
         function getHeroPosition($conn, $hero)
         {
           $query = "select v.name from Human h inner join Village v on v.VillageID=h.Village_ID where h.firstName=";
           $query = $query."'".$hero."';"; 
-          printf("h %s", $query);
-          printf("here");
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
-          printf("here");             
           foreach ($row as $element)
           {
-            printf("here");
-            $dud = $element;
+            return $element;
           }
-          printf("here");
-          return $dud;
-          //mysqli_free_result($result);
+          mysqli_free_result($result);
         }
 
         function checkVillageStatus($conn, $village)
