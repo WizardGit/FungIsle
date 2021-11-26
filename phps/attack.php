@@ -132,7 +132,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             where h.role='Henchman' and v.name=";
             $query = $query."'".$village."';";
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-
             $totDmg = 0;
             while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
             {            
@@ -141,7 +140,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
                 $totDmg += $element;
               }
             }
-
             mysqli_free_result($result);
             printf("HenchmenDmg: %s <br>", $totDmg);
             return $totDmg;
@@ -157,7 +155,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             foreach ($row as $element)
               $newHp =  $element - $dmg;       
             mysqli_free_result($result);
-            printf("dmg: %s <br>", $dmg);
             printf("Hero's new HP should be: %s <br>", $newHp);  
 
             // Set the new health
@@ -193,8 +190,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             // Set the new health
             $query = "update Human h set h.health=";
             $query = $query."'".$newHp."'where h.SaladSN=";
-            $query = $query."'".$SSN."';";  
-            printf($query);     
+            $query = $query."'".$SSN."';"; 
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             mysqli_free_result($result);
             

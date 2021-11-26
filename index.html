@@ -7,7 +7,7 @@ Date last edited: 11/1/2021
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>CIS 451</title>
+    <title>CIS 451: Final Project</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="./Styles/indexStyle.css" />  
     <script src="index.js" ></script>  
@@ -24,18 +24,24 @@ Date last edited: 11/1/2021
                      <input type="reset" value="Erase">
               </form>                    
               <form action="./phps/attack.php" method="POST">   
-                     <label id="herolabel" for="heroes">Choose hero:</label>
-                     <select name="hero" id="heroes" onchange="changeHero()">
+                     <label for="heroes">Choose hero:</label>
+                     <select name="hero" id="heroes">
                             <option value="Mushronian">Mushronian</option>
                             <option value="Amanita">Amanita</option>
                      </select>
-                     <label for="heroes">To attack henchmen in: </label>
-                     <select name="village" id="villages" onchange="changeVillage()">
+                     <label for="villages">To attack henchmen in: </label>
+                     <select name="village" id="villages">
                             <option value="Northland">Northland</option>
                             <option value="Southland">Southland</option>
                             <option value="Westland">Westland</option>
                             <option value="Eastland">Eastland</option>
                             <option value="HellCave">Hell's Cave</option>
+                     </select>
+                     <label for="animals">With the help of: </label>
+                     <select name="animal" id="animals">
+                            <option value="None">None</option>
+                            <option value="Fungivore">Fungivore</option>
+                            <option value="PortabelloPig">Portabello Pig</option>                            
                      </select>
                      <input id="attack" type="submit" value="Attack">
               </form>
@@ -44,9 +50,7 @@ Date last edited: 11/1/2021
               </form>       
               <div id="codeview">
                      <p>
-                     You can view this html file <a href="./txtfiles/index.txt">HERE</a>.<br>
-                     You can view the php file <a href="./txtfiles/displayResults.txt">HERE</a>.<br>
-                     You can view the connection data file <a href="connectionData.txt">HERE</a>.
+                     You can view the files for this project<a href="https://github.com/WizardGit/FungIsle"> HERE</a>.
                      </p>
               </div>     
        </section>

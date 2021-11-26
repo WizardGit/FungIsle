@@ -72,10 +72,6 @@ a {
   float: left;
   width: 100%;
 }
-#herolabel {
-  margin-left: 5px;
-}
-
 select {
   border-radius: 5px;
   padding: 5px;
