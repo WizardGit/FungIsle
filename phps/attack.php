@@ -53,7 +53,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         {
           if($village == "HellCave")
           {
-            $heroPos = getHeroPosition($curr, $hero)
+            $heroPos = getHeroPosition($curr, $hero);
             if(allVillagesFreed($conn) == false)
             {
               printf("You have not freed all the main villages yet! <br>");
