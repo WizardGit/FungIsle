@@ -114,24 +114,36 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           print "<br>";
           mysqli_free_result($result);
 
-          $queryAtt = "select * from Human h";
-          $queryAtt2 = "select * from Village v";
-          $resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn)); 
-          $resultAtt2 = mysqli_query($conn,$queryAtt2) or die(mysqli_error($conn));          
-          while($row = mysqli_fetch_array($resultAtt, MYSQLI_ASSOC))
-          {            
-            foreach ($row as $element)
-              printf("[%- 17s]",$element);   
-            print "<br>";
-          }
-          while($row = mysqli_fetch_array($resultAtt2, MYSQLI_ASSOC))
-          {            
-            foreach ($row as $element)
-              printf("[%- 10s]",$element);   
-            print "<br>";
-          }
-          print "</pre>";
-          mysqli_free_result($resultAtt);                     
+          $resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));
+        $resultAtt2 = mysqli_query($conn,$queryAtt2) or die(mysqli_error($conn));
+        $resultAtt3 = mysqli_query($conn,$queryAtt3) or die(mysqli_error($conn));
+
+        print "<pre>";
+
+        while($row = mysqli_fetch_array($resultAtt, MYSQLI_ASSOC))
+        {  
+          
+          foreach ($row as $element)
+          printf("[%- 17s]",$element);   
+          print "<br>";
+        }
+        while($row = mysqli_fetch_array($resultAtt2, MYSQLI_ASSOC))
+        {  
+          
+          foreach ($row as $element)
+          printf("[%- 10s]",$element);   
+          print "<br>";
+        }
+        while($row = mysqli_fetch_array($resultAtt3, MYSQLI_ASSOC))
+        {  
+          
+          foreach ($row as $element)
+          printf("[%- 10s]",$element);   
+          print "<br>";
+        }
+
+        print "</pre>";
+        mysqli_free_result($result);                    
         }
         
         function getHenchmenDamage($conn, $village)
