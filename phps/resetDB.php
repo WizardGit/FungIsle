@@ -21,7 +21,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
       <?php
         $query = "UPDATE Human h SET h.health=1000 WHERE h.role='Hero' or h.role='Boss';";
         $query2 = "UPDATE Human h SET h.health=100 WHERE h.role='Henchman';";
-        $query3 = "UPDATE Village v SET v.status='suppressed' WHERE v.VillageID > 0;";
+        $query3 = "UPDATE Village v SET v.status='suppressed' WHERE v.VillageID > 0 and v.VillageID < 6;";
         $query4 = "UPDATE Animal a SET a.health=100 WHERE a.HumanOwnerSSN > 0;";
         $queryAtt = "select * from Human h";
         $queryAtt2 = "select * from Village v";
