@@ -52,7 +52,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         if (checkVillageStatus($conn, $village) == false)
         {
           $heroPos = getHeroPosition($curr, $hero);
-            printf("%s <br>", $heroPos);
+          printf("%s <br>", $heroPos);
           if($village == "HellCave")
           {
             
@@ -360,12 +360,14 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         {
           $query = "select v.Name from Human h inner join Village v on v.VillageID=h.Village_ID where h.firstName=";
           $query = $query."'".$hero."';"; 
+          printf("here");
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);              
           foreach ($row as $element)
           {
-            return $element;
+            $dud = $element;
           }
+          return $dud;
           mysqli_free_result($result);
         }
 
