@@ -62,7 +62,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         {  
           
           foreach ($row as $element)
-          printf("[%- 10s]",$element);   
+          printf("[%- 13s]",$element);   
           print "<br>";
         }
 
