@@ -40,6 +40,13 @@ Date last edited: 11/1/2021
                      <form action="./phps/attack.php" method="POST">   
                             <input  id="heroBox" type="text" name="hero" value="Mushronian">
                             <input  id="villageBox" type="text" name="village" value="Northland">
+                            <select name="villages" id="villages" onchange="changeVillage()">
+                                   <option value="Northland">Northland</option>
+                                   <option value="Southland">Southland</option>
+                                   <option value="Westland">Westland</option>
+                                   <option value="Eastland">Eastland</option>
+                                   <option value="HellCave">Hell's Cave</option>
+                            </select>
                             <input type="submit" value="Attack">
                      </form>
                      <form action="./phps/resetDB.php" method="POST">  

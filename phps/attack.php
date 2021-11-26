@@ -25,7 +25,12 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
         //Get hero to attack        
         $hero = $_POST['hero'];  
-        printf("Hero: %s <br>",$hero);        
+        printf("Hero: %s <br>",$hero); 
+        
+        $villages = $_POST['villages'];
+        printf("Villages: %s <br>", $villages);
+
+
       ?>
 
       <p> <h2>Result of query:</h2> <p>
