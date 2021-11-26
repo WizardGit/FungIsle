@@ -1,7 +1,7 @@
 <!--
 Author: Kaiser
-Date last edited: 11/24/2021
-Purpose: Reset the FungIsle DB
+Date last edited: 11/26/2021
+Purpose: Perform the attack that user requests
 -->
 
 <?php
@@ -19,15 +19,15 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
       <a href="../index.html">Back to Home Page</a>
       <p> <h2>The query:</h2> <p>
       <?php
-        //Get village to attack
+        //Get village
         $village = $_POST['village']; 
         printf("Village: %s <br>", $village);       
 
-        //Get hero to attack        
+        //Get hero      
         $hero = $_POST['hero'];  
         printf("Hero: %s <br>",$hero); 
 
-        //Get animal to attack        
+        //Get animal       
         $animal = $_POST['animal'];  
         printf("Animal: %s <br>",$animal); 
       ?>
