@@ -206,21 +206,15 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $query = $query."'".$hero."' ;"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
-          $counter = 0;
-          foreach ($row as $element)
-          {
-            $dmg = $element;
-            $counter++;
-          }
-          if ($counter == 0)
+          if (count($row) == 0)
           {
             printf("There is not animal of that species with that owner <br>"); 
             return 0; 
           }     
           else
           {
-            printf("Animal's damage is: %s <br>", $dmg); 
-            return $dmg; 
+            printf("Animal's damage is: %s <br>", $row['attack']); 
+            return $row['attack']; 
           }  
           mysqli_free_result($result);          
         }
@@ -232,22 +226,17 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $query = $query."'".$animal."' and h.firstName="; 
           $query = $query."'".$hero."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);              
-          $counter = 0;
-          foreach ($row as $element)
-          {
-            if ($counter == 0)
-              $newHp = $element - $dmg; 
-            else if ($counter == 1)
-              $SSN = $element;
-            $counter++;
-          }  
-          if ($counter == 0)
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);   
+          if (count($row) == 0)
           {
             printf("There is not animal of that species with that owner <br>"); 
             return;
           }
-                
+          else
+          {
+            $newHp = $row['health'];
+            $SSN = $row['SaladSN'];
+          }                
           mysqli_free_result($result);
           printf("Animal's new HP should be: %s <br>", $newHp);  
 
@@ -267,17 +256,9 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $query = $query."'".$village."';";
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
-            $counter = 0;
-            foreach ($row as $element)
-            {
-              if ($counter == 0)
-                $totDmg = $element; 
-              else if ($counter == 1)
-                $SSN = $element;
-              $counter++;
-            }   
-            mysqli_free_result($result);            
-            $newHp = $totDmg - $dmg;
+            $newHp = $row['health'] - $dmg;
+            $SSN = $row['SaladSN'];  
+            mysqli_free_result($result);  
             printf("First Henchman Health should be: %s <br>", $newHp); 
             if ($newHp < 0)
               $newHp = 0;
