@@ -52,10 +52,8 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         if (checkVillageStatus($conn, $village) == false)
         {
           $heroPos = getHeroPosition($conn, $hero);
-          printf("%s <br>", $heroPos);
           if($village == "HellCave")
-          {
-            
+          {            
             if(allVillagesFreed($conn) == false)
             {
               printf("You have not freed all the main villages yet! <br>");
@@ -73,7 +71,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
               reduceHeroHealth($conn, $hero, $bossDMG);
             }
           } 
-          else if (($heroPos != $village) && (checkVillageStatus($conn, $heroPos) == "suppressed"))
+          else if (($heroPos != $village) && (checkVillageStatus($conn, $heroPos) == false))
           {
             printf("%s cannot move to %s because they are in %s which has not yet been freed! <br>", $hero, $village, $heroPos);
           }
