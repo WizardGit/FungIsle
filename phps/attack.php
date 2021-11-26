@@ -134,17 +134,20 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           while($row = mysqli_fetch_array($resultAtt, MYSQLI_ASSOC))
           {            
             foreach ($row as $element)
-              printf("[%- 17s] <br>",$element);   
+              printf("[%- 17s]",$element); 
+            printf("<br>");  
           }
           while($row = mysqli_fetch_array($resultAtt2, MYSQLI_ASSOC))
           {            
             foreach ($row as $element)
-              printf("[%- 17s] <br>",$element);   
+              printf("[%- 17s]",$element);
+            printf("<br>"); 
           }
           while($row = mysqli_fetch_array($resultAtt3, MYSQLI_ASSOC))
           {            
             foreach ($row as $element)
-              printf("[%- 17s] <br>",$element);   
+              printf("[%- 17s]",$element);  
+              printf("<br>");  
           }
           print "</pre>";
           mysqli_free_result($result);                    
