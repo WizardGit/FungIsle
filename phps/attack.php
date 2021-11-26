@@ -217,7 +217,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
         function reduceAnimalHealth($conn, $animal, $hero, $dmg)
         {
-          $query = "select a.attack from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
+          $query = "select a.health, h.SaladSN from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
           where h.firstName='Mushronian' and a.species=";
           $query = $query."'".$animal."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
