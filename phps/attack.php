@@ -43,8 +43,8 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         //getHenchmenDamage($conn, $village);
         //reduceHenchmanHealth($conn, $village, 50);
 
-        getAnimalDamage($conn, $animal, $hero);
-        reduceAnimalHealth($conn, $animal, $hero, 50);
+        //getAnimalDamage($conn, $animal, $hero);
+        //reduceAnimalHealth($conn, $animal, $hero, 50);
         
         //checkVillageStatus($conn, $village);        
         //printAllHumans($conn);                    
@@ -59,10 +59,11 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             }
             else
             {
-              //get hero dmg
-              $heroDMG = getDamageTotal($conn, $hero);
+              //Get Hero and Animal Damage
+              $totalDMG = getDamageTotal($conn, $hero);
+              $totalDMG += getAnimalDamage($conn, $animal, $hero);
               //put hero dmg on boss
-              reduceBossHealth($conn, $heroDMG);
+              reduceBossHealth($conn, $totalDMG);
               //get boss dmg
               $bossDMG = getDamageTotal($conn, "SaladoreTheTyrant");
               //put boss dmg on hero
@@ -71,10 +72,11 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           }
           else
           {
-            //get hero dmg
-            $heroDMG = getDamageTotal($conn, $hero);
+            //Get Hero and Animal Damage
+            $totalDMG = getDamageTotal($conn, $hero);
+            $totalDMG += getAnimalDamage($conn, $animal, $hero);
             //put hero dmg on henchman
-            reduceHenchmanHealth($conn, $village, $heroDMG);
+            reduceHenchmanHealth($conn, $village, $totalDMG);
             //get henchman dmg
             $henchDMG = getHenchmenDamage($conn, $village);
             //put henchman dmg on hero
@@ -206,7 +208,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           if ($counter == 0)
           {
             printf("There is not animal of that species with that owner <br>"); 
-            return -1; 
+            return 0; 
           }     
           else
           {
