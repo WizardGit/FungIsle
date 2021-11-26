@@ -214,7 +214,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             // Set the new health
             $query = "update Animal a set a.health=";
             $query = $query."'".$newHp."' where a.species=";
-            $query = $query."'".$animal."' a.HumanOwnerSSN=";  
+            $query = $query."'".$animal."' and a.HumanOwnerSSN=";  
             $query = $query."'".$SSN."';"; 
             printf("Query: %s <br>", $query);
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));                 
