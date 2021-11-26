@@ -114,11 +114,12 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           print "<br>";
           mysqli_free_result($result);
 
+          $queryAtt = "select * from Human h";
+        $queryAtt2 = "select * from Village v";
+        $queryAtt3 = "select * from Animal a";
           $resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));
         $resultAtt2 = mysqli_query($conn,$queryAtt2) or die(mysqli_error($conn));
-        $resultAtt3 = mysqli_query($conn,$queryAtt3) or die(mysqli_error($conn));
-
-        print "<pre>";
+        $resultAtt3 = mysqli_query($conn,$queryAtt3) or die(mysqli_error($conn));        
 
         while($row = mysqli_fetch_array($resultAtt, MYSQLI_ASSOC))
         {  
