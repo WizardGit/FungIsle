@@ -43,8 +43,8 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         //getHenchmenDamage($conn, $village);
         //reduceHenchmanHealth($conn, $village, 50);
 
-        //getAnimalDamage($conn, $animal, $hero);
-        //reduceAnimalHealth($conn, $animal, $hero, $dmg);
+        getAnimalDamage($conn, $animal, $hero);
+        reduceAnimalHealth($conn, $animal, $hero, 50);
         
         //checkVillageStatus($conn, $village);        
         //printAllHumans($conn);                    
