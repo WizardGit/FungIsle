@@ -131,28 +131,21 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $resultAtt2 = mysqli_query($conn,$queryAtt2) or die(mysqli_error($conn));
           $resultAtt3 = mysqli_query($conn,$queryAtt3) or die(mysqli_error($conn));        
 
-        while($row = mysqli_fetch_array($resultAtt, MYSQLI_ASSOC))
-        {  
-          
-          foreach ($row as $element)
-          printf("[%- 17s]",$element);   
-          print "<br>";
-        }
-        while($row = mysqli_fetch_array($resultAtt2, MYSQLI_ASSOC))
-        {  
-          
-          foreach ($row as $element)
-          printf("[%- 10s]",$element);   
-          print "<br>";
-        }
-        while($row = mysqli_fetch_array($resultAtt3, MYSQLI_ASSOC))
-        {  
-          
-          foreach ($row as $element)
-          printf("[%- 10s]",$element);   
-          print "<br>";
-        }
-
+          while($row = mysqli_fetch_array($resultAtt, MYSQLI_ASSOC))
+          {            
+            foreach ($row as $element)
+              printf("[%- 17s] <br>",$element);   
+          }
+          while($row = mysqli_fetch_array($resultAtt2, MYSQLI_ASSOC))
+          {            
+            foreach ($row as $element)
+              printf("[%- 17s] <br>",$element);   
+          }
+          while($row = mysqli_fetch_array($resultAtt3, MYSQLI_ASSOC))
+          {            
+            foreach ($row as $element)
+              printf("[%- 17s] <br>",$element);   
+          }
           print "</pre>";
           mysqli_free_result($result);                    
         }
@@ -192,15 +185,13 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             {
               $newHp = 0;
               printf("You killed %s! <br>", $hero);
-            }
-              
+            }              
 
             // Set the new health
             $query = "update Human h set h.health=";
             $query = $query."'".$newHp."'where h.firstName=";
             $query = $query."'".$hero."';";  
-            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));                 
-            mysqli_free_result($result);
+            mysqli_query($conn, $query) or die(mysqli_error($conn));   
         }
 
         function getAnimalDamage($conn, $animal, $hero)
@@ -264,8 +255,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $query = $query."'".$animal."' and a.HumanOwnerSSN=";  
           $query = $query."'".$SSN."';"; 
           printf("Query: %s <br>", $query);
-          $result = mysqli_query($conn, $query) or die(mysqli_error($conn));                 
-          mysqli_free_result($result);
+          mysqli_query($conn, $query) or die(mysqli_error($conn));   
         }
 
         function reduceHenchmanHealth($conn, $village, $dmg)
@@ -294,9 +284,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $query = "update Human h set h.health=";
             $query = $query."'".$newHp."'where h.SaladSN=";
             $query = $query."'".$SSN."';"; 
-            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-            mysqli_free_result($result);
-            
+            mysqli_query($conn, $query) or die(mysqli_error($conn));
         }
 
         function reduceBossHealth($conn, $dmg)
@@ -313,8 +301,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           // Set the new health
           $query = "update Human h set h.health=";
           $query = $query."'".$newHp."'where h.firstName='SaladoreTheTyrant'";
-          $result = mysqli_query($conn, $query) or die(mysqli_error($conn));                 
-          mysqli_free_result($result);
+          mysqli_query($conn, $query) or die(mysqli_error($conn));  
         }
 
         function getDamageTotal($conn, $human)
@@ -371,8 +358,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $query = "update Human h set h.Village_ID=";
           $query = $query."'".$VID."'where h.firstName="; 
           $query = $query."'".$hero."';"; 
-          $result = mysqli_query($conn, $query) or die(mysqli_error($conn));       
-          mysqli_free_result($result);
+          mysqli_query($conn, $query) or die(mysqli_error($conn));  
         }
         function getHeroPosition($conn, $hero)
         {
@@ -414,8 +400,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             //Get Village and set to freed
             $query = "update Village v set v.status='freed' where v.name=";
             $query = $query."'".$village."';";
-            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));                 
-            mysqli_free_result($result);
+            mysqli_query($conn, $query) or die(mysqli_error($conn)); 
             return true;
           }
           else
