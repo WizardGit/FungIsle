@@ -19,11 +19,11 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
       <a href="../index.html">Back to Home Page</a>
       <p> <h2>The query:</h2> <p>
       <?php
-        $query = "UPDATE Human h SET h.health=1000 WHERE h.role='Hero' or h.role='Boss';UPDATE Human h SET h.Village_ID=6 WHERE h.role='Hero';";
+        $query = "UPDATE Human h SET h.health=1000 WHERE h.role='Hero' or h.role='Boss';";
         $query2 = "UPDATE Human h SET h.health=100 WHERE h.role='Henchman';";
         $query3 = "UPDATE Village v SET v.status='suppressed' WHERE v.VillageID > 0 and v.VillageID < 6;";
         $query4 = "UPDATE Animal a SET a.health=100 WHERE a.HumanOwnerSSN > 0;";
-     
+        $query5 = "UPDATE Human h SET h.Village_ID=6 WHERE h.role='Hero';";
         $queryAtt = "select * from Human h";
         $queryAtt2 = "select * from Village v";
         $queryAtt3 = "select * from Animal a";
@@ -37,6 +37,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         $result2 = mysqli_query($conn, $query2) or die(mysqli_error($conn));
         $result3 = mysqli_query($conn, $query3) or die(mysqli_error($conn));
         $result4 = mysqli_query($conn, $query4) or die(mysqli_error($conn));
+        $result5 = mysqli_query($conn, $query5) or die(mysqli_error($conn));
         $resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));
         $resultAtt2 = mysqli_query($conn,$queryAtt2) or die(mysqli_error($conn));
         $resultAtt3 = mysqli_query($conn,$queryAtt3) or die(mysqli_error($conn));
