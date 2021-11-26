@@ -358,7 +358,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         }
         function getHeroPosition($conn, $hero)
         {
-          $query = "select v.Name from Human h inner join Village v on v.VillageID=h.Village_ID where h.firstName=";
+          $query = "select v.name from Human h inner join Village v on v.VillageID=h.Village_ID where h.firstName=";
           $query = $query."'".$hero."';"; 
           printf("h %s", $query);
           printf("here");
