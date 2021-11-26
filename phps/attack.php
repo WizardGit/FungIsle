@@ -188,8 +188,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $dmg = $element;
           }       
           mysqli_free_result($result);
-          printf("Animal's damage is: %s <br>", $dmg);  
-
+          printf("Animal's damage is: %s <br>", $dmg); 
           return $dmg; 
         }
 
@@ -214,8 +213,8 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
             // Set the new health
             $query = "update Animal a set a.health=";
-            $query = $query."'".$newHp."'where a.species=";
-            $query = $query."'".$animal."'a.HumanOwnerSSN=";  
+            $query = $query."'".$newHp."' where a.species=";
+            $query = $query."'".$animal."' a.HumanOwnerSSN=";  
             $query = $query."'".$SSN."';"; 
             printf("Query: %s <br>", $query);
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));                 
