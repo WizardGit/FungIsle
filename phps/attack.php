@@ -354,7 +354,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             else
               return true;
           }
-          mysqli_free_result($result);
+          //mysqli_free_result($result);
         }
         function getHeroPosition($conn, $hero)
         {
@@ -371,7 +371,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           }
           printf("here");
           return $dud;
-          mysqli_free_result($result);
+          //mysqli_free_result($result);
         }
 
         function checkVillageStatus($conn, $village)
