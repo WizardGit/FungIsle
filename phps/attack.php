@@ -26,19 +26,28 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         //Get hero to attack        
         $hero = $_POST['hero'];  
         printf("Hero: %s <br>",$hero); 
+
+        //Get animal to attack        
+        $hero = $_POST['animal'];  
+        printf("Animal: %s <br>",$animal); 
       ?>
 
       <p> <h2>Result of query:</h2> <p>
 
       <?php
-        //getHenchmenDamage($conn, $village);
-        //reduceHeroHealth($conn, $hero, 10);
-        //reduceHenchmanHealth($conn, $village, 50);
-        //reduceBossHealth($conn, 50);
-        //checkVillageStatus($conn, $village);
+
         //getDamageTotal($conn, $hero);
-        //printAllHumans($conn);
-                    
+        //reduceHeroHealth($conn, $hero, 10);
+        //reduceBossHealth($conn, 50);
+
+        //getHenchmenDamage($conn, $village);
+        //reduceHenchmanHealth($conn, $village, 50);
+
+        //getAnimalDamage($conn, $animal, $hero);
+        //reduceAnimalHealth($conn, $animal, $hero, $dmg);
+        
+        //checkVillageStatus($conn, $village);        
+        //printAllHumans($conn);                    
         
         if (checkVillageStatus($conn, $village) == false)
         {
@@ -161,6 +170,54 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $query = "update Human h set h.health=";
             $query = $query."'".$newHp."'where h.firstName=";
             $query = $query."'".$hero."';";  
+            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));                 
+            mysqli_free_result($result);
+        }
+
+        function getAnimalDamage($conn, $animal, $hero)
+        {
+          if ($animal == "None")
+            return 0;
+          $query = "select a.attack from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
+          where a.species=";
+          $query = $query."'".$animal."';"; 
+          $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
+          foreach ($row as $element)
+          {
+            $dmg = $element;
+          }       
+          mysqli_free_result($result);
+          printf("Animal's damage is: %s <br>", $dmg);  
+
+          return $dmg; 
+        }
+
+        function reduceAnimalHealth($conn, $animal, $hero, $dmg)
+        {
+            $query = "select a.health, h.SaladSN from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
+            where a.species=";
+            $query = $query."'".$animal."';"; 
+            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);              
+            $counter = 0;
+            foreach ($row as $element)
+            {
+              if ($counter == 0)
+                $newHp = $element - $dmg; 
+              else if ($counter == 1)
+                $SSN = $element;
+              $counter++;
+            }       
+            mysqli_free_result($result);
+            printf("Animal's new HP should be: %s <br>", $newHp);  
+
+            // Set the new health
+            $query = "update Animal a set a.health=";
+            $query = $query."'".$newHp."'where a.species=";
+            $query = $query."'".$animal."'a.HumanOwnerSSN=";  
+            $query = $query."'".$SSN."';"; 
+            printf("Query: %s <br>", $query);
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));                 
             mysqli_free_result($result);
         }
