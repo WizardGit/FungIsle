@@ -1,7 +1,7 @@
 <!--
 Author: Kaiser
-Original Author: Chris
-Date last edited: 11/24/2021
+Date last edited: 11/26/2021
+Purpose: Run user MySQL query
 -->
 
 <?php
@@ -17,12 +17,10 @@ or die('Error connecting to MySQL server.');
   </head>  
   <body>
     <section>
-      <a href="index.html">Back to Home Page</a>
+      <a href="../index.html">Back to Home Page</a>
       <p> <h2>The query:</h2> <p>
       <?php
         $query = $_POST['query'];
-        console.log($query);
-        /*$queryAtt = "SHOW COLUMNS FROM dep_policy";*/
         print $query;
       ?>
 
@@ -30,25 +28,15 @@ or die('Error connecting to MySQL server.');
 
       <?php
         $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-        /*$resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));*/
 
         print "<pre>";
-
-        /*
-        while($row = mysqli_fetch_array($resultAtt))
-        {
-          printf("[%- 8s]",$row['Field']);
-        }
-        print "<br>";*/
-
         while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
         {  
           
           foreach ($row as $element)
-          printf("[%- 8s]",$element);   
+            printf("[%- 8s]",$element);   
           print "<br>";
         }
-
         print "</pre>";
         mysqli_free_result($result);
         mysqli_close($conn);
