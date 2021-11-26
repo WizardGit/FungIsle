@@ -180,6 +180,12 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
               $newHp =  $element - $dmg;       
             mysqli_free_result($result);
             printf("Hero's new HP should be: %s <br>", $newHp);  
+            if ($newHp < 0)
+            {
+              $newHp = 0;
+              printf("You killed %s! <br>", $hero);
+            }
+              
 
             // Set the new health
             $query = "update Human h set h.health=";
@@ -306,13 +312,21 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         function getDamageTotal($conn, $human)
         {
           // Get the old health
-          $query = "select w.attack * h.attackMultiplier from Human h inner join Weapon w on h.Weapon_Name=w.Name where h.firstName=";
+          $query = "select w.attack * h.attackMultiplier, h.health from Human h inner join Weapon w on h.Weapon_Name=w.Name where h.firstName=";
           $query = $query."'".$human."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+          $counter = 0;  
           foreach ($row as $element)
           {
+            if ($counter == 0)
               $dmg = $element; 
+            else if (($counter == 1) && ($element == 0))
+            {
+              $dmg = 0;
+              printf("The hero is dead so...");                           
+            }              
+            $counter++;
           }        
           mysqli_free_result($result);
           printf("Human's total Damage is: %s <br>", $dmg);  
