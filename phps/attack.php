@@ -276,8 +276,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $query = "select h.health from Human h where h.firstName='SaladoreTheTyrant'";
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);              
-          foreach ($row as $element)
-            $newHp =  $element - $dmg;       
+          $newHp =  $row['health'] - $dmg;       
           mysqli_free_result($result);
           printf("Boss' new HP should be: %s <br>", $newHp);  
 
@@ -289,42 +288,36 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
         function getDamageTotal($conn, $human)
         {
-          // Get the old health
-          $query = "select w.attack * h.attackMultiplier, h.health from Human h inner join Weapon w on h.Weapon_Name=w.Name where h.firstName=";
+          // Get the health
+          $query = "select w.attack * h.attackMultiplier as dmg, h.health from Human h inner join Weapon w on h.Weapon_Name=w.Name where h.firstName=";
           $query = $query."'".$human."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-          $counter = 0;  
-          foreach ($row as $element)
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);          
+          $hp = $row['health'];
+          if ($hp == 0)  
           {
-            if ($counter == 0)
-              $dmg = $element; 
-            else if (($counter == 1) && ($element == 0))
-            {
-              $dmg = 0;
-              printf("The hero is dead so...");                           
-            }              
-            $counter++;
-          }        
+            $dmg = 0; 
+            printf("The hero is dead so...");  
+          }                     
+          else   
+          {
+            $dmg = $row['dmg'];
+          }         
           mysqli_free_result($result);
           printf("Human's total Damage is: %s <br>", $dmg);  
-
           return $dmg;          
         }
 
         function allVillagesFreed($conn)
         {
           // Return true if every village is freed, false if not
-          $query = "select count(*) from Village v  where v.name != 'HellCave';";
+          $query = "select count(*) as pop from Village v  where v.name != 'HellCave';";
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);              
-          foreach ($row as $element)
-          {
-            if($element != 0)
-              return false;
-            else
-              return true;
-          }
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
+          if ($row['pop'] != 0)
+            return false;
+          else
+            return true;
           mysqli_free_result($result);
         }
         function updateHeroPosition($conn, $hero, $village)
