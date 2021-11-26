@@ -28,7 +28,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         printf("Hero: %s <br>",$hero); 
 
         //Get animal to attack        
-        $hero = $_POST['animal'];  
+        $animal = $_POST['animal'];  
         printf("Animal: %s <br>",$animal); 
       ?>
 
@@ -274,24 +274,18 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         function getDamageTotal($conn, $human)
         {
           // Get the old health
-          $query = "select w.attack, h.attackMultiplier from Human h inner join Weapon w on h.Weapon_Name=w.Name where h.firstName=";
+          $query = "select w.attack * h.attackMultiplier from Human h inner join Weapon w on h.Weapon_Name=w.Name where h.firstName=";
           $query = $query."'".$human."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);              
-          $counter = 0;
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
           foreach ($row as $element)
           {
-            if ($counter == 0)
               $dmg = $element; 
-            else if ($counter == 1)
-              $dmgMult = $element;
-            $counter++;
-          }      
-          $total = $dmg * $dmgMult;  
+          }        
           mysqli_free_result($result);
-          printf("Human's total Damage is: %s <br>", $total);  
+          printf("Human's total Damage is: %s <br>", $dmg);  
 
-          return $total;          
+          return $dmg;          
         }
 
         function allVillagesFreed($conn)
