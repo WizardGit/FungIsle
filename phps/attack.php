@@ -135,6 +135,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           {            
             foreach ($row as $element)
               printf("[%- 17s]",$element); 
+            printf("tell: %s", $row[0]);
             printf("<br>");  
           }
           while($row = mysqli_fetch_array($resultAtt2, MYSQLI_ASSOC))
