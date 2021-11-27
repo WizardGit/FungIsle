@@ -346,12 +346,12 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
           $newVID = $row['VillageID'];
 
-          $query = "select v.Type, h.Village_ID from Vehicle v inner join Human h on h.SaladSN=v.Human_SaladSN where h.firstName="; 
+          $query = "select v.Type, v.Name from Vehicle v inner join Human h on h.SaladSN=v.Human_SaladSN inner join Village vl on h.Village_ID=v.VillageID where h.firstName="; 
           $query = $query."'".$hero."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
           printf("|%s|%s|",$row['Village_ID'], $village);
-          if ($row['Village_ID'] != $village)
+          if ($row['Name'] != $village)
           {
             printf("%s drives their %s to %s <br>", $hero, $row['Type'], $village);
           }         
