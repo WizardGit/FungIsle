@@ -344,18 +344,16 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $query = $query."'".$village."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-          $newVID = $row['VillageID']
+          $newVID = $row['VillageID'];
 
           $query = "select v.Type, h.Village_ID from Vehicle v inner join Human h on h.SaladSN=v.Human_SaladSN where h.firstName="; 
           $query = $query."'".$hero."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
-          print("hi!");
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
           if (strcmp($row['Village_ID'], $village) == 0)
           {
             printf("%s drives their %s to %s <br>", $hero, $row['Type'], $village);
           }         
-          print("after"); 
 
           $query = "update Human h set h.Village_ID=";
           $query = $query."'".$newVID."'where h.firstName="; 
