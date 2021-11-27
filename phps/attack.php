@@ -352,7 +352,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $query = $query."'".$hero."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
-          printf("|%s|%s|",$row['Village_ID'], $village);
+          printf("|%s|%s|",$row['Name'], $village);
           if ($row['Name'] != $village)
           {
             printf("%s drives their %s to %s <br>", $hero, $row['Type'], $village);
