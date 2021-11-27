@@ -325,9 +325,10 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         function allVillagesFreed($conn)
         {
           // Return true if every village is freed, false if not
-          $query = "select count(*) as pop from Village v where v.status = 'suppressed';";
+          $query = "select count(*) as pop from Village v where v.status='suppressed' and v.VillageID<5;";
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
+          printf("Of the four villages, %s are still suppressed <br>", $row['pop']);
           if ($row['pop'] != 0)
             return false;
           else
@@ -345,6 +346,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $query = $query."'".$row['VillageID']."'where h.firstName="; 
           $query = $query."'".$hero."';"; 
           mysqli_query($conn, $query) or die(mysqli_error($conn));  
+          printf("%s is now located at %s <br>", $hero, $village);
         }
         function getHeroPosition($conn, $hero)
         {
@@ -354,6 +356,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
           return $row['name'];
           mysqli_free_result($result);
+          
         }
 
         function checkVillageStatus($conn, $village)
