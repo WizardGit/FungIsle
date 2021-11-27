@@ -311,24 +311,23 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           if ($hp == 0)  
           {
             $dmg = 0; 
-            printf("%s is dead so...", $human);  
+            printf("The hero is dead so...");  
           }                     
           else   
           {
             $dmg = $row['dmg'];
           }         
           mysqli_free_result($result);
-          printf("%s's total damage is: %s <br>", $human, $dmg);  
+          printf("Human's total Damage is: %s <br>", $dmg);  
           return $dmg;          
         }
 
         function allVillagesFreed($conn)
         {
           // Return true if every village is freed, false if not
-          $query = "select count(*) as pop from Village v where v.status='suppressed' and v.VillageID<5;";
+          $query = "select count(*) as pop from Village v where v.status = 'suppressed';";
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
-          printf("Of the four villages, %s are still suppressed <br>", $row['pop']);
           if ($row['pop'] != 0)
             return false;
           else
@@ -346,7 +345,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $query = $query."'".$row['VillageID']."'where h.firstName="; 
           $query = $query."'".$hero."';"; 
           mysqli_query($conn, $query) or die(mysqli_error($conn));  
-          printf("%s is now located at %s <br>", $hero, $village);
         }
         function getHeroPosition($conn, $hero)
         {
@@ -356,7 +354,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
           return $row['name'];
           mysqli_free_result($result);
-          printf("%s is located at %s <br>"), $hero, $village);
         }
 
         function checkVillageStatus($conn, $village)
@@ -379,7 +376,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
           $total = $row['total'];    
           mysqli_free_result($result);
-          printf("There are %s Henchmen left in %s <br>", $total, $village); 
+          printf("Total: %s <br>", $total); 
           if ($total == 0)
           {
             //Get Village and set to freed
