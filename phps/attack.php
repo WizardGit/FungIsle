@@ -223,14 +223,13 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         }
 
         function reduceAnimalHealth($conn, $animal, $hero, $dmg)
-        {          
-          $query = "select a.Name, a.health, a.defense, h.SaladSN from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
+        {
+          $query = "select a.health, a.defense, h.SaladSN from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
           where a.species=";
           $query = $query."'".$animal."' and h.firstName="; 
           $query = $query."'".$hero."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);   
-          printf("The %s, %s, is struck with %s damage, ", $animal, $row['Name'], $dmg);
           if (count($row) == 0)
           {
             printf("There is not animal of that species with that owner <br>"); 
@@ -245,7 +244,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $SSN = $row['SaladSN'];
           }                
           mysqli_free_result($result);
-          printf("but its defense blocks %s - resulting in a health of %s <br>", $row['defense'], $newHp); 
+          printf("Animal's new HP should be: %s <br>", $newHp);  
 
           // Set the new health
           $query = "update Animal a set a.health=";
@@ -258,7 +257,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
         function reduceHenchmanHealth($conn, $village, $dmg)
         {
-            printf("The closest Saladorian is struck with %s damage, ", $dmg);
             $query = "select h.health, h.SaladSN, h.defenseMultiplier, w.Name from Human h  
             inner join Village v on h.Village_ID=v.VillageID
             inner join Weapon w on w.Name=h.Weapon_Name
@@ -272,7 +270,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $newHp = $row['health'] - $dmg;
             $SSN = $row['SaladSN'];  
             mysqli_free_result($result);  
-            printf("but their defense blocks %s - resulting in a health of %s <br>", $row['defense'] * $row['defenseMultiplier'], $newHp);  
+            printf("First Henchman Health should be: %s <br>", $newHp); 
             if ($newHp < 0)
               $newHp = 0;
             
@@ -285,7 +283,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
         function reduceBossHealth($conn, $dmg)
         {
-          printf("Saladore is struck with %s damage, ", $dmg);
           // Get the old health
           $query = "select h.health, h.defenseMultiplier, w.defense from Human h inner join Weapon w on h.Weapon_Name=w.Name where h.firstName='SaladoreTheTyrant'";
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -295,7 +292,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $dmg = 0;           
           $newHp =  $row['health'] - $dmg;       
           mysqli_free_result($result);
-          printf("but his defense blocks %s - resulting in a health of %s <br>", $row['defense'] * $row['defenseMultiplier'], $newHp);  
+          printf("Boss' new HP should be: %s <br>", $newHp);  
 
           // Set the new health
           $query = "update Human h set h.health=";
