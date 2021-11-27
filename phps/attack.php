@@ -350,7 +350,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
           print("hi!");
-          if (strcmp($row('Village_ID'), $village) == 0)
+          if (strcmp($row['Village_ID'], $village) == 0)
           {
             printf("%s drives their %s to %s <br>", $hero, $row['Type'], $village);
           }         
