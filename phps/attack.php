@@ -356,7 +356,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
           return $row['name'];
           mysqli_free_result($result);
-          
+          printf("%s is located at %s <br>"), $hero, $village);
         }
 
         function checkVillageStatus($conn, $village)
@@ -379,7 +379,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
           $total = $row['total'];    
           mysqli_free_result($result);
-          printf("Total: %s <br>", $total); 
+          printf("There are %s Henchmen left in %s <br>", $total, $village); 
           if ($total == 0)
           {
             //Get Village and set to freed
