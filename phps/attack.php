@@ -286,13 +286,14 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           // Get the old health
           $query = "select h.health, h.defenseMultiplier, w.defense from Human h inner join Weapon w on h.Weapon_Name=w.Name where h.firstName='SaladoreTheTyrant'";
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);   
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+          printf("Saladore is hit with %s damage, but blocks %s <br>", $dmg, $row['defense'] * $row['defenseMultiplier']);      
           $dmg -= $row['defense'] * $row['defenseMultiplier'];
           if ($dmg < 0)
             $dmg = 0;           
           $newHp =  $row['health'] - $dmg;       
           mysqli_free_result($result);
-          printf("Boss' new HP should be: %s <br>", $newHp);  
+          printf("so that his new health is %s <br>", $newHp);  
 
           // Set the new health
           $query = "update Human h set h.health=";
