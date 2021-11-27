@@ -353,10 +353,11 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           if ($row('Village_ID') != $village)
           {
             printf("%s drives their %s to %s <br>", $hero, $row['Type'], $village);
-          }          
+          }         
+          print("after"); 
 
           $query = "update Human h set h.Village_ID=";
-          $query = $query."'".$row['VillageID']."'where h.firstName="; 
+          $query = $query."'".$row['Village_ID']."'where h.firstName="; 
           $query = $query."'".$hero."';"; 
           mysqli_query($conn, $query) or die(mysqli_error($conn));
         }
