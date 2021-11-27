@@ -169,7 +169,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
               }
             }
             mysqli_free_result($result);
-            printf("HenchmenDmg: %s <br>", $totDmg);
+            printf("The Henchmen deal %s damage <br>", $totDmg);
             return $totDmg;
         }       
         
@@ -180,16 +180,17 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $query = $query."'".$hero."';"; 
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
+            printf("%s is struck with %s damage, ", $hero, $dmg);
             $dmg -= $row['defense'] * $row['defenseMultiplier'];
             if ($dmg < 0)
               $dmg = 0;    
             $newHp = $row['health'] - $dmg;   
             mysqli_free_result($result);
-            printf("Hero's new HP should be: %s <br>", $newHp);  
+            printf("but %s's defense blocks %s - resulting in a health of %s <br>", $hero, $row['defense'] * $row['defenseMultiplier'], $newHp);  
             if ($newHp < 0)
             {
               $newHp = 0;
-              printf("You killed %s! <br>", $hero);
+              printf("%s died! <br>", $hero);
             }              
 
             // Set the new health
@@ -203,7 +204,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         {
           if ($animal == "None")
             return 0;
-          $query = "select a.attack from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
+          $query = "select a.Name, a.attack from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
           where a.species=";
           $query = $query."'".$animal."' and h.firstName="; 
           $query = $query."'".$hero."' ;"; 
@@ -216,20 +217,21 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           }     
           else
           {
-            printf("Animal's damage is: %s <br>", $row['attack']); 
+            printf("The %s, %s, deals damage of %s <br>", $animal, $row['Name'], $row['attack']); 
             return $row['attack']; 
           }  
           mysqli_free_result($result);          
         }
 
         function reduceAnimalHealth($conn, $animal, $hero, $dmg)
-        {
-          $query = "select a.health, a.defense, h.SaladSN from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
+        {          
+          $query = "select a.Name, a.health, a.defense, h.SaladSN from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
           where a.species=";
           $query = $query."'".$animal."' and h.firstName="; 
           $query = $query."'".$hero."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);   
+          printf("The %s, %s, is struck with %s damage, ", $animal, $row['Name'], $dmg);
           if (count($row) == 0)
           {
             printf("There is not animal of that species with that owner <br>"); 
@@ -244,19 +246,19 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $SSN = $row['SaladSN'];
           }                
           mysqli_free_result($result);
-          printf("Animal's new HP should be: %s <br>", $newHp);  
+          printf("but its defense blocks %s - resulting in a health of %s <br>", $row['defense'], $newHp); 
 
           // Set the new health
           $query = "update Animal a set a.health=";
           $query = $query."'".$newHp."' where a.species=";
           $query = $query."'".$animal."' and a.HumanOwnerSSN=";  
           $query = $query."'".$SSN."';"; 
-          printf("Query: %s <br>", $query);
           mysqli_query($conn, $query) or die(mysqli_error($conn));   
         }
 
         function reduceHenchmanHealth($conn, $village, $dmg)
         {
+            printf("The closest Saladorian is struck with %s damage, ", $dmg);
             $query = "select h.health, h.SaladSN, h.defenseMultiplier, w.Name from Human h  
             inner join Village v on h.Village_ID=v.VillageID
             inner join Weapon w on w.Name=h.Weapon_Name
@@ -270,7 +272,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $newHp = $row['health'] - $dmg;
             $SSN = $row['SaladSN'];  
             mysqli_free_result($result);  
-            printf("First Henchman Health should be: %s <br>", $newHp); 
+            printf("but their defense blocks %s - resulting in a health of %s <br>", $row['defense'] * $row['defenseMultiplier'], $newHp);  
             if ($newHp < 0)
               $newHp = 0;
             
@@ -283,6 +285,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
         function reduceBossHealth($conn, $dmg)
         {
+          printf("Saladore is struck with %s damage, ", $dmg);
           // Get the old health
           $query = "select h.health, h.defenseMultiplier, w.defense from Human h inner join Weapon w on h.Weapon_Name=w.Name where h.firstName='SaladoreTheTyrant'";
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -292,7 +295,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $dmg = 0;           
           $newHp =  $row['health'] - $dmg;       
           mysqli_free_result($result);
-          printf("Boss' new HP should be: %s <br>", $newHp);  
+          printf("but his defense blocks %s - resulting in a health of %s <br>", $row['defense'] * $row['defenseMultiplier'], $newHp);  
 
           // Set the new health
           $query = "update Human h set h.health=";
@@ -311,14 +314,14 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           if ($hp == 0)  
           {
             $dmg = 0; 
-            printf("The hero is dead so...");  
+            printf("%s is dead so...", $human);  
           }                     
           else   
           {
             $dmg = $row['dmg'];
           }         
           mysqli_free_result($result);
-          printf("Human's total Damage is: %s <br>", $dmg);  
+          printf("%s's total damage is: %s <br>", $human, $dmg);  
           return $dmg;          
         }
 
@@ -328,7 +331,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $query = "select count(*) as pop from Village v where v.status='suppressed' and v.VillageID<5;";
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
-          printf("pop %s <br>", $row['pop']);
+          printf("Of the four villages, %s are still suppressed <br>", $row['pop']);
           if ($row['pop'] != 0)
             return false;
           else
@@ -346,6 +349,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $query = $query."'".$row['VillageID']."'where h.firstName="; 
           $query = $query."'".$hero."';"; 
           mysqli_query($conn, $query) or die(mysqli_error($conn));  
+          printf("%s is now located at %s <br>", $hero, $village);
         }
         function getHeroPosition($conn, $hero)
         {
@@ -355,6 +359,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
           return $row['name'];
           mysqli_free_result($result);
+          printf("%s is located at %s <br>"), $hero, $village);
         }
 
         function checkVillageStatus($conn, $village)
@@ -377,7 +382,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
           $total = $row['total'];    
           mysqli_free_result($result);
-          printf("Total: %s <br>", $total); 
+          printf("There are %s Henchmen left in %s <br>", $total, $village); 
           if ($total == 0)
           {
             //Get Village and set to freed
