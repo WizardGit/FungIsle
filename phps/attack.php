@@ -224,12 +224,13 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
         function reduceAnimalHealth($conn, $animal, $hero, $dmg)
         {
-          $query = "select a.health, a.defense, h.SaladSN from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
+          $query = "select a.Name, a.health, a.defense, h.SaladSN from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
           where a.species=";
           $query = $query."'".$animal."' and h.firstName="; 
           $query = $query."'".$hero."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);   
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
+          printf("The %s, %s, gets hit with %s damage but blocks <br>", $animal, $row['Name'], $row['defense']);   
           if (count($row) == 0)
           {
             printf("There is not animal of that species with that owner <br>"); 
@@ -242,9 +243,9 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
               $dmg = 0; 
             $newHp = $row['health'] - $dmg;
             $SSN = $row['SaladSN'];
-          }                
-          mysqli_free_result($result);
-          printf("Animal's new HP should be: %s <br>", $newHp);  
+          }      
+          printf("so that its new health is %s <br>", $newHp); 
+          mysqli_free_result($result); 
 
           // Set the new health
           $query = "update Animal a set a.health=";
@@ -264,13 +265,14 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $query = $query."'".$village."';";
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+            printf("The first henchmen in %s gets hit with %s damage but blocks %s <br>", $village, $dmg, $row['defense'] * $row['defenseMultiplier']);   
             $dmg -= $row['defense'] * $row['defenseMultiplier'];
             if ($dmg < 0)
               $dmg = 0;  
             $newHp = $row['health'] - $dmg;
             $SSN = $row['SaladSN'];  
             mysqli_free_result($result);  
-            printf("First Henchman Health should be: %s <br>", $newHp); 
+            printf("so that their new health is %s <br>", $newHp); 
             if ($newHp < 0)
               $newHp = 0;
             
