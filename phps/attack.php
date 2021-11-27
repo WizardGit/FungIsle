@@ -318,7 +318,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $dmg = $row['dmg'];
           }         
           mysqli_free_result($result);
-          printf("Human's total Damage is: %s <br>", $dmg);  
+          printf("%s's deals damage totalling %s <br>", $human, $dmg);  
           return $dmg;          
         }
 
