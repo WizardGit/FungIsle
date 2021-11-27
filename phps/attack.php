@@ -343,18 +343,21 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $query = "select v.VillageID from Village v where v.name=";
           $query = $query."'".$village."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);           
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+          $query = "select v.Type, h.Village_ID from Vehicle v inner join Human h on h.SaladSN=v.Human_SaladSN where h.firstName="; 
+          $query = $query."'".$hero."';"; 
+          $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
+          if ($row('Village_ID') != $village)
+          {
+            printf("%s drives their %s to %s <br>", $hero, $row['Type'], $village);
+          }          
 
           $query = "update Human h set h.Village_ID=";
           $query = $query."'".$row['VillageID']."'where h.firstName="; 
           $query = $query."'".$hero."';"; 
-          mysqli_query($conn, $query) or die(mysqli_error($conn));  
-
-          $query = "select v.Type from Vehicle v inner join Human h on h.SaladSN=v.Human_SaladSN where h.firstName="; 
-          $query = $query."'".$hero."';"; 
-          $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
-          printf("%s drives their %s to %s <br>", $hero, $row['Type'], $village);
+          mysqli_query($conn, $query) or die(mysqli_error($conn));
         }
         function getHeroPosition($conn, $hero)
         {
