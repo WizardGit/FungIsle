@@ -52,7 +52,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         if (checkVillageStatus($conn, $village) == false)
         {
           $heroPos = getHeroPosition($conn, $hero);
-          printf("hero: %s", $heroPos);
           if($village == "HellCave")
           {            
             if(allVillagesFreed($conn) == false)
@@ -180,7 +179,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $query = $query."'".$hero."';"; 
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
-            printf("%s gets hit with %s damage but blocks %s <br>", $dmg, $row['defense'] * $row['defenseMultiplier']);   
+            printf("%s gets hit with %s damage but blocks %s <br>", $hero, $dmg, $row['defense'] * $row['defenseMultiplier']);   
             $dmg -= $row['defense'] * $row['defenseMultiplier'];
             if ($dmg < 0)
               $dmg = 0;    
@@ -259,7 +258,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
         function reduceHenchmanHealth($conn, $village, $dmg)
         {
-            $query = "select h.health, h.SaladSN, h.defenseMultiplier, w.Name from Human h  
+            $query = "select h.health, h.SaladSN, w.defense, h.defenseMultiplier, w.Name from Human h  
             inner join Village v on h.Village_ID=v.VillageID
             inner join Weapon w on w.Name=h.Weapon_Name
             where h.role='Henchman' and h.health > 0 and v.name=";
@@ -382,7 +381,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
           $total = $row['total'];    
           mysqli_free_result($result);
-          printf("There are still %s henchmen at %s<br>", $total, $village); 
+          printf("There are %s henchmen at %s<br>", $total, $village); 
           if ($total == 0)
           {
             //Get Village and set to freed
