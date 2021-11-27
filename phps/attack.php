@@ -356,6 +356,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
           printf("%s is located at %s <br>"), $hero, $row['name']);
           return $row['name'];
+          mysqli_free_result($result);
         }
 
         function checkVillageStatus($conn, $village)
