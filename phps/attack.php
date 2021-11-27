@@ -267,6 +267,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
             printf("The first henchmen in %s gets hit with %s damage but blocks %s <br>", $village, $dmg, $row['defense'] * $row['defenseMultiplier']);   
             $dmg -= $row['defense'] * $row['defenseMultiplier'];
+            printf("dmg %s <br>", $dmg); 
             if ($dmg < 0)
               $dmg = 0;  
             $newHp = $row['health'] - $dmg;
