@@ -325,14 +325,10 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $query = "select v.VillageID from Village v where v.name=";
           $query = $query."'".$village."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-          $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
-          foreach ($row as $element)
-          {
-            $VID = $element;
-          }
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);           
 
           $query = "update Human h set h.Village_ID=";
-          $query = $query."'".$VID."'where h.firstName="; 
+          $query = $query."'".$row['VillageID']."'where h.firstName="; 
           $query = $query."'".$hero."';"; 
           mysqli_query($conn, $query) or die(mysqli_error($conn));  
         }
@@ -342,10 +338,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $query = $query."'".$hero."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
-          foreach ($row as $element)
-          {
-            return $element;
-          }
+          return $row['name'];
           mysqli_free_result($result);
         }
 
@@ -366,9 +359,8 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           }
 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);              
-          foreach ($row as $element)
-            $total =  $element;      
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+          $total = $row['total'];    
           mysqli_free_result($result);
           printf("Total: %s <br>", $total); 
           if ($total == 0)
