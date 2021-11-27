@@ -176,10 +176,13 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         function reduceHeroHealth($conn, $hero, $dmg)
         {
             // Get the old health
-            $query = "select h.health from Human h where h.firstName=";
+            $query = "select h.health, h.defenseMultiplier, w.defense from Human h inner join Weapon w on w.Name=h.Weapon_Name where h.firstName=";
             $query = $query."'".$hero."';"; 
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);    
+            $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
+            $dmg -= $row['defense'] * $row['defenseMultiplier'];
+            if ($dmg < 0)
+              $dmg = 0;    
             $newHp = $row['health'] - $dmg;   
             mysqli_free_result($result);
             printf("Hero's new HP should be: %s <br>", $newHp);  
@@ -221,7 +224,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
         function reduceAnimalHealth($conn, $animal, $hero, $dmg)
         {
-          $query = "select a.health, h.SaladSN from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
+          $query = "select a.health, a.defense, h.SaladSN from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
           where a.species=";
           $query = $query."'".$animal."' and h.firstName="; 
           $query = $query."'".$hero."';"; 
@@ -234,7 +237,10 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           }
           else
           {
-            $newHp = $row['health'];
+            $dmg -= $row['defense'];
+            if ($dmg < 0)
+              $dmg = 0; 
+            $newHp = $row['health'] - $dmg;
             $SSN = $row['SaladSN'];
           }                
           mysqli_free_result($result);
@@ -251,11 +257,16 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
         function reduceHenchmanHealth($conn, $village, $dmg)
         {
-            $query = "select h.health, h.SaladSN  from Human h  inner join Village v on h.Village_ID=v.VillageID
+            $query = "select h.health, h.SaladSN, h.defenseMultiplier, w.Name from Human h  
+            inner join Village v on h.Village_ID=v.VillageID
+            inner join Weapon w on w.Name=h.Weapon_Name
             where h.role='Henchman' and h.health > 0 and v.name=";
             $query = $query."'".$village."';";
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-            $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
+            $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+            $dmg -= $row['defense'] * $row['defenseMultiplier'];
+            if ($dmg < 0)
+              $dmg = 0;  
             $newHp = $row['health'] - $dmg;
             $SSN = $row['SaladSN'];  
             mysqli_free_result($result);  
@@ -273,9 +284,12 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         function reduceBossHealth($conn, $dmg)
         {
           // Get the old health
-          $query = "select h.health from Human h where h.firstName='SaladoreTheTyrant'";
+          $query = "select h.health, h.defenseMultiplier, w.defense from Human h inner join Weapon w on h.Weapon_Name=w.Name where h.firstName='SaladoreTheTyrant'";
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);              
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);   
+          $dmg -= $row['defense'] * $row['defenseMultiplier'];
+          if ($dmg < 0)
+            $dmg = 0;           
           $newHp =  $row['health'] - $dmg;       
           mysqli_free_result($result);
           printf("Boss' new HP should be: %s <br>", $newHp);  
@@ -374,7 +388,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           else
             return false;
         }
-
       ?>
     </section>
   </body>
