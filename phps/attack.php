@@ -17,7 +17,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
   <body>
     <section>
       <a href="../index.html">Back to Home Page</a>
-      <p> <h2>Hero and place of attack:</h2> <p>
+      <p> <h2>Hero and place of attack  :</h2> <p>
       <?php
         //Get village
         $village = $_POST['village']; 
@@ -349,7 +349,12 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $query = $query."'".$row['VillageID']."'where h.firstName="; 
           $query = $query."'".$hero."';"; 
           mysqli_query($conn, $query) or die(mysqli_error($conn));  
-          printf("%s is now located at %s <br>", $hero, $village);
+
+          $query = "select v.Type from Vehicle v inner join Human h on h.SaladSN=v.Human_SaladSN where h.firstName="; 
+          $query = $query."'".$hero."';"; 
+          $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
+          printf("%s is now located at %s <br>", $hero, $row['Type']);
         }
         function getHeroPosition($conn, $hero)
         {
