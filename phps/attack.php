@@ -179,7 +179,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $query = $query."'".$hero."';"; 
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
-            printf("%s gets hit with %s damage but blocks %s ", $hero, $dmg, $row['defense'] * $row['defenseMultiplier']);   
+            printf("%s gets hit with %s damage but blocks up to %s ", $hero, $dmg, $row['defense'] * $row['defenseMultiplier']);   
             $dmg -= $row['defense'] * $row['defenseMultiplier'];
             if ($dmg < 0)
               $dmg = 0;    
@@ -230,7 +230,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $query = $query."'".$hero."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
-          printf("The %s, %s, gets hit with %s damage but blocks ", $animal, $row['Name'], $row['defense']);   
+          printf("The %s, %s, gets hit with %s damage but blocks up to %s", $animal, $row['Name'], $dmg, $row['defense']);   
           if (count($row) == 0)
           {
             printf("There is not animal of that species with that owner <br>"); 
@@ -265,7 +265,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $query = $query."'".$village."';";
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-            printf("The first henchmen in %s gets hit with %s damage but blocks %s", $village, $dmg, $row['defense'] * $row['defenseMultiplier']);   
+            printf("The first henchmen in %s gets hit with %s damage but blocks up to %s ", $village, $dmg, $row['defense'] * $row['defenseMultiplier']);   
             $dmg -= $row['defense'] * $row['defenseMultiplier'];
             if ($dmg < 0)
               $dmg = 0;  
@@ -289,7 +289,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $query = "select h.health, h.defenseMultiplier, w.defense from Human h inner join Weapon w on h.Weapon_Name=w.Name where h.firstName='SaladoreTheTyrant'";
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-          printf("Saladore is hit with %s damage, but blocks %s ", $dmg, $row['defense'] * $row['defenseMultiplier']);      
+          printf("Saladore is hit with %s damage, but blocks up to %s ", $dmg, $row['defense'] * $row['defenseMultiplier']);      
           $dmg -= $row['defense'] * $row['defenseMultiplier'];
           if ($dmg < 0)
             $dmg = 0;           
