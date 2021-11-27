@@ -17,7 +17,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
   <body>
     <section>
       <a href="../index.html">Back to Home Page</a>
-      <p> <h2>The query:</h2> <p>
+      <p> <h2>Hero and place of attack:</h2> <p>
       <?php
         //Get village
         $village = $_POST['village']; 
@@ -32,7 +32,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         printf("Animal: %s <br>",$animal); 
       ?>
 
-      <p> <h2>Result of query:</h2> <p>
+      <p> <h2>Result of attack:</h2> <p>
 
       <?php
 
