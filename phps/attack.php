@@ -167,10 +167,10 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
               {
                 $totDmg += $element;
               }
-            }
-            mysqli_free_result($result);
-            printf("HenchmenDmg: %s <br>", $totDmg);
+            }            
+            printf("The henchmen in %s deal %s damage <br>", $village, $totDmg);
             return $totDmg;
+            mysqli_free_result($result);
         }       
         
         function reduceHeroHealth($conn, $hero, $dmg)
@@ -180,12 +180,13 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             $query = $query."'".$hero."';"; 
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
+            printf("%s gets hit with %s damage but blocks %s <br>", $dmg, $row['defense'] * $row['defenseMultiplier']);   
             $dmg -= $row['defense'] * $row['defenseMultiplier'];
             if ($dmg < 0)
               $dmg = 0;    
             $newHp = $row['health'] - $dmg;   
             mysqli_free_result($result);
-            printf("Hero's new HP should be: %s <br>", $newHp);  
+            printf("so that %s's new health is %s <br>", $hero, $newHp);  
             if ($newHp < 0)
             {
               $newHp = 0;
@@ -203,20 +204,20 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         {
           if ($animal == "None")
             return 0;
-          $query = "select a.attack from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
+          $query = "select a.Name, a.attack from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
           where a.species=";
           $query = $query."'".$animal."' and h.firstName="; 
           $query = $query."'".$hero."' ;"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-          $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
           if (count($row) == 0)
           {
             printf("There is not animal of that species with that owner <br>"); 
             return 0; 
           }     
           else
-          {
-            printf("Animal's damage is: %s <br>", $row['attack']); 
+          {            
+            printf("The %s, %s, deals %s damage <br>", $animal, $row['Name'], $row['attack']);  
             return $row['attack']; 
           }  
           mysqli_free_result($result);          
