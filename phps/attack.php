@@ -346,7 +346,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
           $newVID = $row['VillageID'];
 
-          $query = "select v.Type, v.Name from Vehicle v 
+          $query = "select v.Type, vl.Name from Vehicle v 
           inner join Human h on h.SaladSN=v.Human_SaladSN 
           inner join Village vl on h.Village_ID=vl.VillageID where h.firstName="; 
           $query = $query."'".$hero."';"; 
