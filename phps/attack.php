@@ -344,6 +344,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           $query = $query."'".$village."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+          $newVID = $row['VillageID']
 
           $query = "select v.Type, h.Village_ID from Vehicle v inner join Human h on h.SaladSN=v.Human_SaladSN where h.firstName="; 
           $query = $query."'".$hero."';"; 
@@ -357,7 +358,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           print("after"); 
 
           $query = "update Human h set h.Village_ID=";
-          $query = $query."'".$row['VillageID']."'where h.firstName="; 
+          $query = $query."'".$newVID."'where h.firstName="; 
           $query = $query."'".$hero."';"; 
           mysqli_query($conn, $query) or die(mysqli_error($conn));
         }
