@@ -7,21 +7,18 @@ Purpose: Empty Shell
 window.onload = init();
 function init()
 {
-    document.cookie = "username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC";
+    document.cookie = "username=John Doe";
     let decodedCookie = decodeURIComponent(document.cookie);
     let ca = decodedCookie.split(';');
-    for (let i = 0; i < ca.length; i++)
-    {
-        console.log(ca[i]);
-    }
-    console.log(ca);
+    let c = ca[ca.length-1];
+    console.log(c);
 }
 
 function chg()
 {
-    document.cookie = "username=John Doe; expires=Thu, 18 Dec 2013 12:00:00 UTC";
+    document.cookie = "username=John Doe";
     let decodedCookie = decodeURIComponent(document.cookie);
-    
-    
-    console.log("cookie: ", decodedCookie);
+    let ca = decodedCookie.split(';');
+    let c = ca[ca.length-1];
+    console.log(c);
 }
