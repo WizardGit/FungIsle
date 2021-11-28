@@ -87,12 +87,3 @@ select {
   float: left;
   display: block;
 }
-
-#char {
-  display: inline;
-  float: left;
-}
-#main {
-  display: inline;
-  float: right;
-}

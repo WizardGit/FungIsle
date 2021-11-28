@@ -78,7 +78,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           }
           else
           {            
-            printf("<div id='char'><img src='Characters/Mushronian.png'></div>"); 
+            printf("<div id='char'><img src='../Characters/Mushronian.png'></div>"); 
             updateHeroPosition($conn, $hero, $village);
             //Get Hero and Animal Damage
             $totalDMG = getDamageTotal($conn, $hero);
