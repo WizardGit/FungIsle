@@ -23,7 +23,7 @@ section {
   background-color: rgba(0, 0, 255, 0.493);
   border-style: solid; 
 }
-section img {
+section h1 img {
   width: 95%;
 }
 /* Controls the main header */
@@ -86,4 +86,13 @@ select {
   clear: both;
   float: left;
   display: block;
+}
+
+#char {
+  display: inline;
+  float: left;
+}
+#main {
+  display: inline;
+  float: right;
 }

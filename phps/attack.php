@@ -77,7 +77,8 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             printf("%s cannot move to %s because they are in %s which has not yet been freed! <br>", $hero, $village, $heroPos);
           }
           else
-          {
+          {            
+            printf("<div id='char'><img src='Characters/Mushronian.png'></div>"); 
             updateHeroPosition($conn, $hero, $village);
             //Get Hero and Animal Damage
             $totalDMG = getDamageTotal($conn, $hero);
