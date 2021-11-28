@@ -6,12 +6,13 @@ Date last edited: 11/26/2021
 /* Sets defaults */
 body {
   height: 100%;
-  width: 99%;
+  width: 98%;
   font-family: 'Quicksand', sans-serif;
   background-image: url("forestjeep.jpg");
   background-size: cover;
   color: black;  
   font-weight: bold;
+  min-width: 600px;
 }
 /* Controls the words on the website */
 section {
@@ -60,7 +61,7 @@ a {
   color: red;
 }
 #codeview {
-  width: 100%;
+  width: 38%;
   padding-top: 5px;
   border-bottom-width: 5px;
   border-top-width: 5px;
@@ -70,8 +71,9 @@ a {
   border-color: black;
   background-color: rgba(0, 0, 255, 0.493);
   border-style: solid; 
-  clear: both;
-
+  clear: left;
+  float: left;
+  margin-top: 10px;
 }
 #button {
   clear: left;
@@ -93,7 +95,7 @@ select {
   float: left;
   display: block;
 }
-#large {
+#forms {
   display: block;
   float: left;
   width: 38%;
@@ -105,7 +107,7 @@ select {
   background-color: rgba(0, 0, 255, 0.493);
   border-style: solid; 
 }
-#small {
+#pics {
   display: block;
   float: right;
   width: 55%;
@@ -117,25 +119,22 @@ select {
   background-color: rgba(0, 0, 255, 0.493);
   border-style: solid; 
 }
-#small img{
+#pics img{
   display: block;
-  width: 38%;
+  width: 35%;
   float: left;
-  /*background-color: red;*/
 }
-#small img:first-of-type {
-  width: 25%;
+#pics img:first-of-type {
+  width: 28%;
 }
-#small p {
+#pics p {
   display: block;
   width: 32%;
   float: left;
-  /*background-color: green;*/
   margin-top: 8%;
   font-size: 5em;
   text-align: center;
 }
-#small p img {
-  margin-left: 40%;
-  
+#pics p img {
+  margin-left: 40%;  
 }

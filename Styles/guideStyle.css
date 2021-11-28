@@ -9,7 +9,7 @@ body {
     width: 100%;
     font-family: 'Quicksand', sans-serif;
     background-image: url("forestjeep.jpg");
-    background-size: cover;
+    background-size: repeat;
     color: black;  
     font-weight: bold;
   }
