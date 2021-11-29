@@ -22,7 +22,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
               <!-- Font from: https://fontmeme.com/indiana-jones-font/ -->
        </section>
        <div id="form_div">  
-              <form action="./PhPs/?.php" method="POST" id="hero_eat_form">                      
+              <form action="./food_animal.php" method="POST" id="hero_eat_form">                      
                      <label for="hero_eat_slct">Have </label>                     
                      <?php printHeroSelect($conn); ?>                          
                      <label for="hero_mushroom_slct"> eat </label>
