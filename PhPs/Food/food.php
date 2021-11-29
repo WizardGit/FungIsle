@@ -57,13 +57,12 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 <?php
 function printHeroSelect($conn)
 {
-       printf("<select name='hero_slct' id='hero_slct' onchange='this.form.submit()'>");
-       
+       printf("<select name='hero_slct' id='hero_slct' onchange='food.php'>");
+
        $hero_slct = $_POST['hero_slct']; 
        if ($hero_slct == "")
               $hero_slct = "Mushronian";
        printf("<option value='%s'>%s</option>", $hero_slct, $hero_slct);
-
        
        $query = "select h.firstName from Human h where h.role='Hero'";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -78,6 +77,12 @@ function printHeroSelect($conn)
 function printAnimalSelect($conn)
 {
        printf("<select name='animal_slct' id='animal_slct' onchange='this.form.submit()'>");
+
+       $animal_slct = $_POST['animal_slct ']; 
+       if ($animal_slct  == "")
+              $animal_slct  = "Bat";
+       printf("<option value='%s'>%s</option>", $hero_slct, $hero_slct);
+
        $query = "select a.Name from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN where h.role='Hero'";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
