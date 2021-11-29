@@ -27,13 +27,13 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
                      <?php printHeroSelect($conn); ?>                          
                      <label for="hero_mushroom_slct"> eat </label>
                      <?php printHeroMushroomSelect($conn); ?>                     
-                     <input id="hero_eat_sub" type="submit" value="Eat Mushroom">
+                     <input formaction="./pizza.php" id="hero_eat_sub" type="submit" value="Eat Mushroom">
 
                      <label for="animal_eat_slct">Have </label>
                      <?php printAnimalSelect($conn); ?>    
                      <label for="animal_mushroom_slct"> eat </label>
                      <?php printAnimalMushroomSelect($conn); ?> 
-                     <input id="animal_eat_sub" type="submit" value="Eat Mushroom">
+                     <input formaction="./pizza.php" id="animal_eat_sub" type="submit" value="Eat Mushroom">
               </form>  
               <form action="./food.php" method="POST" id="hero_scavange_form">   
                      <label for="hero_scavange_slct"> Have</label>
@@ -57,7 +57,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 <?php
 function printHeroSelect($conn)
 {
-       printf("<select name='hero_slct' id='hero_slct' onchange='food.php.printHeroSelect()'>");
+       printf("<select name='hero_slct' id='hero_slct' onchange='this.form.submit()'>");
 
        $hero_slct = $_POST['hero_slct']; 
        if ($hero_slct == "")
