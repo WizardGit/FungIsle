@@ -22,7 +22,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
               <!-- Font from: https://fontmeme.com/indiana-jones-font/ -->
        </section>
        <div id="form_div">  
-              <form action="./food_animal.php" method="POST" id="hero_eat_form">                      
+              <form action="./food.php" method="POST" id="hero_eat_form">                      
                      <label for="hero_eat_slct">Have </label>                     
                      <?php printHeroSelect($conn); ?>                          
                      <label for="hero_mushroom_slct"> eat </label>
@@ -35,7 +35,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
                      <?php printAnimalMushroomSelect($conn); ?> 
                      <input id="animal_eat_sub" type="submit" value="Eat Mushroom">
               </form>  
-              <form action="./PhPs/?.php" method="POST" id="hero_scavange_form">   
+              <form action="./food.php" method="POST" id="hero_scavange_form">   
                      <label for="hero_scavange_slct"> Have</label>
                      <?php printHeroSelect($conn); ?> 
                      <label for="hero_scavange"> scavange for mushrooms</label>
@@ -69,7 +69,7 @@ function printHeroSelect($conn)
 }
 function printAnimalSelect($conn)
 {
-       printf("<select name='animal_slct' id='animal_slct' onchange=' '>");
+       printf("<select name='animal_slct' id='animal_slct' onchange='this.form.submit()'>");
        $query = "select a.Name from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN where h.role='Hero'";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
@@ -84,7 +84,7 @@ function printHeroMushroomSelect($conn)
        
        $hero_slct = $_POST['hero_slct']; 
        printf("h:%s", $hero_slct);
-       printf("<select name='mushroom_slct' id='mushroom_slct' onchange=' '>");
+       printf("<select name='mushroom_slct' id='mushroom_slct' >");
        $query = "select hf.Food_Name from Human_has_Food hf 
        inner join Human h on h.SaladSN=hf.Human_SaladSN
        where h.firstName=";
