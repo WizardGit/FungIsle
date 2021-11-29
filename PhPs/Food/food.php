@@ -80,10 +80,11 @@ function printAnimalSelect($conn)
        printf("</select>");
 }
 function printHeroMushroomSelect($conn)
-{
-       
+{       
        $hero_slct = $_POST['hero_slct']; 
-       printf("h:%s", $hero_slct);
+       if ($hero_slct == "")
+              $hero_slct = "Mushronian";  
+       
        printf("<select name='mushroom_slct' id='mushroom_slct' >");
        $query = "select hf.Food_Name from Human_has_Food hf 
        inner join Human h on h.SaladSN=hf.Human_SaladSN
@@ -102,7 +103,8 @@ function printAnimalMushroomSelect($conn)
 {
        
        $animal_slct = $_POST['animal_slct']; 
-       printf("h:%s", $animal_slct);
+       if ($animal_slct == "")
+              $animal_slct = "Mushronian";
        printf("<select name='mushroom_slct' id='mushroom_slct' onchange=' '>");
        $query = "select hf.Food_Name from Animal_has_Food hf 
        inner join Animal a on a.Name=hf.Animal_Name
