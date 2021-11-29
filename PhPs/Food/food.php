@@ -78,7 +78,7 @@ function printAnimalSelect($conn)
 {
        printf("<select name='animal_slct' id='animal_slct' onchange='this.form.submit()'>");
 
-       $animal_slct = $_POST['animal_slct ']; 
+       $animal_slct = $_POST['animal_slct']; 
        if ($animal_slct  == "")
               $animal_slct  = "Bat";
        printf("<option value='%s'>%s</option>", $hero_slct, $hero_slct);
