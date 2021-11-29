@@ -30,7 +30,10 @@ animal eat mushroom..
 
 -->
        <div id="form_div">  
-              <form action="./PhPs/?.php" method="POST" id="hero_eat_form">   
+              <form action="./PhPs/?.php" method="POST" id="hero_eat_form"> 
+                     <?php
+                     printf("hello)");
+                     ?>  
                      <label for="hero_eat_slct">Have </label>
                      <select name="hero_eat_slct" id="hero_eat_slct" onchange=" ">
                      <?php  
