@@ -35,13 +35,10 @@ animal eat mushroom..
               <form action="./PhPs/?.php" method="POST" id="hero_eat_form">   
                      <label for="hero_eat_slct">Have </label>
                      <select name="hero_eat_slct" id="hero_eat_slct" onchange=" ">
-                     <?php
-                     printHero($conn);
-                     
-                     ?>
-                            <!-- insert php here to add to the list-->
+                     <?php printHero($conn); ?>
+                            <!-- insert php here to add to the list
                             <option value="Mushronian">Mushronian</option>
-                            <option value="Amanita">Amanita</option>
+                            <option value="Amanita">Amanita</option>-->
                      </select>     
                      <label for="hero_mushroom_slct"> eat </label>
                      <select name="hero_mushroom_slct" id="hero_mushroom_slct" onchange=" ">
