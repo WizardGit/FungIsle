@@ -14,7 +14,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
     <title>CIS 451: Final Project</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../../Styles/food.css?v=<?php echo time(); ?>">  
-    <script src="../HTMLs/index.js" ></script>  
   </head>
 
   <body>
@@ -58,7 +57,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 <?php
 function printHeroSelect($conn)
 {
-       printf("<select name='hero_slct' id='hero_slct' onchange='../HTMLs/index.js'>");
+       printf("<select name='hero_slct' id='hero_slct' onchange='this.form.submit()'>");
        $query = "select h.firstName from Human h where h.role='Hero'";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
