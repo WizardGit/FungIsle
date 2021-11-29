@@ -38,21 +38,23 @@ animal eat mushroom..
                      <?php
                      printf("hello)");
                      ?>
-                     <select name="hero_eat_slct" id="hero_eat_slct" onchange=" ">
+                     
                      <?php  
                      printf("hellloo");
+                     printf("<select name='hero_eat_slct' id='hero_eat_slct' onchange=' '>");
                      $query = "select h.firstName from Human h where h.role='Hero'";
                      $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
                      while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
                      {   
-                            printf("<option value='%s'>%s</option>", $row['firstName']);                        
+                            printf("<option value='%s'>%s</option>", $row['firstName'], $row['firstName']);                        
                      }            
                      mysqli_free_result($result);
+                     printf("</select>")
                      ?>
                             <!-- insert php here to add to the list
                             <option value="Mushronian">Mushronian</option>
                             <option value="Amanita">Amanita</option>-->
-                     </select>     
+                          
                      <label for="hero_mushroom_slct"> eat </label>
                      <select name="hero_mushroom_slct" id="hero_mushroom_slct" onchange=" ">
                             <option value="?">mush3</option>
