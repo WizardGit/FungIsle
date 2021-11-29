@@ -1,6 +1,6 @@
 <!--
 Author: Kaiser
-Date last edited: 11/26/2021
+Date last edited: 11/28/2021
 Purpose: Perform ?
 -->
 
@@ -21,14 +21,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
               <h1><img src="https://fontmeme.com/permalink/211117/d85fe5edb95db7398839f42d8ceff245.png"></h1>
               <!-- Font from: https://fontmeme.com/indiana-jones-font/ -->
        </section>
-<!-- 
-hero scavage for mushroom
-animal scavage...
-hero eat mushroom...
-animal eat mushroom..
-
-
--->
        <div id="form_div">  
               <form action="./PhPs/?.php" method="POST" id="hero_eat_form">                      
                      <label for="hero_eat_slct">Have </label>                     
@@ -90,6 +82,8 @@ function printAnimalSelect($conn)
 }
 function printMushroomSelect($conn)
 {
+       $hero_slct = $_POST['hero_slct']; 
+       printf("hero_slct: %s <br>", $hero_slct); 
        printf("<select name='mushroom_slct' id='mushroom_slct' onchange=' '>");
        $query = "select f.Name from Food f";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
