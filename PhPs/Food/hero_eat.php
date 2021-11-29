@@ -50,7 +50,11 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
               </form> 
        </div>
        <div id="scavange_form_div">
-              
+       <?php
+            //Get the mushroom from post (and it's hp)
+            //add up to the amount if possible to hero
+            // subtract amount form hero_eats_food  
+        ?>
        </div>
   </body>
 </html>

@@ -50,7 +50,13 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
               </form> 
        </div>
        <div id="scavange_form_div">
-              
+        <?php
+            //Get the 2 * count($array) as $max
+            //choose the mushroom 
+            /*
+        rand( $min,  $max);
+            */
+        ?>
        </div>
   </body>
 </html>
