@@ -34,6 +34,7 @@ animal eat mushroom..
                      <label for="hero_eat_slct">Have </label>
                      <select name="hero_eat_slct" id="hero_eat_slct" onchange=" ">
                      <?php  
+                     printf("hellloo");
                      $query = "select h.firstName from Human h where h.role='Hero'";
                      $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
                      while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
