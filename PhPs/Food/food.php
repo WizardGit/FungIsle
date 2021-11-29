@@ -57,7 +57,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 <?php
 function printHeroSelect($conn)
 {
-       printf("<select name='hero_slct' id='hero_slct' onchange='food.php'>");
+       printf("<select name='hero_slct' id='hero_slct' onchange='food.php.printHeroSelect()'>");
 
        $hero_slct = $_POST['hero_slct']; 
        if ($hero_slct == "")
