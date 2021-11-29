@@ -57,12 +57,14 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 <?php
 function printHeroSelect($conn)
 {
+       printf("<select name='hero_slct' id='hero_slct' onchange='this.form.submit()'>");
+       
        $hero_slct = $_POST['hero_slct']; 
        if ($hero_slct == "")
               $hero_slct = "Mushronian";
        printf("<option value='%s'>%s</option>", $hero_slct, $hero_slct);
 
-       printf("<select name='hero_slct' id='hero_slct' onchange='this.form.submit()'>");
+       
        $query = "select h.firstName from Human h where h.role='Hero'";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
