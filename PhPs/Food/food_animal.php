@@ -28,14 +28,13 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
                      <label for="hero_mushroom_slct"> eat </label>
                      <?php printHeroMushroomSelect($conn); ?>                     
                      <input id="hero_eat_sub" type="submit" value="Eat Mushroom">
-              </form>  
-              <form action="./PhPs/?.php" method="POST" id="animal_eat_form">   
+
                      <label for="animal_eat_slct">Have </label>
                      <?php printAnimalSelect($conn); ?>    
                      <label for="animal_mushroom_slct"> eat </label>
                      <?php printAnimalMushroomSelect($conn); ?> 
                      <input id="animal_eat_sub" type="submit" value="Eat Mushroom">
-              </form>
+              </form>  
               <form action="./PhPs/?.php" method="POST" id="hero_scavange_form">   
                      <label for="hero_scavange_slct"> Have</label>
                      <?php printHeroSelect($conn); ?> 
