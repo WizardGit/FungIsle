@@ -35,6 +35,9 @@ animal eat mushroom..
                      printf("hello)");
                      ?>  
                      <label for="hero_eat_slct">Have </label>
+                     <?php
+                     printf("hello)");
+                     ?>
                      <select name="hero_eat_slct" id="hero_eat_slct" onchange=" ">
                      <?php  
                      printf("hellloo");
