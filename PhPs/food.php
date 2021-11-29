@@ -14,7 +14,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
     <title>CIS 451: Final Project</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="../Styles/food.css?v=<?php echo time(); ?>">  
-    <script src="index.js" ></script>  
   </head>
 
   <body>
@@ -34,13 +33,15 @@ animal eat mushroom..
               <form action="./PhPs/?.php" method="POST" id="hero_eat_form">   
                      <label for="hero_eat_slct">Have </label>
                      <select name="hero_eat_slct" id="hero_eat_slct" onchange=" ">
-                     <?php  $query = "select h.firstName from Human h where h.role='Hero'";
+                     <?php  
+                     $query = "select h.firstName from Human h where h.role='Hero'";
                      $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
                      while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
                      {   
                             printf("<option value='%s'>%s</option>", $row['firstName']);                        
                      }            
-                     mysqli_free_result($result);?>
+                     mysqli_free_result($result);
+                     ?>
                             <!-- insert php here to add to the list
                             <option value="Mushronian">Mushronian</option>
                             <option value="Amanita">Amanita</option>-->
