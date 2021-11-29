@@ -81,7 +81,7 @@ function printAnimalSelect($conn)
        $animal_slct = $_POST['animal_slct']; 
        if ($animal_slct  == "")
               $animal_slct  = "Bat";
-       printf("<option value='%s'>%s</option>", $hero_slct, $hero_slct);
+       printf("<option value='%s'>%s</option>", $animal_slct, $animal_slct);
 
        $query = "select a.Name from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN where h.role='Hero'";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
