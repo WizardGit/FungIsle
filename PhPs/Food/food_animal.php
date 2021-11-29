@@ -81,13 +81,15 @@ function printAnimalSelect($conn)
 }
 function printHeroMushroomSelect($conn)
 {
+       
        $hero_slct = $_POST['hero_slct']; 
+       printf("h:%s", $hero_slct);
        printf("<select name='mushroom_slct' id='mushroom_slct' onchange=' '>");
        $query = "select hf.Food_Name from Human_has_Food hf 
        inner join Human h on h.SaladSN=hf.Human_SaladSN
        where h.firstName=";
        $query = $query."'".$hero_slct."';";
-       printf("h:%s", $hero_slct);
+       
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
        {   
@@ -98,7 +100,9 @@ function printHeroMushroomSelect($conn)
 }
 function printAnimalMushroomSelect($conn)
 {
+       
        $animal_slct = $_POST['animal_slct']; 
+       printf("h:%s", $animal_slct);
        printf("<select name='mushroom_slct' id='mushroom_slct' onchange=' '>");
        $query = "select hf.Food_Name from Animal_has_Food hf 
        inner join Animal a on a.Name=hf.Animal_Name
