@@ -30,26 +30,10 @@ animal eat mushroom..
 
 -->
        <div id="form_div">  
-              <form action="./PhPs/?.php" method="POST" id="hero_eat_form"> 
-                     <?php
-                     printf("hello)");
-                     ?>  
-                     <label for="hero_eat_slct">Have </label>
-                     <?php
-                     printf("hello)");
-                     ?>
-                     
+              <form action="./PhPs/?.php" method="POST" id="hero_eat_form">                      
+                     <label for="hero_eat_slct">Have </label>                     
                      <?php  
-                     printf("hellloo");
-                     printf("<select name='hero_eat_slct' id='hero_eat_slct' onchange=' '>");
-                     $query = "select h.firstName from Human h where h.role='Hero'";
-                     $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-                     while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
-                     {   
-                            printf("<option value='%s'>%s</option>", $row['firstName'], $row['firstName']);                        
-                     }            
-                     mysqli_free_result($result);
-                     printf("</select>")
+                            printHeroSelect($conn);
                      ?>
                             <!-- insert php here to add to the list
                             <option value="Mushronian">Mushronian</option>
@@ -106,15 +90,17 @@ animal eat mushroom..
 </html>
 
 <?php
-function printHero($conn)
+function printHeroSelect($conn)
 {
-       $query = "select h.firstName from Human h where h.role='Hero'";
+       printf("<select name='hero_eat_slct' id='hero_eat_slct' onchange=' '>");
+                     $query = "select h.firstName from Human h where h.role='Hero'";
                      $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
                      while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
                      {   
-                            printf("<option value='%s'>%s</option>", $row['firstName']);                        
+                            printf("<option value='%s'>%s</option>", $row['firstName'], $row['firstName']);                        
                      }            
                      mysqli_free_result($result);
+                     printf("</select>");
 }
 ?>
 
