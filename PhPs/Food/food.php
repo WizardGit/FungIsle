@@ -87,7 +87,8 @@ function printAnimalSelect($conn)
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
        {   
-              printf("<option value='%s'>%s</option>", $row['Name'], $row['Name']);                        
+              if ($row['Name'] != $animal_slct)
+                     printf("<option value='%s'>%s</option>", $row['Name'], $row['Name']);                        
        }            
        mysqli_free_result($result);
        printf("</select>");
