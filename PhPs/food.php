@@ -36,7 +36,7 @@ animal eat mushroom..
                      <label for="hero_eat_slct">Have </label>
                      <select name="hero_eat_slct" id="hero_eat_slct" onchange=" ">
                      <?php
-                     printHero();
+                     printHero($conn);
                      
                      ?>
                             <!-- insert php here to add to the list-->
@@ -94,7 +94,7 @@ animal eat mushroom..
 </html>
 
 <?php
-function printHero()
+function printHero($conn)
 {
        $query = "select h.firstName from Human h where h.role='Hero'";
                      $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
