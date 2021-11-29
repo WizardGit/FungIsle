@@ -34,22 +34,14 @@ animal eat mushroom..
                      <label for="hero_eat_slct">Have </label>                     
                      <?php printHeroSelect($conn); ?>                          
                      <label for="hero_mushroom_slct"> eat </label>
-                     <select name="hero_mushroom_slct" id="hero_mushroom_slct" onchange=" ">
-                            <option value="?">mush3</option>
-                            <option value="?">mush1</option>
-                            <option value="?">mush2</option>                            
-                     </select>
+                     <?php printMushroomSelect($conn); ?>                     
                      <input id="hero_eat_sub" type="submit" value="Eat Mushroom">
               </form>  
               <form action="./PhPs/?.php" method="POST" id="animal_eat_form">   
                      <label for="animal_eat_slct">Have </label>
                      <?php printAnimalSelect($conn); ?>    
                      <label for="animal_mushroom_slct"> eat </label>
-                     <select name="animal_mushroom_slct" id="animal_mushroom_slct" onchange=" ">
-                            <option value="?">mush3</option>
-                            <option value="?">mush1</option>
-                            <option value="?">mush2</option>                            
-                     </select>
+                     <?php printMushroomSelect($conn); ?> 
                      <input id="animal_eat_sub" type="submit" value="Eat Mushroom">
               </form>
               <form action="./PhPs/?.php" method="POST" id="hero_scavange_form">   
@@ -74,7 +66,7 @@ animal eat mushroom..
 <?php
 function printHeroSelect($conn)
 {
-       printf("<select name='hero_eat_slct' id='hero_eat_slct' onchange=' '>");
+       printf("<select name='hero_slct' id='hero_slct' onchange=' '>");
        $query = "select h.firstName from Human h where h.role='Hero'";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
@@ -86,10 +78,20 @@ function printHeroSelect($conn)
 }
 function printAnimalSelect($conn)
 {
-       printf("<select name='animal_eat_slct' id='animal_eat_slct' onchange=' '>");
-       $query = "select a.Name from Animal a
-       inner join Human h on a.HumanOwnerSSN=h.SaladSN
-       where h.role='Hero'";
+       printf("<select name='animal_slct' id='animal_slct' onchange=' '>");
+       $query = "select a.Name from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN where h.role='Hero'";
+       $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+       while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+       {   
+              printf("<option value='%s'>%s</option>", $row['Name'], $row['Name']);                        
+       }            
+       mysqli_free_result($result);
+       printf("</select>");
+}
+function printMushroomSelect($conn)
+{
+       printf("<select name='mushroom_slct' id='mushroom_slct' onchange=' '>");
+       $query = "select f.Name from Food f";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
        {   
