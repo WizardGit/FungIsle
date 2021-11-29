@@ -88,6 +88,7 @@ function printHeroMushroomSelect($conn)
        inner join Human h on h.SaladSN=hf.Human_SaladSN
        where h.firstName=";
        $query = $query."'".$hero_slct."';";
+       printf("h:%s", $hero_slct);
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
        {   
