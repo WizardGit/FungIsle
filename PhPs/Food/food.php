@@ -90,54 +90,61 @@ function printAnimalSelect($conn)
 }
 function printHeroMushroomSelect($conn)
 {       
-       /*printf("<select name='hero_mushroom_slct' id='hero_mushroom_slct' onchange='this.form.submit()'>");
-
-       $mushroom_slct = $_POST['hero_mushroom_slct']; 
-       if ($mushroom_slct  == "")
-              $mushroom_slct  = "Beech";
-       pprintf("<option value='%s'>%s (%s)</option>", $mushroom_slct, $mushroom_slct, $mushroom_slct); 
-       
+       printf("<select name='hero_mushroom_slct' id='hero_mushroom_slct' onchange='this.form.submit()'>");
+      
        $hero_slct = $_POST['hero_slct']; 
        if ($hero_slct == "")
               $hero_slct = "Mushronian"; 
        $query = "select hf.Food_Name, hf.remaining from Human_has_Food hf 
-       inner join Human h on h.SaladSN=hf.Human_SaladSN
-       where h.firstName=";
+       inner join Human h on h.SaladSN=hf.Human_SaladSN where h.firstName=";
        $query = $query."'".$hero_slct."';";       
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-       while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
-       {   
-              if ($row['Name'] != $mushroom_slct)
-                     printf("<option value='%s'>%s (%s)</option>", $row['Food_Name'], $row['Food_Name'], $row['remaining']);                         
-       }            
+       $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+       if($row == null)
+       {
+              printf("<option value='none'>none</option>"); 
+              printf("</select>");
+              return;
+       }
+       $mushroom_slct = $_POST['hero_mushroom_slct']; 
+       if($mushroom_slct  != "")
+       {
+              $q = "select hf.remaining from Human_has_Food hf 
+              inner join Human h on h.SaladSN=hf.Human_SaladSN where h.firstName=";
+              $q = $q."'".$hero_slct."' and hf.Food_Name=";
+              $q = $q."'".$mushroom_slct."';";
+              $r = mysqli_query($conn, $q) or die(mysqli_error($conn));
+              $rw = mysqli_fetch_array($r, MYSQLI_ASSOC);
+              printf("<option value='%s'>%s (%s)</option>", $mushroom_slct, $mushroom_slct, $rw['remaining']); 
+              mysqli_free_result($r);
+       }
+       do {
+              if ($row['Food_Name'] != $mushroom_slct)
+                     printf("<option value='%s'>%s (%s)</option>", $row['Food_Name'], $row['Food_Name'], $row['remaining']);                        
+       }while($row = mysqli_fetch_array($result, MYSQLI_ASSOC));
+                      
        mysqli_free_result($result);
-       printf("</select>");*/
+       printf("</select>");
 }
 function printAnimalMushroomSelect($conn)
 {       
        printf("<select name='animal_mushroom_slct' id='animal_mushroom_slct' onchange='this.form.submit()'>");
               
-       //printf("here <br>");
        $animal_slct = $_POST['animal_slct']; 
        if ($animal_slct == "")
               $animal_slct = "Bat";
-       //printf("here <br>: %s", $animal_slct);
        $query = "select hf.Food_Name, hf.remaining from Animal_has_Food hf 
        inner join Animal a on a.Name=hf.Animal_Name where a.Name=";
        $query = $query."'".$animal_slct."';";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-       //printf("here <br>");
        if($row == null)
        {
-              //printf("here <br>");
               printf("<option value='none'>none</option>"); 
               printf("</select>");
               return;
        }
-       //printf("here <br>");
        $mushroom_slct = $_POST['animal_mushroom_slct']; 
-       //printf("mus: %s", $mushroom_slct);
        if($mushroom_slct  != "")
        {
               $q = "select hf.remaining from Animal_has_Food hf 
@@ -147,6 +154,7 @@ function printAnimalMushroomSelect($conn)
               $r = mysqli_query($conn, $q) or die(mysqli_error($conn));
               $rw = mysqli_fetch_array($r, MYSQLI_ASSOC);
               printf("<option value='%s'>%s (%s)</option>", $mushroom_slct, $mushroom_slct, $rw['remaining']); 
+              mysqli_free_result($r);
        }
        do {
               if ($row['Food_Name'] != $mushroom_slct)
