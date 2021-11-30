@@ -90,7 +90,7 @@ function printAnimalSelect($conn)
 }
 function printHeroMushroomSelect($conn)
 {       
-       printf("<select name='hero_mushroom_slct' id='hero_mushroom_slct' onchange='this.form.submit()'>");
+       /*printf("<select name='hero_mushroom_slct' id='hero_mushroom_slct' onchange='this.form.submit()'>");
 
        $mushroom_slct = $_POST['hero_mushroom_slct']; 
        if ($mushroom_slct  == "")
@@ -111,7 +111,7 @@ function printHeroMushroomSelect($conn)
                      printf("<option value='%s'>%s (%s)</option>", $row['Food_Name'], $row['Food_Name'], $row['remaining']);                         
        }            
        mysqli_free_result($result);
-       printf("</select>");
+       printf("</select>");*/
 }
 function printAnimalMushroomSelect($conn)
 {       
