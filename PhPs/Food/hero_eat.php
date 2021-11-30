@@ -48,9 +48,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
        </div>
        <div id="scavange_form_div">
        <?php
-            //Get the mushroom from post (and it's hp)
-            //add up to the amount if possible to hero
-            // subtract amount form hero_eats_food  
+            test($conn); 
         ?>
        </div>
   </body>
@@ -133,5 +131,36 @@ function printAnimalMushroomSelect($conn)
        }            
        mysqli_free_result($result);
        printf("</select>");
+}
+function test($conn)
+{
+       $hero = $_POST['hero_slct']; 
+       $mush = $_POST['hero_mushroom_slct'];  
+       printf("hero: %s", $hero);
+       printf("mush: %s", $mush);
+
+       $query = "select hf.remaining from Human hf inner join Human h on h.SaladSN=hf.Human_SaladSN       
+       where h.firstName=";
+       $query = $query."'".$hero."' and hf.Food_Name=";
+       $query = $query."'".$mush."';";
+       $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+       $row = mysqli_fetch_array($result, MYSQLI_ASSOC));      
+       $numush = $row['remaining'] - 1;    
+       mysqli_free_result($result);
+
+       if ($numush < 0)
+       {
+              printf("%s does not have any %s mushrooms to eat!", $hero, $mush);
+              return;
+       }              
+       else
+              printf("%s eats one of their %s mushrooms - resulting in there being %s left", $hero, $mush, $numush);
+
+       $query = "update Human_has_Food hf inner join Human h on h.SaladSN=hf.Human_SaladSN 
+       set hf.remaining=";
+       $query = $query."'".$numush."' where h.firstName=";
+       $query = $query."'".$hero."' and hf.Food_Name=";
+       $query = $query."'".$mush."';";
+       mysqli_query($conn, $query) or die(mysqli_error($conn));
 }
 ?>
