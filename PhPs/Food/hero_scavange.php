@@ -132,25 +132,19 @@ function printAnimalMushroomSelect($conn)
 }
 function displayHeroScavange($conn)
 {
-       $hero = $_POST['hero_slct']; 
-       printf("hero: %s <br>", $hero);       
+       $hero = $_POST['hero_slct'];     
        
        $query = "select count(*) as total from Food f;";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-       $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
-       printf("total: %s <br>", $row['total']); 
+       $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
        $total = $row['total'];
 
        $query = "select f.Name from Food f;";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-       $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
-       printf("count: %s <br>", count($result));  
-
+       $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
       
        $num = rand(0, $total);
 
-
-       printf("num: %s <br>", $num);
        if ($num == 0)
               $mush = $row['Name'];
        $counter = 1;
@@ -160,7 +154,6 @@ function displayHeroScavange($conn)
                      $mush = $row['Name'];
               $counter++;
        } 
-       printf("mush: %s <br>", $mush);
        
        $query = "select hf.remaining from Human_has_Food hf inner join Human h on h.SaladSN=hf.Human_SaladSN       
        where h.firstName=";
@@ -177,8 +170,7 @@ function displayHeroScavange($conn)
               $query = $query."'".$numush."' where h.firstName=";
               $query = $query."'".$hero."' and hf.Food_Name=";
               $query = $query."'".$mush."';";
-              mysqli_query($conn, $query) or die(mysqli_error($conn));
-              printf("%s finds one %s mushroom - resulting in there now being %s mushrooms in the backpack", $hero, $mush, $numush);
+              mysqli_query($conn, $query) or die(mysqli_error($conn));              
        }              
        else
        {
@@ -192,9 +184,9 @@ function displayHeroScavange($conn)
               $query = "insert into Human_has_Food values (";
               $query = $query." ".$SSN.", ";
               $query = $query."'".$mush."', 1)";
-              mysqli_query($conn, $query) or die(mysqli_error($conn));
-              printf("%s finds one %s mushroom - resulting in there now being %s mushrooms in the backpack", $hero, $mush, $numush);
-       }              
+              mysqli_query($conn, $query) or die(mysqli_error($conn));              
+       }       
+       printf("%s finds one %s mushroom - resulting in there now being %s mushroom(s) in the backpack", $hero, $mush, $numush);       
        mysqli_free_result($result);
        return; 
        
