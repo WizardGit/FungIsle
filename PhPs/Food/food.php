@@ -125,6 +125,7 @@ function printAnimalMushroomSelect($conn)
        $query = $query."'".$animal_slct."';";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        $row = mysqli_fetch_array($result, MYSQLI_ASSOC)
+       /*
        if($row == null)
        {
               printf("<option value='none'>none</option>"); 
@@ -142,6 +143,6 @@ function printAnimalMushroomSelect($conn)
        }while($row = mysqli_fetch_array($result, MYSQLI_ASSOC));
                       
        mysqli_free_result($result);
-       printf("</select>");
+       printf("</select>");*/
 }
 ?>
