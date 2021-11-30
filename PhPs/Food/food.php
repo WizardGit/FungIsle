@@ -37,7 +37,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
                      <label for="hero_scavange_slct"> Have</label>
                      <?php printHeroSelect($conn); ?> 
                      <label for="hero_scavange"> scavange for mushrooms</label>
-                     <input id="hero_scavange_sub" type="submit" value="Scavange">
+                     <input formaction="./hero_scavange.php"id="hero_scavange_sub" type="submit" value="Scavange">
               </form> 
               <form action="./food.php" method="POST" id="animal_scavange_form">   
                      <label for="animal_scavange_slct"> Have</label>
