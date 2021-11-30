@@ -34,6 +34,12 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         $query5 = "UPDATE Human h SET h.Village_ID=6 WHERE h.role='Hero';";
         mysqli_query($conn, $query5) or die(mysqli_error($conn));
 
+        $query6 = "DELETE from Human_has_Food h where h.Human_SaladSN > 0;";
+        mysqli_query($conn, $query6) or die(mysqli_error($conn));
+
+        $query7 = "DELETE from Animal_has_Food a where a.remaining > -1;";
+        mysqli_query($conn, $query7) or die(mysqli_error($conn));
+
         $queryAtt = "select * from Human h";
         $queryAtt2 = "select * from Village v";
         $queryAtt3 = "select * from Animal a";

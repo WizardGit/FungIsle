@@ -172,20 +172,17 @@ function printAnimalMushroomSelect($conn)
 function displayAnimalScavange($conn)
 {
        $animal = $_POST['animal_slct'];    
-       printf("animal: %s <br>", $animal); 
        
        $query = "select count(*) as total from Food f;";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
        $total = $row['total'];
-       printf("total: %s <br>", $total); 
 
        $query = "select f.Name from Food f;";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
       
        $num = rand(1, $total);
-       printf("num: %s <br>", $num); 
 
        if ($num == 1)
               $mush = $row['Name'];
@@ -203,7 +200,6 @@ function displayAnimalScavange($conn)
        $query = $query."'".$mush."';";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
-       printf("remaining: %s <br>", $row['remaining']); 
        if ($row['remaining'] != null)
        {
               $numush = $row['remaining']+1;
