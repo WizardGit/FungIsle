@@ -140,7 +140,13 @@ function printAnimalMushroomSelect($conn)
        //printf("mus: %s", $mushroom_slct);
        if($mushroom_slct  != "")
        {
-              printf("<option value='%s'>%s (%s)</option>", $mushroom_slct, $mushroom_slct, $mushroom_slct); 
+              $q = "select hf.remaining from Animal_has_Food hf 
+              inner join Animal a on a.Name=hf.Animal_Name where a.Name=";
+              $q = $q."'".$animal_slct."' and hf.Food_Name=";
+              $q = $q."'".$mushroom_slct."';";
+              $r = mysqli_query($conn, $q) or die(mysqli_error($conn));
+              $rw = mysqli_fetch_array($r, MYSQLI_ASSOC);
+              printf("<option value='%s'>%s (%s)</option>", $mushroom_slct, $mushroom_slct, $rw['remaining']); 
        }
        do {
               if ($row['Food_Name'] != $mushroom_slct)
