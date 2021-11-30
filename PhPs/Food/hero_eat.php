@@ -47,9 +47,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
               </form> 
        </div>
        <div id="scavange_form_div">
-       <?php
-            test($conn); 
-        ?>
+       <?php test($conn); ?>
        </div>
   </body>
 </html>
@@ -144,7 +142,7 @@ function test($conn)
        $query = $query."'".$hero."' and hf.Food_Name=";
        $query = $query."'".$mush."';";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-       $row = mysqli_fetch_array($result, MYSQLI_ASSOC));      
+       $row = mysqli_fetch_array($result, MYSQLI_ASSOC);      
        $numush = $row['remaining'] - 1;    
        mysqli_free_result($result);
 
