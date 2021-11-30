@@ -176,7 +176,7 @@ function displayAnimalScavange($conn)
        {
               $numush = 1;
               $query = "insert into Animal_has_Food values (";
-              $query = $query." ".$animal.", ";
+              $query = $query."'".$animal."', ";
               $query = $query."'".$mush."', 1)";
               mysqli_query($conn, $query) or die(mysqli_error($conn));              
        }       
