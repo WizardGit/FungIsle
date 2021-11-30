@@ -125,13 +125,15 @@ function printAnimalMushroomSelect($conn)
        $query = $query."'".$animal_slct."';";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-       
+       printf("here <br>");
        if($row == null)
        {
+              printf("here <br>");
               printf("<option value='none'>none</option>"); 
               printf("</select>");
               return;
        }
+       printf("here <br>");
        $mushroom_slct = $_POST['animal_mushroom_slct']; 
        printf("mus: %s", $mushroom_slct);
        if($mushroom_slct  != "")
