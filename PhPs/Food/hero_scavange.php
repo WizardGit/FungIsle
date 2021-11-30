@@ -130,7 +130,7 @@ function printAnimalMushroomSelect($conn)
        mysqli_free_result($result);
        printf("</select>");
 }
-function displayHeroEat($conn)
+function displayHeroScavange($conn)
 {
        $hero = $_POST['hero_slct']; 
        printf("hero: %s", $hero);        
