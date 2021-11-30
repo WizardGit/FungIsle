@@ -152,7 +152,7 @@ function displayHeroEat($conn)
               $counter++;
        } 
        printf("mush: %s", $mush);
-
+       /*
        $query = "select hf.remaining from Human_has_Food hf inner join Human h on h.SaladSN=hf.Human_SaladSN       
        where h.firstName=";
        $query = $query."'".$hero."' and hf.Food_Name=";
@@ -188,5 +188,6 @@ function displayHeroEat($conn)
        }              
        mysqli_free_result($result);
        return; 
+       */
 }
 ?>
