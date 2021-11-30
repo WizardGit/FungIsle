@@ -172,7 +172,7 @@ function printAnimalMushroomSelect($conn)
 function displayHeroEat($conn)
 {
        $hero = $_POST['hero_slct']; 
-       $mush = $_POST['mushroom_slct'];  
+       $mush = $_POST['hero_mushroom_slct'];  
 
        $query = "select hf.remaining from Human_has_Food hf inner join Human h on h.SaladSN=hf.Human_SaladSN       
        where h.firstName=";
