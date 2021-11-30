@@ -115,7 +115,7 @@ function printHeroMushroomSelect($conn)
 }
 function printAnimalMushroomSelect($conn)
 {       
-       printf("<select name='animal_mushroom_slct' id='animal_mushroom_slct' onchange='this.form.submit()'>");
+       //printf("<select name='animal_mushroom_slct' id='animal_mushroom_slct' onchange='this.form.submit()'>");
               
        printf("here <br>");
        $animal_slct = $_POST['animal_slct']; 
