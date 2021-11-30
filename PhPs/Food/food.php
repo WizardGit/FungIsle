@@ -115,35 +115,35 @@ function printHeroMushroomSelect($conn)
 }
 function printAnimalMushroomSelect($conn)
 {       
-       //printf("<select name='animal_mushroom_slct' id='animal_mushroom_slct' onchange='this.form.submit()'>");
+       printf("<select name='animal_mushroom_slct' id='animal_mushroom_slct' onchange='this.form.submit()'>");
               
-       printf("here <br>");
+       //printf("here <br>");
        $animal_slct = $_POST['animal_slct']; 
        if ($animal_slct == "")
               $animal_slct = "Bat";
-       printf("here <br>: %s", $animal_slct);
+       //printf("here <br>: %s", $animal_slct);
        $query = "select hf.Food_Name, hf.remaining from Animal_has_Food hf 
        inner join Animal a on a.Name=hf.Animal_Name where a.Name=";
        $query = $query."'".$animal_slct."';";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-       printf("here <br>");
+       //printf("here <br>");
        if($row == null)
        {
-              printf("here <br>");
+              //printf("here <br>");
               printf("<option value='none'>none</option>"); 
               printf("</select>");
               return;
        }
-       printf("here <br>");
+       //printf("here <br>");
        $mushroom_slct = $_POST['animal_mushroom_slct']; 
-       printf("mus: %s", $mushroom_slct);
+       //printf("mus: %s", $mushroom_slct);
        if($mushroom_slct  != "")
        {
               printf("<option value='%s'>%s (%s)</option>", $mushroom_slct, $mushroom_slct, $mushroom_slct); 
        }
        do {
-              if ($row['Name'] != $mushroom_slct)
+              if ($row['Food_Name'] != $mushroom_slct)
                      printf("<option value='%s'>%s (%s)</option>", $row['Food_Name'], $row['Food_Name'], $row['remaining']);                        
        }while($row = mysqli_fetch_array($result, MYSQLI_ASSOC));
                       
