@@ -115,7 +115,8 @@ function printHeroMushroomSelect($conn)
               $q = $q."'".$mushroom_slct."';";
               $r = mysqli_query($conn, $q) or die(mysqli_error($conn));
               $rw = mysqli_fetch_array($r, MYSQLI_ASSOC);
-              printf("<option value='%s'>%s (%s)</option>", $mushroom_slct, $mushroom_slct, $rw['remaining']); 
+              if ($rw != null)
+                     printf("<option value='%s'>%s (%s)</option>", $mushroom_slct, $mushroom_slct, $rw['remaining']); 
               mysqli_free_result($r);
        }
        do {
@@ -153,7 +154,8 @@ function printAnimalMushroomSelect($conn)
               $q = $q."'".$mushroom_slct."';";
               $r = mysqli_query($conn, $q) or die(mysqli_error($conn));
               $rw = mysqli_fetch_array($r, MYSQLI_ASSOC);
-              printf("<option value='%s'>%s (%s)</option>", $mushroom_slct, $mushroom_slct, $rw['remaining']); 
+              if ($rw != null)
+                     printf("<option value='%s'>%s (%s)</option>", $mushroom_slct, $mushroom_slct, $rw['remaining']); 
               mysqli_free_result($r);
        }
        do {
