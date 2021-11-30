@@ -145,12 +145,12 @@ function displayAnimalScavange($conn)
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
       
-       $num = rand(0, $total);
+       $num = rand(1, $total);
        printf("num: %s <br>", $num); 
 
-       if ($num == 0)
+       if ($num == 1)
               $mush = $row['Name'];
-       $counter = 1;
+       $counter = 2;
        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
        {   
               if ($num == $counter)

@@ -143,11 +143,11 @@ function displayHeroScavange($conn)
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
       
-       $num = rand(0, $total);
+       $num = rand(1, $total);
 
-       if ($num == 0)
+       if ($num == 1)
               $mush = $row['Name'];
-       $counter = 1;
+       $counter = 2;
        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
        {   
               if ($num == $counter)
@@ -162,7 +162,7 @@ function displayHeroScavange($conn)
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
 
-       if (count($row) >= 1)
+       if ($row['remaining'] >= 1)
        {
               $numush = $row['remaining']+1;
               $query = "update Human_has_Food hf inner join Human h on h.SaladSN=hf.Human_SaladSN 
