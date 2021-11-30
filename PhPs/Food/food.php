@@ -18,6 +18,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
   <body>
        <h1><img src="https://fontmeme.com/permalink/211117/d85fe5edb95db7398839f42d8ceff245.png"></h1>
+       <p><a id="button" href="../HTMLs/index.html">Back to Home Page</a> </p> 
        <div id="form_div">  
               <form action="./food.php" method="POST" id="hero_eat_form">                      
                      <label for="hero_eat_slct">Have </label>                     

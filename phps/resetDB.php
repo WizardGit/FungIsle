@@ -16,7 +16,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
   </head>  
   <body>
     <section>
-      <a href="../index.html">Back to Home Page</a>
+      <a href="../HTMLs/index.html">Back to Home Page</a>
       <p> <h2>Reset Queries:</h2> <p>
       <?php
         $query = "UPDATE Human h SET h.health=1000 WHERE h.role='Hero' or h.role='Boss';";
@@ -39,19 +39,19 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
         $query7 = "DELETE from Animal_has_Food;";
         mysqli_query($conn, $query7) or die(mysqli_error($conn));
-
-        $queryAtt = "select * from Human h";
-        $queryAtt2 = "select * from Village v";
-        $queryAtt3 = "select * from Animal a";
+        
         print $query;
       ?>
 
       <p> <h2>Result of Reset:</h2> <p>
 
       <?php
+        $queryAtt = "select * from Human h";      
         $resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));
-        $resultAtt2 = mysqli_query($conn,$queryAtt2) or die(mysqli_error($conn));
-        $resultAtt3 = mysqli_query($conn,$queryAtt3) or die(mysqli_error($conn));
+        $queryAtt2 = "select * from Village v";
+        $resultAtt2 = mysqli_query($conn,$queryAtt2) or die(mysqli_error($conn));        
+        $queryAtt3 = "select * from Animal a";
+        $resultAtt3 = mysqli_query($conn,$queryAtt3) or die(mysqli_error($conn)); 
 
         print "<pre>";
 
