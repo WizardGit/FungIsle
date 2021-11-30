@@ -1,0 +1,70 @@
+/*
+Author: Kaiser
+Date last edited: 11/29/2021
+*/
+
+body {
+    height: 97%;
+    width: 98%;
+    font-family: 'Quicksand', sans-serif;
+    background-image: url("forestjeep.jpg");
+    background-size: cover;
+    color: black;  
+    font-weight: bold;
+    min-width: 600px;
+  }
+h1 {
+    display: block;
+    float: left;
+    width: 99%;
+    margin: 0px;
+    text-align: center;
+    padding: 10px;
+    background-color: rgba(0, 0, 255, 0.493);
+    border-width: 5px;
+    border-color: black;    
+    border-style: solid; 
+  }
+h1 img {
+    width: 100%;
+  }  
+input[type=submit], input[type=reset] {  
+    margin: 5px;
+    background: linear-gradient(to right, brown, #ffad06);
+    border: 0;
+    padding: 5px;
+    border-radius: 3px;
+    font-weight: bold;
+  }
+a {
+    color: red;
+  }
+select {
+    border-radius: 5px;
+    padding: 5px;
+    font-weight: bold;
+    display:block;
+    margin-left: 5px;
+  }
+#form_div {
+    display: inline;
+    float: left;
+    width: 48%;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 5px;
+    font-weight: bold;
+    border-width: 5px;
+    border-color: black;
+    background-color: rgba(0, 0, 255, 0.493);
+    border-style: solid; 
+  }
+#form_div select, #form_div label {
+    display: inline;
+    margin: 5px;  
+}
+#form_div input[type=submit] {
+    clear: left;
+    float: right;
+    display: block;
+}
