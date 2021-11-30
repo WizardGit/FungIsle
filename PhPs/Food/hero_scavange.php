@@ -138,7 +138,7 @@ function displayHeroScavange($conn)
        $query = "select f.Name from Food f;";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
-       printf("count: %s <br>", count($row));  
+       printf("count: %s <br>", count($result));  
 
        //Get the mushroom found
        // seed with microseconds
