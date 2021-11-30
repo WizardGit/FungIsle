@@ -90,9 +90,9 @@ function printAnimalSelect($conn)
 }
 function printHeroMushroomSelect($conn)
 {       
-       printf("<select name='mushroom_slct' id='mushroom_slct' onchange='this.form.submit()'>");
+       printf("<select name='hero_mushroom_slct' id='hero_mushroom_slct' onchange='this.form.submit()'>");
 
-       $mushroom_slct = $_POST['mushroom_slct']; 
+       $mushroom_slct = $_POST['hero_mushroom_slct']; 
        if ($mushroom_slct  == "")
               $mushroom_slct  = "Beech";
        printf("<option value='%s'>%s</option>", $mushroom_slct, $mushroom_slct);
@@ -115,9 +115,9 @@ function printHeroMushroomSelect($conn)
 }
 function printAnimalMushroomSelect($conn)
 {       
-       printf("<select name='mushroom_slct' id='mushroom_slct' onchange='this.form.submit()'>");
+       printf("<select name='animal_mushroom_slct' id='animal_mushroom_slct' onchange='this.form.submit()'>");
        
-       $mushroom_slct = $_POST['mushroom_slct']; 
+       $mushroom_slct = $_POST['animal_mushroom_slct']; 
        if ($mushroom_slct  == "")
               $mushroom_slct  = "Beech";
        printf("<option value='%s'>%s</option>", $mushroom_slct, $mushroom_slct);
