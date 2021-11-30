@@ -15,7 +15,7 @@ body {
     min-width: 600px;
   }
   /* Controls the words on the website */
-  section {
+ h1 {
     display: block;
     border-width: 5px;
     border-color: black;
@@ -24,11 +24,11 @@ body {
     width: 100%;
     float: left;
   }
-  section h1 img {
+h1 img {
     width: 95%;
   }
   /* Controls the main header */
-  section h1 {
+h1 {
     margin: 0px;
     border-bottom-width: 5px;
     border-bottom-style: solid;
