@@ -101,7 +101,7 @@ function printHeroMushroomSelect($conn)
               $hero_slct = "Mushronian";  
        
        printf("<select name='mushroom_slct' id='mushroom_slct' >");
-       $query = "select hf.Food_Name from Human_has_Food hf 
+       $query = "select hf.Food_Name, hf.remaining from Human_has_Food hf 
        inner join Human h on h.SaladSN=hf.Human_SaladSN
        where h.firstName=";
        $query = $query."'".$hero_slct."';";
@@ -109,7 +109,7 @@ function printHeroMushroomSelect($conn)
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
        {   
-              printf("<option value='%s'>%s</option>", $row['Food_Name'], $row['Food_Name']);                        
+              printf("<option value='%s'>%s (%s)</option>", $row['Food_Name'], $row['Food_Name'], $row['remaining']);                         
        }            
        mysqli_free_result($result);
        printf("</select>");
