@@ -133,7 +133,7 @@ function printAnimalMushroomSelect($conn)
 function displayHeroScavange($conn)
 {
        $hero = $_POST['hero_slct']; 
-       printf("hero: %s", $hero);        
+       printf("hero: %s <br>", $hero);        
 
        $query = "select f.Name from Food f;";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -141,7 +141,7 @@ function displayHeroScavange($conn)
 
        //Get the mushroom found
        $num = rand(0,count($row));
-       printf("num: %s", $num);
+       printf("num: %s <br>", $num);
        if ($num == 0)
               $mush = $row['Name'];
        $counter = 1;
@@ -151,8 +151,8 @@ function displayHeroScavange($conn)
                      $mush = $row['Name'];
               $counter++;
        } 
-       printf("mush: %s", $mush);
-       /*
+       printf("mush: %s <br>", $mush);
+       
        $query = "select hf.remaining from Human_has_Food hf inner join Human h on h.SaladSN=hf.Human_SaladSN       
        where h.firstName=";
        $query = $query."'".$hero."' and hf.Food_Name=";
@@ -188,6 +188,6 @@ function displayHeroScavange($conn)
        }              
        mysqli_free_result($result);
        return; 
-       */
+       
 }
 ?>
