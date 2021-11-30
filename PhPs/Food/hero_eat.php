@@ -24,7 +24,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
                      <?php printHeroSelect($conn); ?>                          
                      <label for="hero_mushroom_slct"> eat </label>
                      <?php printHeroMushroomSelect($conn); ?>                     
-                     <input formaction="./pizza.php" id="hero_eat_sub" type="submit" value="Eat Mushroom">
+                     <input formaction="./hero_eat.php" id="hero_eat_sub" type="submit" value="Eat Mushroom">
               </form>                     
               <form action="./food.php" method="POST" id="animal_eat_form">   
                      <label for="animal_eat_slct">Have </label>
@@ -37,18 +37,18 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
                      <label for="hero_scavange_slct"> Have</label>
                      <?php printHeroSelect($conn); ?> 
                      <label for="hero_scavange"> scavange for mushrooms</label>
-                     <input id="hero_scavange_sub" type="submit" value="Scavange">
+                     <input formaction="./pizza.php" id="hero_scavange_sub" type="submit" value="Scavange">
               </form> 
               <form action="./food.php" method="POST" id="animal_scavange_form">   
                      <label for="animal_scavange_slct"> Have</label>
                      <?php printAnimalSelect($conn); ?>
                      <label for="animal_scavange"> scavange for mushrooms</label>
-                     <input id="animal_scavange_sub" type="submit" value="Scavange">
+                     <input formaction="./pizza.php" id="animal_scavange_sub" type="submit" value="Scavange">
               </form> 
        </div>
-       
+       <div id='scavange_form_div'>
        <?php test($conn); ?>
-       
+       </div>
   </body>
 </html>
 
@@ -97,7 +97,7 @@ function printHeroMushroomSelect($conn)
        if ($hero_slct == "")
               $hero_slct = "Mushronian";  
        
-       printf("<select name='mushroom_slct' id='mushroom_slct' >");
+       printf("<select name='mushroom_slct' id='mushroom_slct' onchange='this.form.submit()'>");
        $query = "select hf.Food_Name, hf.remaining from Human_has_Food hf 
        inner join Human h on h.SaladSN=hf.Human_SaladSN
        where h.firstName=";
@@ -117,7 +117,7 @@ function printAnimalMushroomSelect($conn)
        if ($animal_slct == "")
               $animal_slct = "Bat";
               
-       printf("<select name='mushroom_slct' id='mushroom_slct' >");
+       printf("<select name='mushroom_slct' id='mushroom_slct' onchange='this.form.submit()'>");
        $query = "select hf.Food_Name, hf.remaining from Animal_has_Food hf 
        inner join Animal a on a.Name=hf.Animal_Name
        where a.Name=";
@@ -132,7 +132,7 @@ function printAnimalMushroomSelect($conn)
 }
 function test($conn)
 {
-       printf("<div id='scavange_form_div'>");
+       printf("");
        $hero = $_POST['hero_slct']; 
        $mush = $_POST['mushroom_slct'];  
        printf("hero: %s", $hero);
@@ -161,6 +161,5 @@ function test($conn)
        $query = $query."'".$hero."' and hf.Food_Name=";
        $query = $query."'".$mush."';";
        mysqli_query($conn, $query) or die(mysqli_error($conn));
-       printf("</div>");
 }
 ?>

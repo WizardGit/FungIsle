@@ -94,7 +94,7 @@ function printHeroMushroomSelect($conn)
        if ($hero_slct == "")
               $hero_slct = "Mushronian";  
        
-       printf("<select name='mushroom_slct' id='mushroom_slct' >");
+       printf("<select name='mushroom_slct' id='mushroom_slct' onchange='this.form.submit()'>");
        $query = "select hf.Food_Name, hf.remaining from Human_has_Food hf 
        inner join Human h on h.SaladSN=hf.Human_SaladSN
        where h.firstName=";
@@ -114,7 +114,7 @@ function printAnimalMushroomSelect($conn)
        if ($animal_slct == "")
               $animal_slct = "Bat";
               
-       printf("<select name='mushroom_slct' id='mushroom_slct' >");
+       printf("<select name='mushroom_slct' id='mushroom_slct' onchange='this.form.submit()'>");
        $query = "select hf.Food_Name, hf.remaining from Animal_has_Food hf 
        inner join Animal a on a.Name=hf.Animal_Name
        where a.Name=";
