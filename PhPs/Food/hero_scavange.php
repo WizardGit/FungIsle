@@ -140,8 +140,8 @@ function displayHeroScavange($conn)
        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
 
        //Get the mushroom found
-       mt_srand(microtome());
-       $num = mt_rand(0, count($row));
+       srand(microtome());
+       $num = rand(0, count($row));
 
 
        printf("num: %s <br>", $num);
