@@ -129,6 +129,7 @@ function printAnimalMushroomSelect($conn)
        {
               printf("<option value='none'>none</option>"); 
               printf("</select>");
+              return;
        }
        $mushroom_slct = $_POST['animal_mushroom_slct']; 
        if($mushroom_slct  != "")
@@ -137,7 +138,7 @@ function printAnimalMushroomSelect($conn)
        }
        do {
               if ($row['Name'] != $mushroom_slct)
-              printf("<option value='%s'>%s (%s)</option>", $row['Food_Name'], $row['Food_Name'], $row['remaining']);                        
+                     printf("<option value='%s'>%s (%s)</option>", $row['Food_Name'], $row['Food_Name'], $row['remaining']);                        
        }while($row = mysqli_fetch_array($result, MYSQLI_ASSOC));
                       
        mysqli_free_result($result);
