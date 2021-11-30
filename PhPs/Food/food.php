@@ -46,9 +46,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
                      <input id="animal_scavange_sub" type="submit" value="Scavange">
               </form> 
        </div>
-       <div id="scavange_form_div">
-              
-       </div>
   </body>
 </html>
 
