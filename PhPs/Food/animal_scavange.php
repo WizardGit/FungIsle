@@ -162,7 +162,7 @@ function displayAnimalScavange($conn)
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
 
-       if (count($row) >= 1)
+       if ($row['remaining'] >= 1)
        {
               $numush = $row['remaining']+1;
               $query = "update Animal_has_Food hf inner join Animal a on a.Name=hf.Animal_Name 
