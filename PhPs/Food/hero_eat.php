@@ -46,9 +46,9 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
                      <input id="animal_scavange_sub" type="submit" value="Scavange">
               </form> 
        </div>
-       <div id="scavange_form_div">
+       
        <?php test($conn); ?>
-       </div>
+       
   </body>
 </html>
 
@@ -132,8 +132,9 @@ function printAnimalMushroomSelect($conn)
 }
 function test($conn)
 {
+       printf("<div id='scavange_form_div'>");
        $hero = $_POST['hero_slct']; 
-       $mush = $_POST['hero_mushroom_slct'];  
+       $mush = $_POST['mushroom_slct'];  
        printf("hero: %s", $hero);
        printf("mush: %s", $mush);
 
@@ -160,5 +161,6 @@ function test($conn)
        $query = $query."'".$hero."' and hf.Food_Name=";
        $query = $query."'".$mush."';";
        mysqli_query($conn, $query) or die(mysqli_error($conn));
+       printf("</div>");
 }
 ?>
