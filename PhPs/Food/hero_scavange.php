@@ -133,7 +133,13 @@ function printAnimalMushroomSelect($conn)
 function displayHeroScavange($conn)
 {
        $hero = $_POST['hero_slct']; 
-       printf("hero: %s <br>", $hero);        
+       printf("hero: %s <br>", $hero);       
+       
+       $query = "select count(*) as total from Food f;";
+       $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+       $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
+       printf("total: %s <br>", $row['total']); 
+       $total = $row['total'];
 
        $query = "select f.Name from Food f;";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -148,7 +154,7 @@ function displayHeroScavange($conn)
        return $sec + $usec * 1000000;
        }
        srand(make_seed());
-       $num = rand(0, count($row));
+       $num = rand(0, $total);
 
 
        printf("num: %s <br>", $num);
