@@ -68,3 +68,26 @@ select {
     float: right;
     display: block;
 }
+
+#scavange_form_div {
+  display: block;
+  float: right;
+  width: 48%;
+  border-radius: 5px;
+  padding: 5px;
+  font-weight: bold;
+  border-width: 5px;
+  border-color: black;
+  background-color: rgba(0, 0, 255, 0.493);
+  border-style: solid; 
+}
+#scavange_form_div select, #scavange_form_div label {
+  display: inline;
+  float: left;  
+  margin: 5px;  
+}
+#scavange_form_div input[type=submit] {
+  clear: left;
+  float: left;
+  display: block;
+}

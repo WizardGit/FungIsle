@@ -138,7 +138,7 @@ function test($conn)
        printf("hero: %s", $hero);
        printf("mush: %s", $mush);
 
-       $query = "select hf.remaining from Human hf inner join Human h on h.SaladSN=hf.Human_SaladSN       
+       $query = "select hf.remaining from Human_has_Food hf inner join Human h on h.SaladSN=hf.Human_SaladSN       
        where h.firstName=";
        $query = $query."'".$hero."' and hf.Food_Name=";
        $query = $query."'".$mush."';";
