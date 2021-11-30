@@ -201,7 +201,7 @@ function displayHeroScavange($conn)
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
 
-       if ($row['remaining'] >= 1)
+       if ($row['remaining'] != null)
        {
               $numush = $row['remaining']+1;
               $query = "update Human_has_Food hf inner join Human h on h.SaladSN=hf.Human_SaladSN 
