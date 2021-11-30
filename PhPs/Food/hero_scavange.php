@@ -1,6 +1,6 @@
 <!--
 Author: Kaiser
-Date last edited: 11/28/2021
+Date last edited: 11/29/2021
 Purpose: Perform ?
 -->
 
@@ -13,28 +13,28 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
   <head>
     <title>CIS 451: Final Project</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../../Styles/food.css?v=<?php echo time(); ?>">  
+    <link rel="stylesheet" href="../../Styles/food_display.css?v=<?php echo time(); ?>">  
   </head>
 
   <body>
-       <section>
-              <h1><img src="https://fontmeme.com/permalink/211117/d85fe5edb95db7398839f42d8ceff245.png"></h1>
-              <!-- Font from: https://fontmeme.com/indiana-jones-font/ -->
-       </section>
+       <h1><img src="https://fontmeme.com/permalink/211117/d85fe5edb95db7398839f42d8ceff245.png"></h1> 
+       <div id='display_form_div'>
+       <?php displayHeroScavange($conn); ?>
+       </div>
        <div id="form_div">  
               <form action="./food.php" method="POST" id="hero_eat_form">                      
                      <label for="hero_eat_slct">Have </label>                     
                      <?php printHeroSelect($conn); ?>                          
                      <label for="hero_mushroom_slct"> eat </label>
                      <?php printHeroMushroomSelect($conn); ?>                     
-                     <input formaction="./pizza.php" id="hero_eat_sub" type="submit" value="Eat Mushroom">
+                     <input formaction="./hero_eat.php" id="hero_eat_sub" type="submit" value="Eat Mushroom">
               </form>                     
               <form action="./food.php" method="POST" id="animal_eat_form">   
                      <label for="animal_eat_slct">Have </label>
                      <?php printAnimalSelect($conn); ?>    
                      <label for="animal_mushroom_slct"> eat </label>
                      <?php printAnimalMushroomSelect($conn); ?> 
-                     <input formaction="./pizza.php" id="animal_eat_sub" type="submit" value="Eat Mushroom">
+                     <input formaction="./animal_eat.php" id="animal_eat_sub" type="submit" value="Eat Mushroom">
               </form> 
               <form action="./food.php" method="POST" id="hero_scavange_form">   
                      <label for="hero_scavange_slct"> Have</label>
@@ -48,15 +48,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
                      <label for="animal_scavange"> scavange for mushrooms</label>
                      <input id="animal_scavange_sub" type="submit" value="Scavange">
               </form> 
-       </div>
-       <div id="scavange_form_div">
-        <?php
-            //Get the 2 * count($array) as $max
-            //choose the mushroom 
-            /*
-        rand( $min,  $max);
-            */
-        ?>
        </div>
   </body>
 </html>
@@ -106,8 +97,8 @@ function printHeroMushroomSelect($conn)
        if ($hero_slct == "")
               $hero_slct = "Mushronian";  
        
-       printf("<select name='mushroom_slct' id='mushroom_slct' >");
-       $query = "select hf.Food_Name from Human_has_Food hf 
+       printf("<select name='mushroom_slct' id='mushroom_slct' onchange='this.form.submit()'>");
+       $query = "select hf.Food_Name, hf.remaining from Human_has_Food hf 
        inner join Human h on h.SaladSN=hf.Human_SaladSN
        where h.firstName=";
        $query = $query."'".$hero_slct."';";
@@ -115,28 +106,87 @@ function printHeroMushroomSelect($conn)
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
        {   
-              printf("<option value='%s'>%s</option>", $row['Food_Name'], $row['Food_Name']);                        
+              printf("<option value='%s'>%s (%s)</option>", $row['Food_Name'], $row['Food_Name'], $row['remaining']);                         
        }            
        mysqli_free_result($result);
        printf("</select>");
 }
 function printAnimalMushroomSelect($conn)
-{
-       
+{       
        $animal_slct = $_POST['animal_slct']; 
        if ($animal_slct == "")
-              $animal_slct = "Mushronian";
-       printf("<select name='mushroom_slct' id='mushroom_slct' >");
-       $query = "select hf.Food_Name from Animal_has_Food hf 
+              $animal_slct = "Bat";
+              
+       printf("<select name='mushroom_slct' id='mushroom_slct' onchange='this.form.submit()'>");
+       $query = "select hf.Food_Name, hf.remaining from Animal_has_Food hf 
        inner join Animal a on a.Name=hf.Animal_Name
        where a.Name=";
        $query = $query."'".$animal_slct."';";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
        {   
-              printf("<option value='%s'>%s</option>", $row['Food_Name'], $row['Food_Name']);                        
+              printf("<option value='%s'>%s (%s)</option>", $row['Food_Name'], $row['Food_Name'], $row['remaining']);                        
        }            
        mysqli_free_result($result);
        printf("</select>");
+}
+function displayHeroEat($conn)
+{
+       $hero = $_POST['hero_slct']; 
+       printf("hero: %s", $hero);        
+
+       $query = "select f.Name from Food f;";
+       $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+       $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
+
+       //Get the mushroom found
+       $num = rand(0,count($row));
+       printf("num: %s", $num);
+       if ($num == 0)
+              $mush = $row['Name'];
+       $counter = 1;
+       while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+       {   
+              if ($num == $counter)
+                     $mush = $row['Name'];
+              $counter++;
+       } 
+       printf("mush: %s", $mush);
+
+       $query = "select hf.remaining from Human_has_Food hf inner join Human h on h.SaladSN=hf.Human_SaladSN       
+       where h.firstName=";
+       $query = $query."'".$hero."' and hf.Food_Name=";
+       $query = $query."'".$mush."';";
+       $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+       $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
+
+       if (count($row) >= 1)
+       {
+              $numush = $row['remaining']+1;
+              $query = "update Human_has_Food hf inner join Human h on h.SaladSN=hf.Human_SaladSN 
+              set hf.remaining=";
+              $query = $query."'".$numush."' where h.firstName=";
+              $query = $query."'".$hero."' and hf.Food_Name=";
+              $query = $query."'".$mush."';";
+              mysqli_query($conn, $query) or die(mysqli_error($conn));
+              printf("%s finds one %s mushroom - resulting in there now being %s mushrooms in the backpack", $hero, $mush, $numush);
+       }              
+       else
+       {
+              $query = "select h.SaladSN from Human h where h.firstName=";
+              $query = $query."'".$hero."';";
+              $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+              $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
+              $SSN = $row['SaladSN'];
+
+              $numush = 1;
+              $query = "insert into Human_has_Food values (";
+              $query = $query." ".$SSN.", ";
+              $query = $query."'".$mush."', 1)";
+              mysqli_query($conn, $query) or die(mysqli_error($conn));
+              printf("%s finds one %s mushroom - resulting in there now being %s mushrooms in the backpack", $hero, $mush, $numush);
+       }              
+       mysqli_free_result($result);
+       return; 
 }
 ?>

@@ -34,19 +34,19 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
                      <?php printAnimalSelect($conn); ?>    
                      <label for="animal_mushroom_slct"> eat </label>
                      <?php printAnimalMushroomSelect($conn); ?> 
-                     <input formaction="./pizza.php" id="animal_eat_sub" type="submit" value="Eat Mushroom">
+                     <input formaction="./animal_eat.php" id="animal_eat_sub" type="submit" value="Eat Mushroom">
               </form> 
               <form action="./food.php" method="POST" id="hero_scavange_form">   
                      <label for="hero_scavange_slct"> Have</label>
                      <?php printHeroSelect($conn); ?> 
                      <label for="hero_scavange"> scavange for mushrooms</label>
-                     <input formaction="./pizza.php" id="hero_scavange_sub" type="submit" value="Scavange">
+                     <input id="hero_scavange_sub" type="submit" value="Scavange">
               </form> 
               <form action="./food.php" method="POST" id="animal_scavange_form">   
                      <label for="animal_scavange_slct"> Have</label>
                      <?php printAnimalSelect($conn); ?>
                      <label for="animal_scavange"> scavange for mushrooms</label>
-                     <input formaction="./pizza.php" id="animal_scavange_sub" type="submit" value="Scavange">
+                     <input id="animal_scavange_sub" type="submit" value="Scavange">
               </form> 
        </div>
   </body>
