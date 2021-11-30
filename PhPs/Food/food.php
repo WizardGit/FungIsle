@@ -117,9 +117,11 @@ function printAnimalMushroomSelect($conn)
 {       
        printf("<select name='animal_mushroom_slct' id='animal_mushroom_slct' onchange='this.form.submit()'>");
               
+       printf("here <br>");
        $animal_slct = $_POST['animal_slct']; 
        if ($animal_slct == "")
               $animal_slct = "Bat";
+       printf("here <br>: %s", $animal_slct);
        $query = "select hf.Food_Name, hf.remaining from Animal_has_Food hf 
        inner join Animal a on a.Name=hf.Animal_Name where a.Name=";
        $query = $query."'".$animal_slct."';";
