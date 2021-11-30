@@ -133,6 +133,7 @@ function printAnimalMushroomSelect($conn)
               return;
        }
        $mushroom_slct = $_POST['animal_mushroom_slct']; 
+       printf("mus: %s", $mushroom_slct);
        if($mushroom_slct  != "")
        {
               printf("<option value='%s'>%s (%s)</option>", $mushroom_slct, $mushroom_slct, $mushroom_slct); 
