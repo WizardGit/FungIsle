@@ -17,7 +17,10 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
   </head>
 
   <body>
-       <h1><img src="https://fontmeme.com/permalink/211117/d85fe5edb95db7398839f42d8ceff245.png"></h1>
+       <h1><img src="https://fontmeme.com/permalink/211117/d85fe5edb95db7398839f42d8ceff245.png"></h1> 
+       <div id='display_form_div'>
+       <?php test($conn); ?>
+       </div>
        <div id="form_div">  
               <form action="./food.php" method="POST" id="hero_eat_form">                      
                      <label for="hero_eat_slct">Have </label>                     
@@ -45,9 +48,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
                      <label for="animal_scavange"> scavange for mushrooms</label>
                      <input formaction="./pizza.php" id="animal_scavange_sub" type="submit" value="Scavange">
               </form> 
-       </div>
-       <div id='scavange_form_div'>
-       <?php test($conn); ?>
        </div>
   </body>
 </html>
