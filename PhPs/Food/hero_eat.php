@@ -19,7 +19,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
   <body>
        <h1><img src="https://fontmeme.com/permalink/211117/d85fe5edb95db7398839f42d8ceff245.png"></h1> 
        <div id='display_form_div'>
-       <?php test($conn); ?>
+       <?php displayHeroEat($conn); ?>
        </div>
        <div id="form_div">  
               <form action="./food.php" method="POST" id="hero_eat_form">                      
@@ -130,13 +130,10 @@ function printAnimalMushroomSelect($conn)
        mysqli_free_result($result);
        printf("</select>");
 }
-function test($conn)
+function displayHeroEat($conn)
 {
-       printf("");
        $hero = $_POST['hero_slct']; 
        $mush = $_POST['mushroom_slct'];  
-       printf("hero: %s", $hero);
-       printf("mush: %s", $mush);
 
        $query = "select hf.remaining from Human_has_Food hf inner join Human h on h.SaladSN=hf.Human_SaladSN       
        where h.firstName=";
