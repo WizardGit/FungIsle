@@ -1,7 +1,0 @@
-<?php
-$server = "ix.cs.uoregon.edu";
-$dbname ="FungIsle";
-$user = "kaisers";
-$pass = "hamburger";
-$port="3522";
-?>
