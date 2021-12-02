@@ -375,7 +375,7 @@ function updateFights($conn, $hero, $village, $animal)
   $hHealth = $row['health'];
 
   $query = "select h.SaladSN, h.health from Human h inner join Village v on v.VillageID=h.Village_ID where v.name=";
-  $query = $query."'".$village."';"; 
+  $query = $query."'".$village."' and h.role='Henchman';"; 
   $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
   printf("hero: %s <br>", $hero);
@@ -388,8 +388,8 @@ function updateFights($conn, $hero, $village, $animal)
   {
     $vSSN = $row['SaladSN'];
     $vHealth = $row['health'];
-    printf("hSSN: %s <br>", $vSSN);
-  printf("hHealth: %s <br>", $vHealth);
+    printf("vSSN: %s <br>", $vSSN);
+  printf("vHealth: %s <br>", $vHealth);
     //if there is no data entry, create one
     $q = "select hv.Human_VictorSSN from Human_fights_Human hv
     inner join Human t on hv.Human_Fighter1SSN=";
