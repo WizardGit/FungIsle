@@ -404,10 +404,60 @@ function updateFights($conn, $hero, $village, $animal)
         $q2 = $q2."".$vSSN.", ";
         $q2 = $q2."".$animal.", ";
         $q2 = $q2."".$vSSN.");";
-        //mysqli_query($conn, $q2) or die(mysqli_error($conn);
+        mysqli_query($conn, $q2) or die(mysqli_error($conn));
+      }
+      else 
+      {
+        //update
+        $q2 = "update Human_fights_Human hv set hv.Human_VictorSSN =";
+        $q2 = $q2."".$vSSN." where hv.Human_Fighter1SSN=";
+        $q2 = $q2."".$hSSN." and hv.Human_Fighter2SSN="; 
+        $q2 = $q2."".$vSSN.", ";
+        mysqli_query($conn, $q2) or die(mysqli_error($conn));
       }
     }
-    
+    else if (($vSSN == 0) && ($hSSN > 0))
+    {
+      //victor is hSSN
+      if($rowNew == null)
+      {
+        $q2 = "insert into Human_fights_Human values (";
+        $q2 = $q2."".$hSSN." ,"; 
+        $q2 = $q2."".$vSSN.", ";
+        $q2 = $q2."".$animal.", ";
+        $q2 = $q2."".$hSSN.");";
+        mysqli_query($conn, $q2) or die(mysqli_error($conn));
+      }
+      else 
+      {
+        //update
+        $q2 = "update Human_fights_Human hv set hv.Human_VictorSSN =";
+        $q2 = $q2."".$hSSN." where hv.Human_Fighter1SSN=";
+        $q2 = $q2."".$hSSN." and hv.Human_Fighter2SSN="; 
+        $q2 = $q2."".$vSSN.", ";
+        mysqli_query($conn, $q2) or die(mysqli_error($conn));
+      }
+    }
+    else if (($vSSN > 0) && ($hSSN > 0))
+    {
+      //victor is -1
+      if($rowNew == null)
+      {
+        $q2 = "insert into Human_fights_Human values (";
+        $q2 = $q2."".$hSSN." ,"; 
+        $q2 = $q2."".$vSSN.", ";
+        $q2 = $q2."".$animal.", 0);";
+        mysqli_query($conn, $q2) or die(mysqli_error($conn));
+      }
+      else 
+      {
+        //update
+        $q2 = "update Human_fights_Human hv set hv.Human_VictorSSN = 0 where hv.Human_Fighter1SSN=";
+        $q2 = $q2."".$hSSN." and hv.Human_Fighter2SSN="; 
+        $q2 = $q2."".$vSSN.", ";
+        mysqli_query($conn, $q2) or die(mysqli_error($conn));
+      }
+    }
   }
 }
 ?>      
