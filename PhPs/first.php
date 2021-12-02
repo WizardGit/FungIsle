@@ -27,6 +27,6 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
                      <input type="reset" value="Erase">
               </form> 
               <form action="../phps/resetDB.php" method="POST">  
-                     <input id="reset" type="submit" value="Reset">
+                     <input id="reset" type="submit" value="Reset Entire Database">
               </form> 
        </section>

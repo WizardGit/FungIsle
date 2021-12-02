@@ -60,7 +60,7 @@ function displayHeroScavange($conn)
               $query = $query."'".$mush."', 1)";
               mysqli_query($conn, $query) or die(mysqli_error($conn));              
        }       
-       printf("%s finds one %s mushroom - resulting in there now being %s mushroom(s) in the backpack", $hero, $mush, $numush);       
+       printf("%s finds one %s mushroom - resulting in there now being %s %s mushroom(s) in their backpack", $hero, $mush, $numush, $mush);       
        mysqli_free_result($result);
 }
 ?>
