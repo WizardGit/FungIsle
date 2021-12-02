@@ -39,8 +39,18 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
         $query7 = "DELETE from Animal_has_Food;";
         mysqli_query($conn, $query7) or die(mysqli_error($conn));
+
+        $query8 = "DELETE from Human_fights_Human;";
+        mysqli_query($conn, $query8) or die(mysqli_error($conn));
         
         print $query;
+        print $query2;
+        print $query3;
+        print $query4;
+        print $query5;
+        print $query6;
+        print $query7;
+        print $query8;
       ?>
 
       <p> <h2>Result of Reset:</h2> <p>

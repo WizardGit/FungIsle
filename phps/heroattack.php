@@ -6,174 +6,158 @@
 <?php
 function attack($conn)
 {
+  $hero = $_POST['hero_slct']; 
+  $village = $_POST['village_slct']; 
+  $animal = $_POST['animal_slct']; 
+  if (checkVillageStatus($conn, $village) == false)
+  {
+    $heroPos = getHeroPosition($conn, $hero);
+    if($village == "HellCave")
+    {            
+      if(allVillagesFreed($conn) == false)
+      {
+        printf("You have not freed all the main villages yet! <br>");
+      }
+      else
+      {
+        updateHeroPosition($conn, $hero, $village);
+        //Get Hero and Animal Damage
+        $totalDMG = getDamageTotal($conn, $hero);
+        $totalDMG += getAnimalDamage($conn, $animal, $hero);
+        //put hero dmg on boss
+        reduceBossHealth($conn, $totalDMG);
+        //get boss dmg
+        $bossDMG = getDamageTotal($conn, "SaladoreTheTyrant");
+        //put boss dmg on hero
+        reduceHeroHealth($conn, $hero, $bossDMG);
+        updateFights($conn, $hero, $village, $animal);
+      }
+    } 
+    else if (($heroPos != $village) && (checkVillageStatus($conn, $heroPos) == false))
+    {
+      printf("%s cannot move to %s because they are in %s which has not yet been freed! <br>", $hero, $village, $heroPos);
+    }
+    else
+    {            
+      updateHeroPosition($conn, $hero, $village);
+      //Get Hero and Animal Damage
+      $totalDMG = getDamageTotal($conn, $hero);
+      $totalDMG += getAnimalDamage($conn, $animal, $hero);
+      //put hero dmg on henchman
+      reduceHenchmanHealth($conn, $village, $totalDMG);
+      //get henchman dmg
+      $henchDMG = getHenchmenDamage($conn, $village);
+      //put henchman dmg on hero
+      reduceHeroHealth($conn, $hero, $henchDMG);
+      updateFights($conn, $hero, $village, $animal);
+    }
+    //updated village status
+    checkVillageStatus($conn, $village);
+  }        
+  else if ($village == "HellCave")
+  {
+    printf("You have already won!!! <br>");
+  }
+  else if (allVillagesFreed($conn) == false)
+  {
+    printf("You have already freed this land! Try another. <br>");
+  }
+  else if (allVillagesFreed($conn) == true)
+  {
+    printf("You have freed all the villages! You must confront SaladoreTheTyrant in Hell's Cave! <br>");
+  }
+  else
+  {
+    printf("ERROR");
+  }
+}
+function printAllHumans($conn)
+{
+  $query = "SHOW COLUMNS FROM Human";
+  $result = mysqli_query($conn,$query) or die(mysqli_error($conn));
+  print "<pre>";
+  while($row = mysqli_fetch_array($result))
+  {
+    printf("[%- 8s]",$row['Field']);
+  }
+  print "<br>";
+  mysqli_free_result($result);
 
-$hero = $_POST['hero_slct']; 
-$village = $_POST['village_slct']; 
-$animal = $_POST['animal_slct']; 
+  $queryAtt = "select * from Human h";
+  $queryAtt2 = "select * from Village v";
+  $queryAtt3 = "select * from Animal a";
+  $resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));
+  $resultAtt2 = mysqli_query($conn,$queryAtt2) or die(mysqli_error($conn));
+  $resultAtt3 = mysqli_query($conn,$queryAtt3) or die(mysqli_error($conn));        
 
-        //getDamageTotal($conn, $hero);
-        //reduceHeroHealth($conn, $hero, 10);
-        //reduceBossHealth($conn, 50);
-
-        //getHenchmenDamage($conn, $village);
-        //reduceHenchmanHealth($conn, $village, 50);
-
-        //getAnimalDamage($conn, $animal, $hero);
-        //reduceAnimalHealth($conn, $animal, $hero, 50);
+  while($row = mysqli_fetch_array($resultAtt, MYSQLI_ASSOC))
+  {            
+    foreach ($row as $element)
+      printf("[%- 17s]",$element); 
+    printf("<br>");  
+  }
+  while($row = mysqli_fetch_array($resultAtt2, MYSQLI_ASSOC))
+  {            
+    foreach ($row as $element)
+      printf("[%- 10s]",$element);
+    printf("<br>"); 
+  }
+  while($row = mysqli_fetch_array($resultAtt3, MYSQLI_ASSOC))
+  {            
+    foreach ($row as $element)
+      printf("[%- 13s]",$element);  
+      printf("<br>");  
+  }
+  print "</pre>";
+  mysqli_free_result($result);                    
+}
+function getHenchmenDamage($conn, $village)
+{     
+  $query = "select h.attackMultiplier * w.attack as totdmg from Human h  
+  inner join Village v on h.Village_ID = v.VillageID inner join Weapon w on h.Weapon_Name=w.Name
+  where h.role='Henchman' and v.name=";
+  $query = $query."'".$village."';";
+  $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+  $totDmg = 0;
+  while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+  {            
+    foreach ($row as $element)
+    {
+      $totDmg += $element;
+    }
+  }            
+  printf("The henchmen in %s deal %s damage <br>", $village, $totDmg);
+  return $totDmg;
+  mysqli_free_result($result);
+}                
+               
         
-        //checkVillageStatus($conn, $village);        
-        //printAllHumans($conn);                    
-        
-        if (checkVillageStatus($conn, $village) == false)
-        {
-          $heroPos = getHeroPosition($conn, $hero);
-          if($village == "HellCave")
-          {            
-            if(allVillagesFreed($conn) == false)
-            {
-              printf("You have not freed all the main villages yet! <br>");
-            }
-            else
-            {
-              updateHeroPosition($conn, $hero, $village);
-              //Get Hero and Animal Damage
-              $totalDMG = getDamageTotal($conn, $hero);
-              $totalDMG += getAnimalDamage($conn, $animal, $hero);
-              //put hero dmg on boss
-              reduceBossHealth($conn, $totalDMG);
-              //get boss dmg
-              $bossDMG = getDamageTotal($conn, "SaladoreTheTyrant");
-              //put boss dmg on hero
-              reduceHeroHealth($conn, $hero, $bossDMG);
-            }
-          } 
-          else if (($heroPos != $village) && (checkVillageStatus($conn, $heroPos) == false))
-          {
-            printf("%s cannot move to %s because they are in %s which has not yet been freed! <br>", $hero, $village, $heroPos);
-          }
-          else
-          {            
-            updateHeroPosition($conn, $hero, $village);
-            //Get Hero and Animal Damage
-            $totalDMG = getDamageTotal($conn, $hero);
-            $totalDMG += getAnimalDamage($conn, $animal, $hero);
-            //put hero dmg on henchman
-            reduceHenchmanHealth($conn, $village, $totalDMG);
-            //get henchman dmg
-            $henchDMG = getHenchmenDamage($conn, $village);
-            //put henchman dmg on hero
-            reduceHeroHealth($conn, $hero, $henchDMG);
-          }
-          //updated village status
-          checkVillageStatus($conn, $village);
-        }        
-        else if ($village == "HellCave")
-        {
-          printf("You have already won!!! <br>");
-        }
-        else if (allVillagesFreed($conn) == false)
-        {
-          printf("You have already freed this land! Try another. <br>");
-        }
-        else if (allVillagesFreed($conn) == true)
-        {
-          printf("You have freed all the villages! You must confront SaladoreTheTyrant in Hell's Cave! <br>");
-        }
-        else
-        {
-          printf("ERROR");
-        }
-        //printAllHumans($conn);
-        //mysqli_close($conn); 
-        }
-        
-        function printAllHumans($conn)
-        {
-          $query = "SHOW COLUMNS FROM Human";
-          $result = mysqli_query($conn,$query) or die(mysqli_error($conn));
-          print "<pre>";
-          while($row = mysqli_fetch_array($result))
-          {
-            printf("[%- 8s]",$row['Field']);
-          }
-          print "<br>";
-          mysqli_free_result($result);
+function reduceHeroHealth($conn, $hero, $dmg)
+{
+  // Get the old health
+  $query = "select h.health, h.defenseMultiplier, w.defense from Human h inner join Weapon w on w.Name=h.Weapon_Name where h.name=";
+  $query = $query."'".$hero."';"; 
+  $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+  $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
+  printf("%s gets hit with %s damage but blocks up to %s ", $hero, $dmg, $row['defense'] * $row['defenseMultiplier']);   
+  $dmg -= $row['defense'] * $row['defenseMultiplier'];
+  if ($dmg < 0)
+    $dmg = 0;    
+  $newHp = $row['health'] - $dmg;   
+  mysqli_free_result($result);
+  printf("so that %s's new health is %s <br>", $hero, $newHp);  
+  if ($newHp < 0)
+  {
+    $newHp = 0;
+    printf("You killed %s! <br>", $hero);
+  }              
 
-          $queryAtt = "select * from Human h";
-          $queryAtt2 = "select * from Village v";
-          $queryAtt3 = "select * from Animal a";
-          $resultAtt = mysqli_query($conn,$queryAtt) or die(mysqli_error($conn));
-          $resultAtt2 = mysqli_query($conn,$queryAtt2) or die(mysqli_error($conn));
-          $resultAtt3 = mysqli_query($conn,$queryAtt3) or die(mysqli_error($conn));        
-
-          while($row = mysqli_fetch_array($resultAtt, MYSQLI_ASSOC))
-          {            
-            foreach ($row as $element)
-              printf("[%- 17s]",$element); 
-            printf("<br>");  
-          }
-          while($row = mysqli_fetch_array($resultAtt2, MYSQLI_ASSOC))
-          {            
-            foreach ($row as $element)
-              printf("[%- 10s]",$element);
-            printf("<br>"); 
-          }
-          while($row = mysqli_fetch_array($resultAtt3, MYSQLI_ASSOC))
-          {            
-            foreach ($row as $element)
-              printf("[%- 13s]",$element);  
-              printf("<br>");  
-          }
-          print "</pre>";
-          mysqli_free_result($result);                    
-        }
-        
-        function getHenchmenDamage($conn, $village)
-        {     
-            $query = "select h.attackMultiplier * w.attack as totdmg from Human h  
-            inner join Village v on h.Village_ID = v.VillageID inner join Weapon w on h.Weapon_Name=w.Name
-            where h.role='Henchman' and v.name=";
-            $query = $query."'".$village."';";
-            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-            $totDmg = 0;
-            while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
-            {            
-              foreach ($row as $element)
-              {
-                $totDmg += $element;
-              }
-            }            
-            printf("The henchmen in %s deal %s damage <br>", $village, $totDmg);
-            return $totDmg;
-            mysqli_free_result($result);
-        }       
-        
-        function reduceHeroHealth($conn, $hero, $dmg)
-        {
-            // Get the old health
-            $query = "select h.health, h.defenseMultiplier, w.defense from Human h inner join Weapon w on w.Name=h.Weapon_Name where h.name=";
-            $query = $query."'".$hero."';"; 
-            $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-            $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
-            printf("%s gets hit with %s damage but blocks up to %s ", $hero, $dmg, $row['defense'] * $row['defenseMultiplier']);   
-            $dmg -= $row['defense'] * $row['defenseMultiplier'];
-            if ($dmg < 0)
-              $dmg = 0;    
-            $newHp = $row['health'] - $dmg;   
-            mysqli_free_result($result);
-            printf("so that %s's new health is %s <br>", $hero, $newHp);  
-            if ($newHp < 0)
-            {
-              $newHp = 0;
-              printf("You killed %s! <br>", $hero);
-            }              
-
-            // Set the new health
-            $query = "update Human h set h.health=";
-            $query = $query."'".$newHp."'where h.name=";
-            $query = $query."'".$hero."';";  
-            mysqli_query($conn, $query) or die(mysqli_error($conn));   
-        }
+  // Set the new health
+  $query = "update Human h set h.health=";
+  $query = $query."'".$newHp."'where h.name=";
+  $query = $query."'".$hero."';";  
+  mysqli_query($conn, $query) or die(mysqli_error($conn));   
+}        
 
         function getAnimalDamage($conn, $animal, $hero)
         {
@@ -380,4 +364,101 @@ $animal = $_POST['animal_slct'];
           else
             return false;
         }
-      ?>
+
+function updateFights($conn, $hero, $village, $animal)
+{
+  $query = "select h.SaladSN, h.health from Human h where h.name=";
+  $query = $query."'".$hero."';"; 
+  $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+  $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+  $hSSN = $row['SaladSN'];
+  $hHealth = $row['health'];
+
+  $query = "select h.SaladSN, h.health from Human h inner join Village v on v.VillageID=h.Village_ID where v.name=";
+  $query = $query."'".$village."';"; 
+  $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+  while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+  {
+    $vSSN = $row['SaladSN'];
+    $vHealth = $row['health'];
+    //if there is no data entry, create one
+    $q = "select hv.Human_VictorSSN from Human_fights_Human hv
+    inner join Human t on hv.Human_Fighter1SSN=";
+    $q = $q."".$hSSN." where hv.Human_Fighter2SSN = (
+    select h.SaladSN from Human h where h.SaladSN="; 
+    $q = $q."".$vSSN.")";
+    $r = mysqli_query($conn, $q) or die(mysqli_error($conn));
+    $rowNew = mysqli_fetch_array($r, MYSQLI_ASSOC);    
+
+    if (($vSSN == 0) && ($hSSN == 0))
+    {
+      //victor doesn't change - stays whatever it is
+    }
+    else if (($vSSN > 0) && ($hSSN == 0))
+    {
+      //victor is vSSN
+      if($rowNew == null)
+      {
+        $q2 = "insert into Human_fights_Human values (";
+        $q2 = $q2."".$hSSN." ,"; 
+        $q2 = $q2."".$vSSN.", ";
+        $q2 = $q2."".$animal.", ";
+        $q2 = $q2."".$vSSN.");";
+        mysqli_query($conn, $q2) or die(mysqli_error($conn);
+      }
+      else 
+      {
+        //update
+        $q2 = "update Human_fights_Human hv set hv.Human_VictorSSN =";
+        $q2 = $q2."".$vSSN." where hv.Human_Fighter1SSN=";
+        $q2 = $q2."".$hSSN." and hv.Human_Fighter2SSN="; 
+        $q2 = $q2."".$vSSN.", ";
+        mysqli_query($conn, $q2) or die(mysqli_error($conn);
+      }
+    }
+    else if (($vSSN == 0) && ($hSSN > 0))
+    {
+      //victor is hSSN
+      if($rowNew == null)
+      {
+        $q2 = "insert into Human_fights_Human values (";
+        $q2 = $q2."".$hSSN." ,"; 
+        $q2 = $q2."".$vSSN.", ";
+        $q2 = $q2."".$animal.", ";
+        $q2 = $q2."".$hSSN.");";
+        mysqli_query($conn, $q2) or die(mysqli_error($conn);
+      }
+      else 
+      {
+        //update
+        $q2 = "update Human_fights_Human hv set hv.Human_VictorSSN =";
+        $q2 = $q2."".$hSSN." where hv.Human_Fighter1SSN=";
+        $q2 = $q2."".$hSSN." and hv.Human_Fighter2SSN="; 
+        $q2 = $q2."".$vSSN.", ";
+        mysqli_query($conn, $q2) or die(mysqli_error($conn);
+      }
+    }
+    else if (($vSSN > 0) && ($hSSN > 0))
+    {
+      //victor is -1
+      if($rowNew == null)
+      {
+        $q2 = "insert into Human_fights_Human values (";
+        $q2 = $q2."".$hSSN." ,"; 
+        $q2 = $q2."".$vSSN.", ";
+        $q2 = $q2."".$animal.", 0);";
+        mysqli_query($conn, $q2) or die(mysqli_error($conn);
+      }
+      else 
+      {
+        //update
+        $q2 = "update Human_fights_Human hv set hv.Human_VictorSSN = 0 where hv.Human_Fighter1SSN=";
+        $q2 = $q2."".$hSSN." and hv.Human_Fighter2SSN="; 
+        $q2 = $q2."".$vSSN.", ";
+        mysqli_query($conn, $q2) or die(mysqli_error($conn);
+      }
+    }
+  }
+}
+?>      
+        
