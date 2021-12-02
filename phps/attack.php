@@ -175,7 +175,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         function reduceHeroHealth($conn, $hero, $dmg)
         {
             // Get the old health
-            $query = "select h.health, h.defenseMultiplier, w.defense from Human h inner join Weapon w on w.Name=h.Weapon_Name where h.firstName=";
+            $query = "select h.health, h.defenseMultiplier, w.defense from Human h inner join Weapon w on w.Name=h.Weapon_Name where h.name=";
             $query = $query."'".$hero."';"; 
             $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
             $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
@@ -194,7 +194,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
             // Set the new health
             $query = "update Human h set h.health=";
-            $query = $query."'".$newHp."'where h.firstName=";
+            $query = $query."'".$newHp."'where h.name=";
             $query = $query."'".$hero."';";  
             mysqli_query($conn, $query) or die(mysqli_error($conn));   
         }
@@ -205,7 +205,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             return 0;
           $query = "select a.Name, a.attack from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
           where a.species=";
-          $query = $query."'".$animal."' and h.firstName="; 
+          $query = $query."'".$animal."' and h.name="; 
           $query = $query."'".$hero."' ;"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
@@ -226,7 +226,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         {
           $query = "select a.Name, a.health, a.defense, h.SaladSN from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
           where a.species=";
-          $query = $query."'".$animal."' and h.firstName="; 
+          $query = $query."'".$animal."' and h.name="; 
           $query = $query."'".$hero."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
@@ -286,7 +286,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         function reduceBossHealth($conn, $dmg)
         {
           // Get the old health
-          $query = "select h.health, h.defenseMultiplier, w.defense from Human h inner join Weapon w on h.Weapon_Name=w.Name where h.firstName='SaladoreTheTyrant'";
+          $query = "select h.health, h.defenseMultiplier, w.defense from Human h inner join Weapon w on h.Weapon_Name=w.Name where h.name='SaladoreTheTyrant'";
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
           printf("Saladore is hit with %s damage, but blocks up to %s ", $dmg, $row['defense'] * $row['defenseMultiplier']);      
@@ -299,14 +299,14 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
           // Set the new health
           $query = "update Human h set h.health=";
-          $query = $query."'".$newHp."'where h.firstName='SaladoreTheTyrant'";
+          $query = $query."'".$newHp."'where h.name='SaladoreTheTyrant'";
           mysqli_query($conn, $query) or die(mysqli_error($conn));  
         }
 
         function getDamageTotal($conn, $human)
         {
           // Get the health
-          $query = "select w.attack * h.attackMultiplier as dmg, h.health from Human h inner join Weapon w on h.Weapon_Name=w.Name where h.firstName=";
+          $query = "select w.attack * h.attackMultiplier as dmg, h.health from Human h inner join Weapon w on h.Weapon_Name=w.Name where h.name=";
           $query = $query."'".$human."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);          
@@ -348,7 +348,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
 
           $query = "select v.Type, vl.Name from Vehicle v 
           inner join Human h on h.SaladSN=v.Human_SaladSN 
-          inner join Village vl on h.Village_ID=vl.VillageID where h.firstName="; 
+          inner join Village vl on h.Village_ID=vl.VillageID where h.name="; 
           $query = $query."'".$hero."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
@@ -358,13 +358,13 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
           }         
 
           $query = "update Human h set h.Village_ID=";
-          $query = $query."'".$newVID."'where h.firstName="; 
+          $query = $query."'".$newVID."'where h.name="; 
           $query = $query."'".$hero."';"; 
           mysqli_query($conn, $query) or die(mysqli_error($conn));
         }
         function getHeroPosition($conn, $hero)
         {
-          $query = "select v.name from Human h inner join Village v on v.VillageID=h.Village_ID where h.firstName=";
+          $query = "select v.name from Human h inner join Village v on v.VillageID=h.Village_ID where h.name=";
           $query = $query."'".$hero."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 

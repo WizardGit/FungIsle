@@ -62,12 +62,12 @@ function printHeroSelect($conn)
               $hero_slct = "Mushronian";
        printf("<option value='%s'>%s</option>", $hero_slct, $hero_slct);
        
-       $query = "select h.firstName from Human h where h.role='Hero'";
+       $query = "select h.name from Human h where h.role='Hero'";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
        {   
-              if ($row['firstName'] != $hero_slct)
-                     printf("<option value='%s'>%s</option>", $row['firstName'], $row['firstName']);                        
+              if ($row['name'] != $hero_slct)
+                     printf("<option value='%s'>%s</option>", $row['name'], $row['name']);                        
        }            
        mysqli_free_result($result);
        printf("</select>");
@@ -99,7 +99,7 @@ function printHeroMushroomSelect($conn)
        if ($hero_slct == "")
               $hero_slct = "Mushronian"; 
        $query = "select hf.Food_Name, hf.remaining from Human_has_Food hf 
-       inner join Human h on h.SaladSN=hf.Human_SaladSN where h.firstName=";
+       inner join Human h on h.SaladSN=hf.Human_SaladSN where h.name=";
        $query = $query."'".$hero_slct."';";       
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
@@ -113,7 +113,7 @@ function printHeroMushroomSelect($conn)
        if($mushroom_slct  != "")
        {
               $q = "select hf.remaining from Human_has_Food hf 
-              inner join Human h on h.SaladSN=hf.Human_SaladSN where h.firstName=";
+              inner join Human h on h.SaladSN=hf.Human_SaladSN where h.name=";
               $q = $q."'".$hero_slct."' and hf.Food_Name=";
               $q = $q."'".$mushroom_slct."';";
               $r = mysqli_query($conn, $q) or die(mysqli_error($conn));
@@ -195,7 +195,7 @@ function displayHeroScavange($conn)
        } 
        
        $query = "select hf.remaining from Human_has_Food hf inner join Human h on h.SaladSN=hf.Human_SaladSN       
-       where h.firstName=";
+       where h.name=";
        $query = $query."'".$hero."' and hf.Food_Name=";
        $query = $query."'".$mush."';";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -206,14 +206,14 @@ function displayHeroScavange($conn)
               $numush = $row['remaining']+1;
               $query = "update Human_has_Food hf inner join Human h on h.SaladSN=hf.Human_SaladSN 
               set hf.remaining=";
-              $query = $query."'".$numush."' where h.firstName=";
+              $query = $query."'".$numush."' where h.name=";
               $query = $query."'".$hero."' and hf.Food_Name=";
               $query = $query."'".$mush."';";
               mysqli_query($conn, $query) or die(mysqli_error($conn));              
        }              
        else
        {
-              $query = "select h.SaladSN from Human h where h.firstName=";
+              $query = "select h.SaladSN from Human h where h.name=";
               $query = $query."'".$hero."';";
               $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
               $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
