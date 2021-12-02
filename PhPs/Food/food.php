@@ -69,6 +69,17 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
                      <input formaction="./animal_scavange.php" id="animal_scavange_sub" type="submit" value="Scavange">
               </form> 
        </div>
+       <div id="codeview">
+              <p>
+              You can view the files for this project <a href="https://github.com/WizardGit/FungIsle">HERE</a>.
+              </p>
+              <p>
+                     Game Guide is <a href="guide.html">HERE</a>
+              </p>
+              <p>
+                     Beta version for food is <a href="../PhPs/Food/food.php">HERE</a>.
+              </p>
+       </div> 
   </body>
 </html>
 

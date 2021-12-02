@@ -26,6 +26,14 @@ section {
 section h1 img {
   width: 95%;
 }
+input[type=text]{  
+  display: block;
+  width: 80%;
+  border-radius: 5px;
+  padding: 10px;
+  border: 0px;
+  margin: 5px;
+}
 /* Controls the main header */
 section h1 {
   margin: 0px;
@@ -102,4 +110,20 @@ select {
   margin-top: 8%;
   font-size: 5em;
   text-align: center;
+}
+
+#codeview {
+  width: 38%;
+  padding-top: 5px;
+  border-bottom-width: 5px;
+  border-top-width: 5px;
+  border-bottom-style: solid;
+  border-top-style: solid;
+  border-width: 5px;
+  border-color: black;
+  background-color: rgba(0, 0, 255, 0.493);
+  border-style: solid; 
+  clear: left;
+  float: right;
+  margin-top: 10px;
 }
