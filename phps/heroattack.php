@@ -369,7 +369,7 @@ function updateFights($conn, $hero, $village, $animal)
 {
   $query = "select h.SaladSN, h.health from Human h where h.name=";
   $query = $query."'".$hero."';"; 
-  $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+  $result = mysqli_query($conn, $query) or die(mysqli_error($conn);
   $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
   $hSSN = $row['SaladSN'];
   $hHealth = $row['health'];
