@@ -381,11 +381,15 @@ function updateFights($conn, $hero, $village, $animal)
   printf("hero: %s <br>", $hero);
   printf("village: %s <br>", $village);
   printf("animal: %s <br>", $animal);
+  printf("hSSN: %s <br>", $hSSN);
+  printf("hHealth: %s <br>", $hHealth);
 
   while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
   {
     $vSSN = $row['SaladSN'];
     $vHealth = $row['health'];
+    printf("hSSN: %s <br>", $vSSN);
+  printf("hHealth: %s <br>", $vHealth);
     //if there is no data entry, create one
     $q = "select hv.Human_VictorSSN from Human_fights_Human hv
     inner join Human t on hv.Human_Fighter1SSN=";
