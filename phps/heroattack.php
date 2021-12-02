@@ -49,7 +49,7 @@ function attack($conn)
       $henchDMG = getHenchmenDamage($conn, $village);
       //put henchman dmg on hero
       reduceHeroHealth($conn, $hero, $henchDMG);
-      //updateFights($conn, $hero, $village, $animal);
+      updateFights($conn, $hero, $village, $animal);
     }
     //updated village status
     checkVillageStatus($conn, $village);
@@ -377,6 +377,11 @@ function updateFights($conn, $hero, $village, $animal)
   $query = "select h.SaladSN, h.health from Human h inner join Village v on v.VillageID=h.Village_ID where v.name=";
   $query = $query."'".$village."';"; 
   $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+
+  printf("hero: %s <br>", $hero);
+  printf("village: %s <br>", $village);
+  printf("animal: %s <br>", $animal);
+
   while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
   {
     $vSSN = $row['SaladSN'];
