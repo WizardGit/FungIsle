@@ -404,7 +404,7 @@ function updateFights($conn, $hero, $village, $animal)
         $q2 = $q2."".$vSSN.", ";
         $q2 = $q2."".$animal.", ";
         $q2 = $q2."".$vSSN.");";
-        mysqli_query($conn, $q2) or die(mysqli_error($conn);
+        //mysqli_query($conn, $q2) or die(mysqli_error($conn);
       }
     }
     
