@@ -41,7 +41,7 @@ function displayHeroEat($conn)
        printf("%s's health is now %s", $hero, $herohealth);
 
        // Update Hero heatlh
-       $query = "update Human h set h.health="
+       $query = "update Human h set h.health=";
        $query = $query."".$herohealth." where h.name="; 
        $query = $query."'".$hero."';";
        mysqli_query($conn, $query) or die(mysqli_error($conn));
