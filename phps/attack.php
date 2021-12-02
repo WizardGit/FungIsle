@@ -6,6 +6,14 @@
 <?php
 function attack($conn)
 {
+
+include('../Connections/connectionDataStrong.txt');
+$conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error connecting to MySQL server.');
+
+$hero = $_POST['hero_slct']; 
+$village = $_POST['village_slct']; 
+$animal = $_POST['animal_slct']; 
+
                   //getDamageTotal($conn, $hero);
         //reduceHeroHealth($conn, $hero, 10);
         //reduceBossHealth($conn, 50);
