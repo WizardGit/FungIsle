@@ -23,7 +23,7 @@ function displayHeroEat($conn)
        $healthrecover = $row['health_recover'];
        $SSN = $row['SaladSN'];
 
-       printf("%s's health is currently %s", $hero, $herohealth);
+       printf("%s's health is currently %s <br>", $hero, $herohealth);
        if ($numush < 0)
        {
               printf("%s does not have any %s mushrooms to eat! <br>", $hero, $mush);

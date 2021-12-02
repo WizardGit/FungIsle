@@ -22,19 +22,19 @@ function displayAnimalEat($conn)
        $animalhealth = $row['health'];
        $healthrecover = $row['health_recover'];
 
-       printf("%s's health is currently %s", $animal, $animalhealth);
+       printf("%s's health is currently %s <br>", $animal, $animalhealth);
        if ($numush < 0)
        {
-              printf("%s does not have any %s mushrooms to eat!", $animal, $mush);
+              printf("%s does not have any %s mushrooms to eat! <br>", $animal, $mush);
               return;
        }
        else if (($row['health'] == 0) && ($mush !="Almighty"))
        {
-              printf("%s is dead. They cannot eat anything! (Unless it's an Almighty Mushroom which can revive them!)", $hero);
+              printf("%s is dead. They cannot eat anything! (Unless it's an Almighty Mushroom which can revive them!) <br>", $hero);
               return;
        }             
        else
-              printf("%s eats one of their %s mushrooms - resulting in there being %s left", $animal, $mush, $numush);
+              printf("%s eats one of their %s mushrooms - resulting in there being %s left <br>", $animal, $mush, $numush);
        $animalhealth += $healthrecover;
        if ($animalhealth > 200)
               $animalhealth = 200;
