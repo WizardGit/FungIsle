@@ -9,10 +9,10 @@ function displayPics($conn)
        $hero_slct = $_POST['hero_slct'];
        $village_slct = $_POST['village_slct'];
        $animal_slct = $_POST['animal_slct'];
-       if($hero_slct == 'Mushronian')  
-              printf("<img id='h' src='../Characters/Mushronian.png'>");  
+       if($hero_slct == 'Amanita')  
+              printf("<img id='h' src='../Characters/Amanita.png'>");  
        else 
-              printf("<img id='h' src='../Characters/Amanita.png'>");
+              printf("<img id='h' src='../Characters/Mushronian.png'>");
        if($animal_slct == 'Bat')  
               printf("<p><img id='a' src='../Characters/Fungivore.png'>VS</p>");  
        else 
