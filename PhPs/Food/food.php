@@ -17,9 +17,22 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
   </head>
 
   <body>
-       <h1><img src="https://fontmeme.com/permalink/211117/d85fe5edb95db7398839f42d8ceff245.png"></h1>   
+       <h1><img src="https://fontmeme.com/permalink/211117/d85fe5edb95db7398839f42d8ceff245.png"></h1>  
+       <div id='display_form_div'>
+       <?php displayPics($conn); ?>
+       </div> 
        <div id="form_div">  
               <p><a id="button" href="../../HTMLs/index.html">Back to Home Page</a> </p>
+
+              <form action="./food.php" method="POST" id="attack_form">   
+                     <label for="hero_attack_slct">Choose hero:</label>
+                     <?php printHeroSelect($conn); ?> 
+                     <label for="villages_attack_slct">To attack henchmen in: </label>
+                     <?php printVillageSelect($conn); ?>
+                     <label for="animal_attack_slct">With the help of: </label>
+                     <?php printAnimalSelect($conn); ?> 
+                     <input formaction="../attack.php" id="attack" type="submit" value="Attack">
+              </form>
               <form action="./food.php" method="POST" id="hero_eat_form">                      
                      <label for="hero_eat_slct">Have </label>                     
                      <?php printHeroSelect($conn); ?>                          
@@ -85,6 +98,25 @@ function printAnimalSelect($conn)
        {   
               if ($row['Name'] != $animal_slct)
                      printf("<option value='%s'>%s</option>", $row['Name'], $row['Name']);                        
+       }            
+       mysqli_free_result($result);
+       printf("</select>");
+}
+function printVillageSelect($conn)
+{
+       printf("<select name='village_slct' id='village_slct' onchange='this.form.submit()'>");
+
+       $village_slct = $_POST['village_slct']; 
+       if ($village_slct  == "")
+              $village_slct  = "TreeBase";
+       printf("<option value='%s'>%s</option>", $village_slct, $village_slct);
+
+       $query = "select v.name from Village v";
+       $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+       while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+       {   
+              if ($row['name'] != $village_slct)
+                     printf("<option value='%s'>%s</option>", $row['name'], $row['name']);                        
        }            
        mysqli_free_result($result);
        printf("</select>");
@@ -166,5 +198,24 @@ function printAnimalMushroomSelect($conn)
                       
        mysqli_free_result($result);
        printf("</select>");
+}
+function displayPics($conn)
+{
+       $hero_slct = $_POST['hero_slct'];
+       $village_slct = $_POST['village_slct'];
+       $animal_slct = $_POST['animal_slct'];
+       if($hero_slct == 'Mushronian')  
+              printf("<img id='h' src='../../Characters/Mushronian.png'>");  
+       else 
+              printf("<img id='h' src='../../Characters/Amanita.png'>");
+       if($animal_slct == 'Bat')  
+              printf("<img id='h' src='../../Characters/Fungivore.png'>");  
+       else 
+              printf(" ");
+       printf("<p>VS</p>");
+       if($village_slct == 'HellCave')  
+              printf("<img id='h' src='../../Characters/Saladore.png'>");  
+       else 
+              printf("<img id='h' src='../../Characters/Saladorian.png'>");
 }
 ?>
