@@ -394,28 +394,6 @@ function updateFights($conn, $hero, $village, $animal)
     {
       //victor doesn't change - stays whatever it is
     }
-    else if (($vSSN > 0) && ($hSSN == 0))
-    {
-      //victor is vSSN
-      if($rowNew == null)
-      {
-        $q2 = "insert into Human_fights_Human values (";
-        $q2 = $q2."".$hSSN." ,"; 
-        $q2 = $q2."".$vSSN.", ";
-        $q2 = $q2."".$animal.", ";
-        $q2 = $q2."".$vSSN.");";
-        mysqli_query($conn, $q2) or die(mysqli_error($conn);
-      }
-      else 
-      {
-        //update
-        $q2 = "update Human_fights_Human hv set hv.Human_VictorSSN =";
-        $q2 = $q2."".$vSSN." where hv.Human_Fighter1SSN=";
-        $q2 = $q2."".$hSSN." and hv.Human_Fighter2SSN="; 
-        $q2 = $q2."".$vSSN.", ";
-        mysqli_query($conn, $q2) or die(mysqli_error($conn);
-      }
-    }
     
   }
 }
