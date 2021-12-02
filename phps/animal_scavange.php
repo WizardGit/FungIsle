@@ -1,8 +1,8 @@
-/*
+<!--
 Author: Kaiser
 Date last edited: 12/2/2021
 Purpose: This is in charge of the animal_scavange feature
-*/
+-->
 
 <?php include 'first.php';?>
 <div id='display_form_div'>

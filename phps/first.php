@@ -1,7 +1,7 @@
 <!--
 Author: Kaiser
-Date last edited: 12/1/2021
-Purpose: Perform ?
+Date last edited: 12/2/2021
+Purpose: This is part of the main game html structure
 -->
 
 <?php

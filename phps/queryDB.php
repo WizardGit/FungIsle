@@ -1,7 +1,7 @@
 <!--
 Author: Kaiser
-Date last edited: 11/26/2021
-Purpose: Run user MySQL query
+Date last edited: 12/2/2021
+Purpose: Run users' MySQL queries
 -->
 
 <?php

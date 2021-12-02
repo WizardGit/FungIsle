@@ -1,3 +1,10 @@
+<!--
+Author: Kaiser
+Date last edited: 12/2/2021
+Purpose: This is part of the main game html structure
+and the accompanying php methods
+-->
+
 <div id="form_div">  
               <form action="./index.php" method="POST" id="attack_form">   
                      <label for="hero_attack_slct">Choose hero:</label>

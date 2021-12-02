@@ -1,3 +1,10 @@
+<!--
+Author: Kaiser
+Date last edited: 12/2/2021
+Purpose: The initial page of the game website
+It displays character pictures and switches among selection lists
+-->
+
 <?php include 'first.php';?>
 <div id='display_form_div'>
 <?php displayPics($conn); ?>
@@ -16,7 +23,8 @@ function displayPics($conn)
        if($animal_slct == 'Piggy')  
               printf("<p>VS</p>");  
        else 
-              printf("<p><img id='a' src='../Characters/Fungivore.png'>VS</p>");
+              
+       printf("<p><img id='a' src='../Characters/Fungivore.png'>VS</p>");
               
        if($village_slct == 'HellCave')  
               printf("<img id='v' src='../Characters/Saladore.png'>");  
