@@ -17,7 +17,16 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
   </head>
 
   <body>
-       <h1><img src="https://fontmeme.com/permalink/211117/d85fe5edb95db7398839f42d8ceff245.png"></h1>  
+       <section>
+              <h1><img src="https://fontmeme.com/permalink/211117/d85fe5edb95db7398839f42d8ceff245.png"></h1>
+              <!-- Font from: https://fontmeme.com/indiana-jones-font/ -->
+              <h2>Query Current Events!</h2>                            
+              <form action="../phps/queryDB.php" method="POST">       
+                     <input type="text" name="query">
+                     <input type="submit" value="Submit">
+                     <input type="reset" value="Erase">
+              </form> 
+       </section>
        <div id='display_form_div'>
        <?php displayPics($conn); ?>
        </div> 

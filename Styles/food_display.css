@@ -13,21 +13,27 @@ body {
     font-weight: bold;
     min-width: 600px;
   }
-h1 {
-    display: block;
-    float: left;
-    width: 99%;
-    margin: 0px;
-    text-align: center;
-    padding: 10px;
-    background-color: rgba(0, 0, 255, 0.493);
-    border-width: 5px;
-    border-color: black;    
-    border-style: solid; 
-  }
-h1 img {
-    width: 100%;
-  }  
+/* Controls the words on the website */
+section {
+  display: block;
+  border-width: 5px;
+  border-color: black;
+  background-color: rgba(0, 0, 255, 0.493);
+  border-style: solid; 
+  width: 100%;
+  float: left;
+}
+section h1 img {
+  width: 95%;
+}
+/* Controls the main header */
+section h1 {
+  margin: 0px;
+  border-bottom-width: 5px;
+  border-bottom-style: solid;
+  text-align: center;
+  padding: 10px;
+} 
 input[type=submit], input[type=reset] {  
     margin: 5px;
     background: linear-gradient(to right, brown, #ffad06);
@@ -49,7 +55,7 @@ select {
 #form_div {
     display: inline;
     float: left;
-    width: 48%;
+    width: 47%;
     border-radius: 5px;
     margin-top: 10px;
     padding: 5px;
