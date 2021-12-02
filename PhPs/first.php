@@ -13,7 +13,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
   <head>
     <title>CIS 451: Final Project</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="../Styles/index.css?v=<?php echo time(); ?>">  
+    <link rel="stylesheet" href="../Styles/indexStyle.css?v=<?php echo time(); ?>">  
   </head>
 
   <body>

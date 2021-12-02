@@ -16,7 +16,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
   </head>  
   <body>
     <section>
-      <a href="../HTMLs/index.html">Back to Home Page</a>
+      <a href="./index.php">Back to Home Page</a>
       <p> <h2>Reset Queries:</h2> <p>
       <?php
         $query = "UPDATE Human h SET h.health=1000 WHERE h.role='Hero' or h.role='Boss';";
