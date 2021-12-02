@@ -1,3 +1,9 @@
+/*
+Author: Kaiser
+Date last edited: 12/2/2021
+Purpose: This is in charge of the hero_scavange feature
+*/
+
 <?php include 'first.php';?>
 <div id='display_form_div'>
 <?php displayHeroScavange($conn); ?>
@@ -19,34 +25,34 @@ function displayHeroScavange($conn)
               return;
        }
        
+       // Get the total number of mushrooms in our database
        $query = "select count(*) as total from Food f;";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
        $total = $row['total'];
 
+       // Get a random mushroom from our database
+       // If there is no mushrooms in our database, it $mush will simply be equal to ""
        $query = "select f.Name from Food f;";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-       $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
-      
        $num = rand(1, $total);
-
-       if ($num == 1)
-              $mush = $row['Name'];
-       $counter = 2;
+       $mush = "";
+       $counter = 1;
        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
        {   
               if ($num == $counter)
                      $mush = $row['Name'];
               $counter++;
-       } 
+       }
        
+       // Get the number of mushrooms that we have of our randomly chosen type
        $query = "select hf.remaining from Human_has_Food hf inner join Human h on h.SaladSN=hf.Human_SaladSN       
        where h.name=";
        $query = $query."'".$hero."' and hf.Food_Name=";
        $query = $query."'".$mush."';";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
-
+       // If we already a row for that mushroom for our animal, just update the "remaining" attribute  
        if ($row['remaining'] != null)
        {
               $numush = $row['remaining']+1;
@@ -56,7 +62,8 @@ function displayHeroScavange($conn)
               $query = $query."'".$hero."' and hf.Food_Name=";
               $query = $query."'".$mush."';";
               mysqli_query($conn, $query) or die(mysqli_error($conn));              
-       }              
+       }   
+       // Otherwise, create a new row and add it to our database           
        else
        {
               $query = "select h.SaladSN from Human h where h.name=";

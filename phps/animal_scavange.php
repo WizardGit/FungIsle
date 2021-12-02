@@ -1,3 +1,9 @@
+/*
+Author: Kaiser
+Date last edited: 12/2/2021
+Purpose: This is in charge of the animal_scavange feature
+*/
+
 <?php include 'first.php';?>
 <div id='display_form_div'>
 <?php displayAnimalScavange($conn); ?>
@@ -21,20 +27,19 @@ function displayAnimalScavange($conn)
               return;
        }
        
+       // Get the total number of mushrooms in our database
        $query = "select count(*) as total from Food f;";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
        $total = $row['total'];
 
+       // Get a random mushroom from our database
+       // If there is no mushrooms in our database, it $mush will simply be equal to ""
        $query = "select f.Name from Food f;";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-       $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
-      
        $num = rand(1, $total);
-
-       if ($num == 1)
-              $mush = $row['Name'];
-       $counter = 2;
+       $mush = "";
+       $counter = 1;
        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
        {   
               if ($num == $counter)
@@ -42,12 +47,14 @@ function displayAnimalScavange($conn)
               $counter++;
        } 
        
+       // Get the number of mushrooms that we have of our randomly chosen type
        $query = "select hf.remaining from Animal_has_Food hf inner join Animal a on a.Name=hf.Animal_Name       
        where a.Name=";
        $query = $query."'".$animal."' and hf.Food_Name=";
        $query = $query."'".$mush."';";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
+       // If we already a row for that mushroom for our animal, just update the "remaining" attribute       
        if ($row['remaining'] != null)
        {
               $numush = $row['remaining']+1;
@@ -57,7 +64,8 @@ function displayAnimalScavange($conn)
               $query = $query."'".$animal."' and hf.Food_Name=";
               $query = $query."'".$mush."';";
               mysqli_query($conn, $query) or die(mysqli_error($conn));              
-       }              
+       }     
+       // Otherwise, create a new row and add it to our database      
        else
        {
               $numush = 1;
