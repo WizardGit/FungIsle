@@ -40,7 +40,7 @@
               You can view the files for this project <a href="https://github.com/WizardGit/FungIsle">HERE</a>.
               </p>
               <p>
-                     Game Guide is <a href="guide.html">HERE</a>
+                     Game Guide is <a href="../guide.html">HERE</a>
               </p>
        </div> 
   </body>
