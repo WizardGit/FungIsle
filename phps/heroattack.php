@@ -376,7 +376,7 @@ function updateFights($conn, $hero, $village, $animal)
 
   $query = "select h.SaladSN, h.health from Human h inner join Village v on v.VillageID=h.Village_ID where v.name=";
   $query = $query."'".$village."';"; 
-  $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+  $result = mysqli_query($conn, $query) or die(mysqli_error($conn);
   while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
   {
     $vSSN = $row['SaladSN'];
