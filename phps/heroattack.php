@@ -403,7 +403,7 @@ function updateFights($conn, $hero, $village, $animal)
     {
       //victor doesn't change - stays whatever it is
     }
-    else if (($vSSN > 0) && ($hSSN == 0))
+    else if (($vHealth > 0) && ($hHealth == 0))
     {
       //victor is vSSN
       if($rowNew == null)
@@ -427,7 +427,7 @@ function updateFights($conn, $hero, $village, $animal)
         mysqli_query($conn, $q2) or die(mysqli_error($conn));
       }
     }
-    else if (($vSSN == 0) && ($hSSN > 0))
+    else if (($vHealth == 0) && ($hHealth > 0))
     {
       //victor is hSSN
       if($rowNew == null)
@@ -451,7 +451,7 @@ function updateFights($conn, $hero, $village, $animal)
         mysqli_query($conn, $q2) or die(mysqli_error($conn));
       }
     }
-    else if (($vSSN > 0) && ($hSSN > 0))
+    else if (($vHealth > 0) && ($hHealth > 0))
     {
       //victor is -1
       if($rowNew == null)
