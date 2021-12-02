@@ -16,7 +16,7 @@ function displayPics($conn)
        if($animal_slct == 'Bat')  
               printf("<p><img id='a' src='../Characters/Fungivore.png'>VS</p>");  
        else 
-              printf(" ");
+              printf("<p>VS</p>");
        if($village_slct == 'HellCave')  
               printf("<img id='v' src='../Characters/Saladore.png'>");  
        else 
