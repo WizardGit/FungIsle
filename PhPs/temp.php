@@ -83,8 +83,8 @@ $animal = $_POST['animal_slct'];
         {
           printf("ERROR");
         }
-        //printAllHumans($conn);
-        //mysqli_close($conn); 
+        printAllHumans($conn);
+        mysqli_close($conn); 
         }
         
         function printAllHumans($conn)
