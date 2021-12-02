@@ -12,7 +12,7 @@ function displayPics($conn)
        if($hero_slct == 'Mushronian')  
               printf("<img id='h' src='../Characters/Mushronian.png'>");  
        else 
-              printf("<p><img id='h' src='../Characters/Amanita.png'>VS</p>");
+              printf("<img id='h' src='../Characters/Amanita.png'>");
        if($animal_slct == 'Bat')  
               printf("<p><img id='a' src='../Characters/Fungivore.png'>VS</p>");  
        else 
