@@ -179,13 +179,12 @@ $animal = $_POST['animal_slct'];
         {
           if ($animal == "None")
             return 0;
-          $query = "select a.Name, a.attack from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
+          $query = "select a.species, a.attack from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
           where a.name=";
           $query = $query."'".$animal."' and h.name="; 
           $query = $query."'".$hero."' ;"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
-          printf("Query: %s <br>", $query); 
           if ($row == null)
           {
             printf("There is not animal of that species with that owner <br>"); 
@@ -193,7 +192,7 @@ $animal = $_POST['animal_slct'];
           }     
           else
           {            
-            printf("The %s, %s, deals %s damage <br>", $animal, $row['Name'], $row['attack']);  
+            printf("%s, a %s, deals %s damage <br>", $animal, $row['species'], $row['attack']);  
             return $row['attack']; 
           }  
           mysqli_free_result($result);          
@@ -201,13 +200,13 @@ $animal = $_POST['animal_slct'];
 
         function reduceAnimalHealth($conn, $animal, $hero, $dmg)
         {
-          $query = "select a.Name, a.health, a.defense, h.SaladSN from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
+          $query = "select a.species, a.health, a.defense, h.SaladSN from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
           where a.name=";
           $query = $query."'".$animal."' and h.name="; 
           $query = $query."'".$hero."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
-          printf("The %s, %s, gets hit with %s damage but blocks up to %s", $animal, $row['Name'], $dmg, $row['defense']);   
+          printf("%s, a %s, gets hit with %s damage but blocks up to %s", $animal, $row['species'], $dmg, $row['defense']);   
           if (count($row) == 0)
           {
             printf("There is not animal of that name with that owner <br>"); 
