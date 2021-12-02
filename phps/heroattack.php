@@ -11,7 +11,7 @@ $hero = $_POST['hero_slct'];
 $village = $_POST['village_slct']; 
 $animal = $_POST['animal_slct']; 
 
-                  //getDamageTotal($conn, $hero);
+        //getDamageTotal($conn, $hero);
         //reduceHeroHealth($conn, $hero, 10);
         //reduceBossHealth($conn, 50);
 
@@ -185,7 +185,7 @@ $animal = $_POST['animal_slct'];
           $query = $query."'".$hero."' ;"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
           $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
-          if (count($row) == 0)
+          if ($row == null)
           {
             printf("There is not animal of that species with that owner <br>"); 
             return 0; 
