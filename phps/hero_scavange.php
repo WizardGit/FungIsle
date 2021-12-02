@@ -7,6 +7,17 @@
 function displayHeroScavange($conn)
 {
        $hero = $_POST['hero_slct'];     
+
+       // First check to make sure that our hero isn't in the midst of a fight
+       $query = "select v.status from Human h inner join Village v on h.Village_ID=v.VillageID where h.name=";
+       $query = $query."'".$hero."';";
+       $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+       $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
+       if ($row['status'] != "freed")
+       {
+              printf("%s cannot scanvage in the middle of a fight! Conquer all their enemies first! <br>");
+              return;
+       }
        
        $query = "select count(*) as total from Food f;";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
