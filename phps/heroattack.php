@@ -389,7 +389,7 @@ function updateFights($conn, $hero, $village, $animal)
     $vSSN = $row['SaladSN'];
     $vHealth = $row['health'];
     printf("vSSN: %s <br>", $vSSN);
-  printf("vHealth: %s <br>", $vHealth);
+    printf("vHealth: %s <br>", $vHealth);
     //if there is no data entry, create one
     $q = "select hv.Human_VictorSSN from Human_fights_Human hv
     inner join Human t on hv.Human_Fighter1SSN=";
@@ -411,7 +411,7 @@ function updateFights($conn, $hero, $village, $animal)
         $q2 = "insert into Human_fights_Human values (";
         $q2 = $q2."".$hSSN." ,"; 
         $q2 = $q2."".$vSSN.", ";
-        $q2 = $q2."".$animal.", ";
+        $q2 = $q2."'".$animal."', ";
         $q2 = $q2."".$vSSN.");";
         mysqli_query($conn, $q2) or die(mysqli_error($conn));
       }
@@ -433,7 +433,7 @@ function updateFights($conn, $hero, $village, $animal)
         $q2 = "insert into Human_fights_Human values (";
         $q2 = $q2."".$hSSN." ,"; 
         $q2 = $q2."".$vSSN.", ";
-        $q2 = $q2."".$animal.", ";
+        $q2 = $q2."'".$animal."', ";
         $q2 = $q2."".$hSSN.");";
         mysqli_query($conn, $q2) or die(mysqli_error($conn));
       }
@@ -455,7 +455,7 @@ function updateFights($conn, $hero, $village, $animal)
         $q2 = "insert into Human_fights_Human values (";
         $q2 = $q2."".$hSSN." ,"; 
         $q2 = $q2."".$vSSN.", ";
-        $q2 = $q2."".$animal.", 0);";
+        $q2 = $q2."'".$animal."', 0);";
         mysqli_query($conn, $q2) or die(mysqli_error($conn));
       }
       else 
