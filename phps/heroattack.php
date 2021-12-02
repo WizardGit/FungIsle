@@ -180,7 +180,7 @@ $animal = $_POST['animal_slct'];
           if ($animal == "None")
             return 0;
           $query = "select a.Name, a.attack from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
-          where a.species=";
+          where a.name=";
           $query = $query."'".$animal."' and h.name="; 
           $query = $query."'".$hero."' ;"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -202,7 +202,7 @@ $animal = $_POST['animal_slct'];
         function reduceAnimalHealth($conn, $animal, $hero, $dmg)
         {
           $query = "select a.Name, a.health, a.defense, h.SaladSN from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN
-          where a.species=";
+          where a.name=";
           $query = $query."'".$animal."' and h.name="; 
           $query = $query."'".$hero."';"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -210,7 +210,7 @@ $animal = $_POST['animal_slct'];
           printf("The %s, %s, gets hit with %s damage but blocks up to %s", $animal, $row['Name'], $dmg, $row['defense']);   
           if (count($row) == 0)
           {
-            printf("There is not animal of that species with that owner <br>"); 
+            printf("There is not animal of that name with that owner <br>"); 
             return;
           }
           else
