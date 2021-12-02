@@ -413,6 +413,7 @@ function updateFights($conn, $hero, $village, $animal)
         $q2 = $q2."".$vSSN.", ";
         $q2 = $q2."'".$animal."', ";
         $q2 = $q2."".$vSSN.");";
+        printf("q2: %S <br>", $q2);
         mysqli_query($conn, $q2) or die(mysqli_error($conn));
       }
       else 
@@ -421,7 +422,7 @@ function updateFights($conn, $hero, $village, $animal)
         $q2 = "update Human_fights_Human hv set hv.Human_VictorSSN =";
         $q2 = $q2."".$vSSN." where hv.Human_Fighter1SSN=";
         $q2 = $q2."".$hSSN." and hv.Human_Fighter2SSN="; 
-        $q2 = $q2."".$vSSN.", ";
+        $q2 = $q2."".$vSSN.";";
         mysqli_query($conn, $q2) or die(mysqli_error($conn));
       }
     }
@@ -435,6 +436,7 @@ function updateFights($conn, $hero, $village, $animal)
         $q2 = $q2."".$vSSN.", ";
         $q2 = $q2."'".$animal."', ";
         $q2 = $q2."".$hSSN.");";
+        printf("q2: %S <br>", $q2);
         mysqli_query($conn, $q2) or die(mysqli_error($conn));
       }
       else 
@@ -443,7 +445,7 @@ function updateFights($conn, $hero, $village, $animal)
         $q2 = "update Human_fights_Human hv set hv.Human_VictorSSN =";
         $q2 = $q2."".$hSSN." where hv.Human_Fighter1SSN=";
         $q2 = $q2."".$hSSN." and hv.Human_Fighter2SSN="; 
-        $q2 = $q2."".$vSSN.", ";
+        $q2 = $q2."".$vSSN.";";
         mysqli_query($conn, $q2) or die(mysqli_error($conn));
       }
     }
@@ -456,6 +458,7 @@ function updateFights($conn, $hero, $village, $animal)
         $q2 = $q2."".$hSSN." ,"; 
         $q2 = $q2."".$vSSN.", ";
         $q2 = $q2."'".$animal."', 0);";
+        printf("q2: %S <br>", $q2);
         mysqli_query($conn, $q2) or die(mysqli_error($conn));
       }
       else 
@@ -463,7 +466,7 @@ function updateFights($conn, $hero, $village, $animal)
         //update
         $q2 = "update Human_fights_Human hv set hv.Human_VictorSSN = 0 where hv.Human_Fighter1SSN=";
         $q2 = $q2."".$hSSN." and hv.Human_Fighter2SSN="; 
-        $q2 = $q2."".$vSSN.", ";
+        $q2 = $q2."".$vSSN.";";
         mysqli_query($conn, $q2) or die(mysqli_error($conn));
       }
     }
