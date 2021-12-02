@@ -30,7 +30,7 @@ function attack($conn)
         $bossDMG = getDamageTotal($conn, "SaladoreTheTyrant");
         //put boss dmg on hero
         reduceHeroHealth($conn, $hero, $bossDMG);
-        updateFights($conn, $hero, $village, $animal);
+        //updateFights($conn, $hero, $village, $animal);
       }
     } 
     else if (($heroPos != $village) && (checkVillageStatus($conn, $heroPos) == false))
@@ -49,7 +49,7 @@ function attack($conn)
       $henchDMG = getHenchmenDamage($conn, $village);
       //put henchman dmg on hero
       reduceHeroHealth($conn, $hero, $henchDMG);
-      updateFights($conn, $hero, $village, $animal);
+      //updateFights($conn, $hero, $village, $animal);
     }
     //updated village status
     checkVillageStatus($conn, $village);
