@@ -184,7 +184,8 @@ $animal = $_POST['animal_slct'];
           $query = $query."'".$animal."' and h.name="; 
           $query = $query."'".$hero."' ;"; 
           $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-          $row = mysqli_fetch_array($result, MYSQLI_ASSOC);  
+          $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
+          printf("Query: %s <br>", $query); 
           if ($row == null)
           {
             printf("There is not animal of that species with that owner <br>"); 
