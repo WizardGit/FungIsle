@@ -91,3 +91,19 @@ select {
   float: left;
   display: block;
 }
+#display_form_div img{
+  display: block;
+  width: 35%;
+  float: left;
+}
+#display_form_div img:first-of-type {
+  width: 28%;
+}
+#display_form_div p {
+  display: block;
+  width: 32%;
+  float: left;
+  margin-top: 8%;
+  font-size: 5em;
+  text-align: center;
+}
