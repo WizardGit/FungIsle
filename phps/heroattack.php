@@ -466,6 +466,8 @@ function updateFights($conn, $hero, $village, $animal)
       else 
       {
         //update
+        printf("vSSN check2: %s <br>", $vSSN);
+      printf("vHealth check2: %s <br>", $vHealth);
         $q2 = "update Human_fights_Human hv set hv.Human_VictorSSN = 0 where hv.Human_Fighter1SSN=";
         $q2 = $q2."".$hSSN." and hv.Human_Fighter2SSN="; 
         $q2 = $q2."".$vSSN.";";
