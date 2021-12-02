@@ -17,7 +17,7 @@ or die('Error connecting to MySQL server.');
   </head>  
   <body>
     <section>
-      <a href="../index.html">Back to Home Page</a>
+      <a href="./index.php">Back to Home Page</a>
       <p> <h2>The query:</h2> <p>
       <?php
         $query = $_POST['query'];
