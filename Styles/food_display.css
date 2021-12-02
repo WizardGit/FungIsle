@@ -71,7 +71,7 @@ select {
 #display_form_div {
   display: block;
   float: right;
-  width: 48%;
+  width: 46%;
   border-radius: 5px;
   margin-top: 10px;
   padding: 5px;
@@ -80,16 +80,6 @@ select {
   border-color: black;
   background-color: rgba(0, 0, 255, 0.493);
   border-style: solid; 
-}
-#display_form_div select, #display_form_div label {
-  display: inline;
-  float: left;  
-  margin: 5px;  
-}
-#display_form_div input[type=submit] {
-  clear: left;
-  float: left;
-  display: block;
 }
 #display_form_div img{
   display: block;

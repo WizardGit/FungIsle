@@ -209,13 +209,13 @@ function displayPics($conn)
        else 
               printf("<img id='h' src='../../Characters/Amanita.png'>");
        if($animal_slct == 'Bat')  
-              printf("<img id='h' src='../../Characters/Fungivore.png'>");  
+              printf("<img id='a' src='../../Characters/Fungivore.png'>");  
        else 
               printf(" ");
        printf("<p>VS</p>");
        if($village_slct == 'HellCave')  
-              printf("<img id='h' src='../../Characters/Saladore.png'>");  
+              printf("<img id='v' src='../../Characters/Saladore.png'>");  
        else 
-              printf("<img id='h' src='../../Characters/Saladorian.png'>");
+              printf("<img id='v' src='../../Characters/Saladorian.png'>");
 }
 ?>
