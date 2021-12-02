@@ -15,7 +15,7 @@ function displayHeroScavange($conn)
        $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
        if ($row['status'] != "freed")
        {
-              printf("%s cannot scanvage in the middle of a fight! Conquer all their enemies first! <br>");
+              printf("%s cannot scanvage in the middle of a fight! Conquer all their enemies first! <br>", $hero);
               return;
        }
        
