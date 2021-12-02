@@ -16,7 +16,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
   </head>  
   <body>
     <section>
-      <a href="../index.html">Back to Home Page</a>
+      <a href="../HTMLs/index.html">Back to Home Page</a>
       <p> <h2>Hero and place of attack  :</h2> <p>
       <?php
         //Get village
