@@ -1,9 +1,9 @@
 /*
 Author: Kaiser
-Date last edited: 11/26/2021
+Date last edited: 12/2/2021
+Purpose: This is the style sheet for the guide.html
 */
 
-/* Sets defaults */
 body {
     height: 100%;
     width: 100%;
@@ -13,8 +13,7 @@ body {
     color: black;  
     font-weight: bold;
   }
-  /* Controls the words on the website */
-  section {
+section {
     float: center;
     display: block;
     margin: 5%;
@@ -23,31 +22,29 @@ body {
     background-color: rgba(0, 0, 255, 0.623);
     border-style: solid; 
   }
-  section img {
+section img {
     width: 95%;
   }
-  /* Controls the main header */
-  section h1 {
+section h1 {
     margin: 0px;
     border-bottom-width: 5px;
     border-bottom-style: solid;
     text-align: center;
     padding: 10px;
-  }
- 
-  p {
+  } 
+p {
     margin: 5px;
   }
-  h1 {
+h1 {
       font-size: 3em;
   }
-  h2 {
+h2 {
     margin-left: 10px;
   }
-  a {
+a {
     color: red;
   }
-  #codeview {
+#codeview {
     width: 100%;
     padding-top: 5px;
     border-bottom-width: 5px;
@@ -55,7 +52,7 @@ body {
     border-bottom-style: solid;
     border-top-style: solid;
   }
-  #button {  
+#button {  
   margin: 5px;
   background: linear-gradient(to right, brown, #ffad06);
   border: 0;

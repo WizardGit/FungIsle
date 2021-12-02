@@ -1,9 +1,9 @@
 /*
 Author: Kaiser
-Date last edited: 11/2/2021
+Date last edited: 12/2/2021
+Purpose: This is the style sheet for displaying tables from the database
 */
 
-/* Sets defaults */
 body {
   height: 100%;
   width: 99%;
@@ -12,8 +12,6 @@ body {
   background-size: cover;
   color: black;
 }
-
-/* Controls the words on the website */
 section {
   float: center;
   padding: 10px;
@@ -23,6 +21,7 @@ section {
   background-color: rgba(0, 0, 255, 0.493);
   border-style: solid;
 }
+/* Where the table results will be printed */
 pre {
   background-color: rgba(0, 0, 255, 0.781);
   max-height: 60vh;
@@ -31,7 +30,7 @@ pre {
   border-color: black;  
   border-style: solid;
 }
-
+/* Link to home page */
 a {
   color: black;
   text-decoration: none;
@@ -41,11 +40,9 @@ a {
   border-radius: 3px;
   font-weight: bold;
 }
-
 p {
   margin: 5px;
 }
 h2 {
   font-weight: bold;
 }
-
