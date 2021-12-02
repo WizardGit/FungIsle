@@ -6,7 +6,7 @@
                      <?php printVillageSelect($conn); ?>
                      <label for="animal_attack_slct">With the help of: </label>
                      <?php printAnimalSelect($conn); ?> 
-                     <input formaction="./attack.php" id="attack" type="submit" value="Attack">
+                     <input formaction="./heroattack.php" id="attack" type="submit" value="Attack">
               </form>
               <form action="./index.php" method="POST" id="hero_eat_form">                      
                      <label for="hero_eat_slct">Have </label>                     
