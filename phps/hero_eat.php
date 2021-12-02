@@ -26,16 +26,16 @@ function displayHeroEat($conn)
        printf("%s's health is currently %s", $hero, $herohealth);
        if ($numush < 0)
        {
-              printf("%s does not have any %s mushrooms to eat!", $hero, $mush);
+              printf("%s does not have any %s mushrooms to eat! <br>", $hero, $mush);
               return;
        }
        else if (($row['health'] == 0) && ($mush !="Almighty"))
        {
-              printf("%s is dead. They cannot eat anything! (Unless it's an Almighty Mushroom which can revive them!)", $hero);
+              printf("%s is dead. They cannot eat anything! (Unless it's an Almighty Mushroom which can revive them!) <br>", $hero);
               return;
        }                     
        else
-              printf("%s eats one of their %s mushrooms - resulting in there being %s left", $hero, $mush, $numush);
+              printf("%s eats one of their %s mushrooms - resulting in there being %s left. <br>", $hero, $mush, $numush);
        $herohealth += $healthrecover;
        if ($herohealth > 1000)
               $herohealth = 1000;
