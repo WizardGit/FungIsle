@@ -1,5 +1,4 @@
 <div id="form_div">  
-              <p><a id="button" href="../HTMLs/index.html">Back to Home Page</a> </p>
               <form action="./index.php" method="POST" id="attack_form">   
                      <label for="hero_attack_slct">Choose hero:</label>
                      <?php printHeroSelect($conn); ?> 

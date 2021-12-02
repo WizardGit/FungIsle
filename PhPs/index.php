@@ -3,7 +3,6 @@
 <?php displayPics($conn); ?>
 </div> 
 <?php include 'last.php';?>
-
 <?php
 function printHeroSelect($conn)
 {

@@ -1,42 +1,12 @@
-<!--
-Author: Kaiser
-Date last edited: 11/26/2021
-Purpose: Perform the attack that user requests
--->
-
+<?php include 'first.php';?>
+<div id='display_form_div'>
+<?php attack($conn); ?>
+</div> 
+<?php include 'last.php';?>
 <?php
-include('../Connections/connectionDataStrong.txt');
-$conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error connecting to MySQL server.');
-?>
-
-<html lang="en">
-<head>
-  <title>Perform Attack</title>
-  <link rel="stylesheet" href="../Styles/displayStyle.css?v=<?php echo time(); ?>"> 
-  </head>  
-  <body>
-    <section>
-      <a href="../HTMLs/index.html">Back to Home Page</a>
-      <p> <h2>Hero and place of attack  :</h2> <p>
-      <?php
-        //Get village
-        $village = $_POST['village']; 
-        printf("Village: %s <br>", $village);       
-
-        //Get hero      
-        $hero = $_POST['hero'];  
-        printf("Hero: %s <br>",$hero); 
-
-        //Get animal       
-        $animal = $_POST['animal'];  
-        printf("Animal: %s <br>",$animal); 
-      ?>
-
-      <p> <h2>Result of attack:</h2> <p>
-
-      <?php
-
-        //getDamageTotal($conn, $hero);
+function attack($conn)
+{
+                  //getDamageTotal($conn, $hero);
         //reduceHeroHealth($conn, $hero, 10);
         //reduceBossHealth($conn, 50);
 
@@ -110,6 +80,7 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
         }
         printAllHumans($conn);
         mysqli_close($conn); 
+        }
         
         function printAllHumans($conn)
         {
@@ -405,6 +376,3 @@ $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error conn
             return false;
         }
       ?>
-    </section>
-  </body>
-</html>	  
