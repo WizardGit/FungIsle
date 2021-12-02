@@ -9,18 +9,19 @@ function displayHeroEat($conn)
        $hero = $_POST['hero_slct']; 
        $mush = $_POST['hero_mushroom_slct'];  
 
-       $query = "select hf.remaining, h.health, f.health_recover from Human_has_Food hf 
+       $query = "select hf.remaining, h.health, f.health_recover, h.SaladSN from Human_has_Food hf 
        inner join Human h on h.SaladSN=hf.Human_SaladSN 
        inner join Food f on f.Name=hf.Food_Name
        where h.name=";
        $query = $query."'".$hero."' and hf.Food_Name=";
-       $query = $query."'".$mush."' and ;";
+       $query = $query."'".$mush."';";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
 
        $numush = $row['remaining'] - 1;  
        $herohealth = $row['health'];
        $healthrecover = $row['health_recover'];
+       $SSN = $row['SaladSN'];
 
        printf("%s's health is currently %s", $hero, $herohealth);
        if ($numush < 0)
@@ -42,8 +43,8 @@ function displayHeroEat($conn)
 
        // Update Hero heatlh
        $query = "update Human h set h.health=";
-       $query = $query."".$herohealth." where h.name="; 
-       $query = $query."'".$hero."';";
+       $query = $query."".$herohealth." where h.SaladSN="; 
+       $query = $query."'".$SSN."';";
        mysqli_query($conn, $query) or die(mysqli_error($conn));
        mysqli_free_result($result);
 
