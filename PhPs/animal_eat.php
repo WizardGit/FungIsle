@@ -1,11 +1,9 @@
-<!--
-Author: Kaiser
-Date last edited: 12/1/2021
-Purpose: Perform ?
--->
+<?php include 'first.php';?>
+<div id='display_form_div'>
+<?php displayAnimalEat($conn); ?>
+</div> 
+<?php include 'last.php';?>
 <?php
-include 'index.php';
-
 function displayAnimalEat($conn)
 {
        $animal = $_POST['animal_slct']; 

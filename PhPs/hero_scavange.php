@@ -1,11 +1,9 @@
-<!--
-Author: Kaiser
-Date last edited: 12/1/2021
-Purpose: Perform ?
--->
+<?php include 'first.php';?>
+<div id='display_form_div'>
+<?php displayHeroScavange($conn); ?>
+</div> 
+<?php include 'last.php';?>
 <?php
-include 'index.php';
-
 function displayHeroScavange($conn)
 {
        $hero = $_POST['hero_slct'];     

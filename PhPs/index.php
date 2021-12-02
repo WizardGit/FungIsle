@@ -1,8 +1,7 @@
 <?php include 'first.php';?>
-
-       <div id='display_form_div'>
-       <?php displayPics($conn); ?>
-       </div> 
+<div id='display_form_div'>
+<?php displayPics($conn); ?>
+</div> 
 <?php include 'last.php';?>
 
 <?php
