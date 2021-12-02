@@ -124,6 +124,6 @@ select {
   background-color: rgba(0, 0, 255, 0.493);
   border-style: solid; 
   clear: left;
-  float: right;
+  float: left;
   margin-top: 10px;
 }

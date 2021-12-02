@@ -1,10 +1,10 @@
 <!--
 Author: Kaiser
-Date last edited: 11/29/2021
+Date last edited: 12/1/2021
 Purpose: Perform ?
 -->
-<?php include 'index.php';?>
 <?php
+include 'index.php';
 
 function displayHeroScavange($conn)
 {
