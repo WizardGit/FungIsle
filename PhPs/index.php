@@ -12,12 +12,11 @@ function displayPics($conn)
        if($hero_slct == 'Mushronian')  
               printf("<img id='h' src='../Characters/Mushronian.png'>");  
        else 
-              printf("<img id='h' src='../Characters/Amanita.png'>");
+              printf("<p><img id='h' src='../Characters/Amanita.png'>VS</p>");
        if($animal_slct == 'Bat')  
-              printf("<img id='a' src='../Characters/Fungivore.png'>");  
+              printf("<p><img id='a' src='../Characters/Fungivore.png'>VS</p>");  
        else 
               printf(" ");
-       printf("<p>VS</p>");
        if($village_slct == 'HellCave')  
               printf("<img id='v' src='../Characters/Saladore.png'>");  
        else 

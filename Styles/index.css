@@ -127,3 +127,7 @@ select {
   float: left;
   margin-top: 10px;
 }
+
+#display_form_div p img {
+  margin-left: 40%;  
+}
