@@ -29,17 +29,17 @@ and the accompanying php methods
                      <?php printAnimalMushroomSelect($conn); ?> 
                      <input formaction="./animal_eat.php" id="animal_eat_sub" type="submit" value="Eat Mushroom">
               </form> 
-              <form action="./index.php" method="POST" id="hero_scavange_form">   
-                     <label for="hero_scavange_slct"> Have</label>
+              <form action="./index.php" method="POST" id="hero_scavenge_form">   
+                     <label for="hero_scavenge_slct"> Have</label>
                      <?php printHeroSelect($conn); ?> 
-                     <label for="hero_scavange"> scavange for mushrooms</label>
-                     <input formaction="./hero_scavange.php" id="hero_scavange_sub" type="submit" value="Scavange">
+                     <label for="hero_scavenge"> scavenge for mushrooms</label>
+                     <input formaction="./hero_scavenge.php" id="hero_scavenge_sub" type="submit" value="Scavenge">
               </form> 
-              <form action="./index.php" method="POST" id="animal_scavange_form">   
-                     <label for="animal_scavange_slct"> Have</label>
+              <form action="./index.php" method="POST" id="animal_scavenge_form">   
+                     <label for="animal_scavenge_slct"> Have</label>
                      <?php printAnimalSelect($conn); ?>
-                     <label for="animal_scavange"> scavange for mushrooms</label>
-                     <input formaction="./animal_scavange.php" id="animal_scavange_sub" type="submit" value="Scavange">
+                     <label for="animal_scavenge"> scavenge for mushrooms</label>
+                     <input formaction="./animal_scavenge.php" id="animal_scavenge_sub" type="submit" value="Scavenge">
               </form> 
        </div>
        <div id="codeview">

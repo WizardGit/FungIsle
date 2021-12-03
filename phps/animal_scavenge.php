@@ -6,11 +6,11 @@ Purpose: This is in charge of the animal_scavange feature
 
 <?php include 'first.php';?>
 <div id='display_form_div'>
-<?php displayAnimalScavange($conn); ?>
+<?php displayAnimalScavenge($conn); ?>
 </div> 
 <?php include 'last.php';?>
 <?php
-function displayAnimalScavange($conn)
+function displayAnimalScavenge($conn)
 {
        $animal = $_POST['animal_slct'];   
        
@@ -23,7 +23,7 @@ function displayAnimalScavange($conn)
        $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
        if ($row['status'] != "freed")
        {
-              printf("%s cannot scanvage in the middle of a fight! Conquer all their enemies first! <br>", $animal);
+              printf("%s cannot scavenge in the middle of a fight! Conquer all their enemies first! <br>", $animal);
               return;
        }
        
