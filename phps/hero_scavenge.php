@@ -56,6 +56,11 @@ function displayHeroScavange($conn)
        if ($row['remaining'] != null)
        {
               $numush = $row['remaining']+1;
+              if ($numush > 5)
+              {
+                     printf("%s finds one %s mushroom - but their backpack is full, so they are forced to leave it behind.", $hero, $mush);      
+                     return;
+              }
               $query = "update Human_has_Food hf inner join Human h on h.SaladSN=hf.Human_SaladSN 
               set hf.remaining=";
               $query = $query."'".$numush."' where h.name=";

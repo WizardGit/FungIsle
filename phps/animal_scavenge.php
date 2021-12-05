@@ -58,6 +58,11 @@ function displayAnimalScavenge($conn)
        if ($row['remaining'] != null)
        {
               $numush = $row['remaining']+1;
+              if ($numush > 2)
+              {
+                     printf("%s finds one %s mushroom - but their backpack is full, so they are forced to leave it behind.", $animal, $mush);      
+                     return;
+              }
               $query = "update Animal_has_Food hf inner join Animal a on a.Name=hf.Animal_Name 
               set hf.remaining=";
               $query = $query."'".$numush."' where a.Name=";
