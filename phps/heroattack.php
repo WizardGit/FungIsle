@@ -14,7 +14,7 @@ function attack($conn)
 {
   $hero = $_POST['hero_slct']; 
   $village = $_POST['village_attack_slct']; 
-  $animal = $_POST['animal_slct']; 
+  $animal = $_POST['animal_attack_slct']; 
   if (checkVillageStatus($conn, $village) == false)
   {
     $heroPos = getHeroPosition($conn, $hero);
