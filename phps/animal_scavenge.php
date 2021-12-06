@@ -23,8 +23,7 @@ function displayAnimalScavenge($conn)
        {
               printf("%s is dead and cannot scavenge! <br>", $animal);
               return;
-       }
-              
+       }              
        
        // First check to make sure that our animal isn't in the midst of a fight
        $query = "select v.status from Animal a

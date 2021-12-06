@@ -23,8 +23,7 @@ function displayHeroScavange($conn)
        {
               printf("%s is dead and cannot scavenge! <br>", $hero);
               return;
-       }
-              
+       }              
 
        // First check to make sure that our hero isn't in the midst of a fight
        $query = "select v.status from Human h inner join Village v on h.Village_ID=v.VillageID where h.name=";
