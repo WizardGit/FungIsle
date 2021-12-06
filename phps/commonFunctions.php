@@ -115,7 +115,7 @@ function printVillageAttackSelect($conn)
        {   
               if ($row['name'] != $village_slct)
                      printf("<option value='%s'>%s</option>", $row['name'], $row['name']);  
-              $row = mysqli_fetch_array($result, MYSQLI_ASSOC)                      
+              $row = mysqli_fetch_array($result, MYSQLI_ASSOC);                  
        }            
        mysqli_free_result($result);
        printf("</select>");
