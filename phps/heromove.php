@@ -19,6 +19,7 @@ function move($conn)
     if (checkVillageStatus($conn, $heroPos) == false)
     {
         printf("%s cannot move to %s because they are in %s which has not yet been freed! <br>", $hero, $village, $heroPos);
+        return;
     }
     updateHeroPosition($conn, $hero, $village);
 }
