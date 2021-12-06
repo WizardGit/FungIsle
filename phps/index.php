@@ -14,7 +14,7 @@ It displays character pictures and switches among selection lists
 function displayPics($conn)
 {
        $hero_slct = $_POST['hero_slct'];
-       $village_slct = $_POST['village_slct'];
+       $village_slct = $_POST['village_attack_slct'];
        $animal_slct = $_POST['animal_attack_slct'];
        if($hero_slct == 'Amanita')  
               printf("<img id='h' src='../Characters/Amanita.png'>");  

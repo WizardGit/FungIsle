@@ -21,7 +21,6 @@ function attack($conn)
     return;
   }
 
-
   if (checkVillageStatus($conn, $village) == false)
   {
     $heroPos = getHeroPosition($conn, $hero);
