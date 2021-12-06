@@ -126,7 +126,7 @@ function herohasanimal($conn, $hero, $animal)
 {
        $query = "select a.Name from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN where h.name=";
        $query = $query."'".$hero."' and a.Name=";
-       $query = $query."'".$animal."' and a.Name=";
+       $query = $query."'".$animal."';";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        if (mysqli_fetch_array($result, MYSQLI_ASSOC) == "")
               return false;
