@@ -67,7 +67,7 @@ function attack($conn)
     //updated village status
     checkVillageStatus($conn, $village);
   }        
-  else if ($village == "HellCave")
+  else if (($village == "HellCave") || (checkVillageStatus($conn, "HellCave") == true))
   {
     printf("You have already won!!! <br>");
   }
