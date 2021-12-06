@@ -6,6 +6,7 @@ Purpose: Performs an attack
 
 <?php include 'first.php';?>
 <div id='display_form_div'>
+<?php include "./commonFunctions.php" ?>
 <?php attack($conn); ?>
 </div> 
 <?php include 'last.php';?>
