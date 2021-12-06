@@ -158,7 +158,8 @@ function printVillageAttackSelect($conn)
        $village_slct = $_POST['village_attack_slct']; 
        if ($village_slct  == "")
               $village_slct  = "Northland";
-       printf("<option value='%s'>%s</option>", $village_slct, $village_slct);
+       if (checkVillageStatus($conn, $village_slct) == false)
+              printf("<option value='%s'>%s</option>", $village_slct, $village_slct);
 
        $query = "select v.name from Village v where v.status='suppressed'";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -247,5 +248,37 @@ function printAnimalMushroomSelect($conn)
                       
        mysqli_free_result($result);
        printf("</select>");
+}
+function checkVillageStatus($conn, $village)
+{
+  // Return true if $village status is freed, false if not
+  if ($village == "HellCave")
+  {
+    $query = "select count(*) as total from Human h inner join Village v on h.Village_ID = v.VillageID 
+    where v.name=";
+    $query = $query."'".$village."' and h.role='Boss' and h.health>0";
+  }
+  else
+  {
+    $query = "select count(*) as total from Human h inner join Village v on h.Village_ID = v.VillageID 
+    where v.name=";
+    $query = $query."'".$village."' and h.role='Henchman' and h.health>0";
+  }
+
+  $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+  $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+  $total = $row['total'];    
+  mysqli_free_result($result);
+  printf("There are %s henchmen at %s<br>", $total, $village); 
+  if ($total == 0)
+  {
+    //Get Village and set to freed
+    $query = "update Village v set v.status='freed' where v.name=";
+    $query = $query."'".$village."';";
+    mysqli_query($conn, $query) or die(mysqli_error($conn)); 
+    return true;
+  }
+  else
+    return false;
 }
 ?>

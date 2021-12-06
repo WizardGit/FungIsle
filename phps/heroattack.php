@@ -338,38 +338,7 @@ function getHeroPosition($conn, $hero)
   printf("%s is located at %s <br>", $hero, $row['name']);  
   return $row['name'];
 }        
-function checkVillageStatus($conn, $village)
-{
-  // Return true if $village status is freed, false if not
-  if ($village == "HellCave")
-  {
-    $query = "select count(*) as total from Human h inner join Village v on h.Village_ID = v.VillageID 
-    where v.name=";
-    $query = $query."'".$village."' and h.role='Boss' and h.health>0";
-  }
-  else
-  {
-    $query = "select count(*) as total from Human h inner join Village v on h.Village_ID = v.VillageID 
-    where v.name=";
-    $query = $query."'".$village."' and h.role='Henchman' and h.health>0";
-  }
 
-  $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-  $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
-  $total = $row['total'];    
-  mysqli_free_result($result);
-  printf("There are %s henchmen at %s<br>", $total, $village); 
-  if ($total == 0)
-  {
-    //Get Village and set to freed
-    $query = "update Village v set v.status='freed' where v.name=";
-    $query = $query."'".$village."';";
-    mysqli_query($conn, $query) or die(mysqli_error($conn)); 
-    return true;
-  }
-  else
-    return false;
-}
 function updateFights($conn, $hero, $village, $animal)
 {
   $query = "select h.SaladSN, h.health from Human h where h.name=";
