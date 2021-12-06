@@ -4,7 +4,7 @@ Date last edited: 12/2/2021
 Purpose: This is part of the main game html structure
 and the accompanying php methods
 -->
-<?php include "./commonFunctions.php" ?>
+
 <div id="form_div">  
        <form action="./index.php" method="POST" id="move_form">   
               <label for="hero_move_slct">Choose hero</label>
