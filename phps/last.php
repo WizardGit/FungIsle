@@ -106,6 +106,8 @@ function printAnimalAttackSelect($conn)
        $hero_slct = $_POST['hero_slct'];
        if ($animal_slct  == "")
               $animal_slct  = "Bat";
+       if ($hero_slct == "")
+              $hero_slct = "Mushronian";
        printf("<option value='%s'>%s</option>", $animal_slct, $animal_slct);
 
        $query = "select a.Name from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN where h.name=";
