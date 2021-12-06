@@ -34,7 +34,7 @@ or die('Error connecting to MySQL server.');
         {  
           
           foreach ($row as $element)
-            printf("[%- 8s]",$element);   
+            printf("[%- 14s]",$element);   
           print "<br>";
         }
         print "</pre>";
