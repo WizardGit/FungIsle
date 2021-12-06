@@ -108,6 +108,8 @@ function printVillageAttackSelect($conn)
 
        $query = "select v.name from Village v where v.status='suppressed'";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+       if ($result == null)
+              printf("<option value='%s'>%s</option>", "None", "None"); 
        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
        {   
               if ($row['name'] != $village_slct)

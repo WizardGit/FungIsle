@@ -48,7 +48,7 @@ function attack($conn)
     } 
     else if (($heroPos != $village) && (checkVillageStatus($conn, $heroPos) == false))
     {
-      printf("%s cannot move to %s because they are in %s which has not yet been freed! <br>", $hero, $village, $heroPos);
+      printf("%s cannot attack %s because they are in %s which has not yet been freed! <br>", $hero, $village, $heroPos);
     }
     else
     {            
@@ -67,7 +67,7 @@ function attack($conn)
     //updated village status
     checkVillageStatus($conn, $village);
   }        
-  else if (($village == "HellCave") || ($village == ""))
+  else if ($village == "HellCave")
   {
     printf("You have already won!!! <br>");
   }
@@ -359,19 +359,10 @@ function updateFights($conn, $hero, $village, $animal)
   $query = $query."'".$village."' and h.role='Henchman';"; 
   $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
-  //printf("hero: %s <br>", $hero);
-  //printf("village: %s <br>", $village);
-  //printf("animal: %s <br>", $animal);
-  //printf("hSSN: %s <br>", $hSSN);
-  //printf("hHealth: %s <br>", $hHealth);
-
   while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
   {
     $vSSN = $row['SaladSN'];
     $vHealth = $row['health'];
-    //printf("vSSN: %s <br>", $vSSN);
-    //printf("vHealth: %s <br>", $vHealth);
-    //if there is no data entry, create one
     $q = "select hv.Human_VictorSSN from Human_fights_Human hv inner join Human t on hv.Human_Fighter1SSN=";
     $q = $q."".$hSSN." where hv.Human_Fighter2SSN = (select h.SaladSN from Human h where h.SaladSN="; 
     $q = $q."".$vSSN.")";
@@ -392,7 +383,6 @@ function updateFights($conn, $hero, $village, $animal)
         $q2 = $q2."".$vSSN.", ";
         $q2 = $q2."'".$animal."', ";
         $q2 = $q2."".$vSSN.");";
-        //printf("q2: %s <br>", $q2);
         mysqli_query($conn, $q2) or die(mysqli_error($conn));
       }
       else 
@@ -402,7 +392,6 @@ function updateFights($conn, $hero, $village, $animal)
         $q2 = $q2."".$vSSN." where hv.Human_Fighter1SSN=";
         $q2 = $q2."".$hSSN." and hv.Human_Fighter2SSN="; 
         $q2 = $q2."".$vSSN.";";
-        //printf("q2: %s <br>", $q2);
         mysqli_query($conn, $q2) or die(mysqli_error($conn));
       }
     }
@@ -416,7 +405,6 @@ function updateFights($conn, $hero, $village, $animal)
         $q2 = $q2."".$vSSN.", ";
         $q2 = $q2."'".$animal."', ";
         $q2 = $q2."".$hSSN.");";
-        //printf("q2: %s <br>", $q2);
         mysqli_query($conn, $q2) or die(mysqli_error($conn));
       }
       else 
@@ -426,7 +414,6 @@ function updateFights($conn, $hero, $village, $animal)
         $q2 = $q2."".$hSSN." where hv.Human_Fighter1SSN=";
         $q2 = $q2."".$hSSN." and hv.Human_Fighter2SSN="; 
         $q2 = $q2."".$vSSN.";";
-        //printf("q2: %s <br>", $q2);
         mysqli_query($conn, $q2) or die(mysqli_error($conn));
       }
     }
@@ -439,18 +426,14 @@ function updateFights($conn, $hero, $village, $animal)
         $q2 = $q2."".$hSSN." ,"; 
         $q2 = $q2."".$vSSN.", ";
         $q2 = $q2."'".$animal."', 0);";
-        //printf("q2: %s <br>", $q2);
         mysqli_query($conn, $q2) or die(mysqli_error($conn));
       }
       else 
       {
         //update
-        //printf("vSSN check2: %s <br>", $vSSN);
-      //printf("vHealth check2: %s <br>", $vHealth);
         $q2 = "update Human_fights_Human hv set hv.Human_VictorSSN = 0 where hv.Human_Fighter1SSN=";
         $q2 = $q2."".$hSSN." and hv.Human_Fighter2SSN="; 
         $q2 = $q2."".$vSSN.";";
-        //printf("q2: %s <br>", $q2);
         mysqli_query($conn, $q2) or die(mysqli_error($conn));
       }
     }
