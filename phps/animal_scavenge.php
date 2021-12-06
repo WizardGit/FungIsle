@@ -15,9 +15,16 @@ function displayAnimalScavenge($conn)
        $animal = $_POST['animal_slct'];  
        
        if ($animal == "")
+       {
               printf("No animal selected!");
+              return;
+       }              
        if (animalIsDead($conn, $animal) == true)
+       {
               printf("%s is dead and cannot scavenge!", $animal);
+              return;
+       }
+              
        
        // First check to make sure that our animal isn't in the midst of a fight
        $query = "select v.status from Animal a
