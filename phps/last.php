@@ -128,7 +128,7 @@ function herohasanimal($conn, $hero, $animal)
        $query = $query."'".$hero."' and a.Name=";
        $query = $query."'".$animal."' and a.Name=";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
-       if (mysqli_fetch_array($result, MYSQLI_ASSOC) == null)
+       if (mysqli_fetch_array($result, MYSQLI_ASSOC) == "")
               return false;
        return true;
 }
