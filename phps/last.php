@@ -14,7 +14,7 @@ and the accompanying php methods
               <input formaction="./heromove.php" id="move" type="submit" value="Move">
        </form>
        <form action="./index.php" method="POST" id="attack_form">   
-              <label for="hero_attack_slct">Choose hero:</label>
+              <label for="hero_attack_slct">Choose hero</label>
               <?php printHeroSelect($conn); ?> 
               <label for="villages_attack_slct">to attack henchmen in</label>
               <?php printVillageAttackSelect($conn); ?>
@@ -89,6 +89,27 @@ function printAnimalSelect($conn)
        printf("<option value='%s'>%s</option>", $animal_slct, $animal_slct);
 
        $query = "select a.Name from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN where h.role='Hero'";
+       $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+       while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
+       {   
+              if ($row['Name'] != $animal_slct)
+                     printf("<option value='%s'>%s</option>", $row['Name'], $row['Name']);                        
+       }            
+       mysqli_free_result($result);
+       printf("</select>");
+}
+function printAnimalAttackSelect($conn)
+{
+       printf("<select name='animal_attack_slct' id='animal_attack_slct' onchange='this.form.submit()'>");
+
+       $animal_slct = $_POST['animal_slct']; 
+       $hero_slct = $_POST['hero_slct'];
+       if ($animal_slct  == "")
+              $animal_slct  = "Bat";
+       printf("<option value='%s'>%s</option>", $animal_slct, $animal_slct);
+
+       $query = "select a.Name from Animal a inner join Human h on a.HumanOwnerSSN=h.SaladSN where h.name=";
+       $query = $query."'".$hero_slct."';";
        $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
        while($row = mysqli_fetch_array($result, MYSQLI_ASSOC))
        {   
