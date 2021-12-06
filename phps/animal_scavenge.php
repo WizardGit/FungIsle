@@ -16,12 +16,12 @@ function displayAnimalScavenge($conn)
        
        if ($animal == "")
        {
-              printf("No animal selected!");
+              printf("No animal selected! <br>");
               return;
        }              
        if (animalIsDead($conn, $animal) == true)
        {
-              printf("%s is dead and cannot scavenge!", $animal);
+              printf("%s is dead and cannot scavenge! <br>", $animal);
               return;
        }
               

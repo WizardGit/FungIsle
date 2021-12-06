@@ -16,12 +16,12 @@ function displayHeroScavange($conn)
        
        if ($hero == "")
        {
-              printf("No hero selected!");
+              printf("No hero selected! <br>");
               return;
        }              
        if (heroIsDead($conn, $hero) == true)
        {
-              printf("%s is dead and cannot scavenge!", $hero);
+              printf("%s is dead and cannot scavenge! <br>", $hero);
               return;
        }
               
