@@ -123,7 +123,7 @@ function printVillageAttackSelect($conn)
 
        $village_slct = $_POST['village_slct']; 
        if ($village_slct  == "")
-              $village_slct  = "TreeBase";
+              $village_slct  = "Northland";
        printf("<option value='%s'>%s</option>", $village_slct, $village_slct);
 
        $query = "select v.name from Village v where v.status='suppressed'";

@@ -13,7 +13,7 @@ Purpose: Performs an attack
 function attack($conn)
 {
   $hero = $_POST['hero_slct']; 
-  $village = $_POST['village_slct']; 
+  $village = $_POST['village_attack_slct']; 
   $animal = $_POST['animal_slct']; 
   if (checkVillageStatus($conn, $village) == false)
   {
