@@ -288,7 +288,7 @@ function getDamageTotal($conn, $human)
   if ($hp == 0)  
   {
     $dmg = 0; 
-    printf("The hero is dead so...");  
+    printf("%s is dead so...", $human);  
   }                     
   else   
   {
