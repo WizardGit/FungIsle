@@ -7,18 +7,18 @@ and the accompanying php methods
 
 <div id="form_div">  
        <form action="./index.php" method="POST" id="move_form">   
-              <label for="hero_move_slct">Choose hero </label>
+              <label for="hero_move_slct">Choose hero</label>
               <?php printHeroSelect($conn); ?> 
-              <label for="village_move_slct"> to move to </label>
+              <label for="village_move_slct">to move to</label>
               <?php printVillageMoveSelect($conn); ?>
               <input formaction="./heromove.php" id="move" type="submit" value="Move">
        </form>
        <form action="./index.php" method="POST" id="attack_form">   
               <label for="hero_attack_slct">Choose hero:</label>
               <?php printHeroSelect($conn); ?> 
-              <label for="villages_attack_slct">To attack henchmen in: </label>
+              <label for="villages_attack_slct">to attack henchmen in</label>
               <?php printVillageAttackSelect($conn); ?>
-              <label for="animal_attack_slct">With the help of: </label>
+              <label for="animal_attack_slct">with the help of</label>
               <?php printAnimalSelect($conn); ?> 
               <input formaction="./heroattack.php" id="attack" type="submit" value="Attack">
        </form>
