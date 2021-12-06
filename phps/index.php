@@ -1,6 +1,6 @@
 <!--
 Author: Kaiser
-Date last edited: 12/2/2021
+Date last edited: 12/6/2021
 Purpose: The initial page of the game website
 It displays character pictures and switches among selection lists
 -->
@@ -20,11 +20,12 @@ function displayPics($conn)
               printf("<img id='h' src='../Characters/Amanita.png'>");  
        else 
               printf("<img id='h' src='../Characters/Mushronian.png'>");
-       if($animal_slct == 'Piggy')  
-              printf("<p>VS</p>");  
+       if($animal_slct == 'Bat') 
+              printf("<p><img id='a' src='../Characters/Fungivore.png'>VS</p>");               
        else 
+              printf("<p>VS</p>");  
               
-       printf("<p><img id='a' src='../Characters/Fungivore.png'>VS</p>");
+       
               
        if($village_slct == 'HellCave')  
               printf("<img id='v' src='../Characters/Saladore.png'>");  
