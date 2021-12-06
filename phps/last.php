@@ -102,7 +102,7 @@ function printAnimalAttackSelect($conn)
 {
        printf("<select name='animal_attack_slct' id='animal_attack_slct' onchange='this.form.submit()'>");
 
-       $animal_slct = $_POST['animal_slct']; 
+       $animal_slct = $_POST['animal_attack_slct']; 
        $hero_slct = $_POST['hero_slct'];
        if ($animal_slct  == "")
               $animal_slct  = "Bat";
@@ -123,7 +123,7 @@ function printVillageMoveSelect($conn)
 {
        printf("<select name='village_move_slct' id='village_move_slct' onchange='this.form.submit()'>");
 
-       $village_slct = $_POST['village_slct']; 
+       $village_slct = $_POST['village_move_slct']; 
        if ($village_slct  == "")
               $village_slct  = "TreeBase";
        printf("<option value='%s'>%s</option>", $village_slct, $village_slct);
@@ -142,7 +142,7 @@ function printVillageAttackSelect($conn)
 {
        printf("<select name='village_attack_slct' id='village_attack_slct' onchange='this.form.submit()'>");
 
-       $village_slct = $_POST['village_slct']; 
+       $village_slct = $_POST['village_attack_slct']; 
        if ($village_slct  == "")
               $village_slct  = "Northland";
        printf("<option value='%s'>%s</option>", $village_slct, $village_slct);
