@@ -70,10 +70,9 @@ function updateHeroPosition($conn, $hero, $village)
   $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
   $row = mysqli_fetch_array($result, MYSQLI_ASSOC); 
   if ($row['Name'] != $village)
-  {
-    printf("%s drives their %s to %s <br>", $hero, $row['Type'], $village);
-  }         
-
+    printf("%s drives their %s to %s <br>", $hero, $row['Type'], $village);    
+  else 
+    printf("%s is already at %s! <br>", $hero, $village);  
   $query = "update Human h set h.Village_ID=";
   $query = $query."'".$newVID."'where h.name="; 
   $query = $query."'".$hero."';"; 
