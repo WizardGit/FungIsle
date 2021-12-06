@@ -12,7 +12,12 @@ Purpose: This is in charge of the animal_scavange feature
 <?php
 function displayAnimalScavenge($conn)
 {
-       $animal = $_POST['animal_slct'];   
+       $animal = $_POST['animal_slct'];  
+       
+       if ($animal == "")
+              printf("No animal selected!");
+       if (animalIsDead($conn, $animal) == true)
+              printf("%s is dead and cannot scavenge!", $animal);
        
        // First check to make sure that our animal isn't in the midst of a fight
        $query = "select v.status from Animal a

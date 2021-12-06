@@ -236,4 +236,14 @@ function heroIsDead($conn, $hero)
               return true;
        return false;
 }
+function animalIsDead($conn, $animal)
+{
+       $query = "select a.health from Animal a where a.Name=";
+       $query = $query."'".$animal."';";
+       $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
+       $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
+       if ($row['health'] == 0)
+              return true;
+       return false;
+}
 ?>

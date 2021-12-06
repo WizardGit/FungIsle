@@ -12,7 +12,12 @@ Purpose: This is in charge of the hero_scavange feature.
 <?php
 function displayHeroScavange($conn)
 {
-       $hero = $_POST['hero_slct'];     
+       $hero = $_POST['hero_slct'];   
+       
+       if ($hero == "")
+              printf("No hero selected!");
+       if (heroIsDead($conn, $hero) == true)
+              printf("%s is dead and cannot scavenge!", $hero);
 
        // First check to make sure that our hero isn't in the midst of a fight
        $query = "select v.status from Human h inner join Village v on h.Village_ID=v.VillageID where h.name=";
