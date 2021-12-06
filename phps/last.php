@@ -100,10 +100,10 @@ function printAnimalSelect($conn)
 }
 function printAnimalAttackSelect($conn)
 {
-       printf("<select name='animal_slct' id='animal_slct' onchange='this.form.submit()'>");
+       printf("<select name='animal_attack_slct' id='animal_attack_slct' onchange='this.form.submit()'>");
 
-       $animal_slct = $_POST['animal_slct']; 
-       $hero_slct = $_POST['hero_slct'];
+       $animal_slct = $_POST['animal_attack_slct']; 
+       $hero_slct = $_POST['hero_attack_slct'];
        if ($animal_slct  == "")
               $animal_slct  = "Bat";
        if ($hero_slct == "")
