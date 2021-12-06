@@ -15,6 +15,13 @@ function attack($conn)
   $hero = $_POST['hero_slct']; 
   $village = $_POST['village_attack_slct']; 
   $animal = $_POST['animal_attack_slct']; 
+  if (heroIsDead($conn, $hero)==true)
+  {
+    printf("%s is dead and cannot attack!", $hero);
+    return;
+  }
+
+
   if (checkVillageStatus($conn, $village) == false)
   {
     $heroPos = getHeroPosition($conn, $hero);
