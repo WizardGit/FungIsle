@@ -19,7 +19,7 @@ and the accompanying php methods
               <label for="villages_attack_slct">to attack henchmen in</label>
               <?php printVillageAttackSelect($conn); ?>
               <label for="animal_attack_slct">with the help of</label>
-              <?php printAnimalSelect($conn); ?> 
+              <?php printAnimalAttackSelect($conn); ?> 
               <input formaction="./heroattack.php" id="attack" type="submit" value="Attack">
        </form>
        <form action="./index.php" method="POST" id="hero_eat_form">                      
