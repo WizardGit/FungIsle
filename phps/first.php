@@ -8,6 +8,7 @@ Purpose: This is part of the main game html structure
 include('../Connections/connectionDataStrong.txt');
 $conn = mysqli_connect($server, $user, $pass, $dbname, $port) or die('Error connecting to MySQL server.');
 ?>
+<?php include "./commonFunctions.php" ?>
 
 <html lang="en">
   <head>

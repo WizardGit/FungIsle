@@ -1,3 +1,9 @@
+<!--
+Author: Kaiser
+Date last edited: 12/6/2021
+Purpose: Common Functions
+-->
+
 <?php
 function printHeroSelect($conn)
 {
