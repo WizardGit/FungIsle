@@ -1,0 +1,207 @@
+-- MySQL Workbench Forward Engineering
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+-- -----------------------------------------------------
+-- Schema FungIsle
+-- -----------------------------------------------------
+
+-- -----------------------------------------------------
+-- Schema FungIsle
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `FungIsle` DEFAULT CHARACTER SET utf8 ;
+USE `FungIsle` ;
+
+-- -----------------------------------------------------
+-- Table `FungIsle`.`Food`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `FungIsle`.`Food` (
+  `Name` VARCHAR(45) NOT NULL,
+  `health_recover` INT NULL,
+  PRIMARY KEY (`Name`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `FungIsle`.`Weapon`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `FungIsle`.`Weapon` (
+  `Name` VARCHAR(45) NOT NULL,
+  `attack` INT NULL,
+  `defense` INT NULL,
+  `skillOne` VARCHAR(45) NULL,
+  `skillTwo` VARCHAR(45) NULL,
+  PRIMARY KEY (`Name`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `FungIsle`.`Village`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `FungIsle`.`Village` (
+  `VillageID` INT NOT NULL,
+  `name` VARCHAR(45) NULL,
+  `status` VARCHAR(45) NULL,
+  PRIMARY KEY (`VillageID`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `FungIsle`.`Human`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `FungIsle`.`Human` (
+  `SaladSN` INT NOT NULL,
+  `name` VARCHAR(45) NULL,
+  `health` INT NULL,
+  `role` VARCHAR(45) NULL,
+  `attackMultiplier` DECIMAL(45) NULL,
+  `defenseMultiplier` DECIMAL(45) NULL,
+  `Village_ID` INT NOT NULL,
+  `Weapon_Name` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`SaladSN`),
+  CONSTRAINT `fk_Human_Weapon1`
+    FOREIGN KEY (`Weapon_Name`)
+    REFERENCES `FungIsle`.`Weapon` (`Name`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Human_Village1`
+    FOREIGN KEY (`Village_ID`)
+    REFERENCES `FungIsle`.`Village` (`VillageID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_Human_Weapon1_idx` ON `FungIsle`.`Human` (`Weapon_Name` ASC);
+
+CREATE INDEX `fk_Human_Village1_idx` ON `FungIsle`.`Human` (`Village_ID` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `FungIsle`.`Vehicle`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `FungIsle`.`Vehicle` (
+  `Human_SaladSN` INT NOT NULL,
+  `type` VARCHAR(45) NULL,
+  `speed` INT NULL,
+  `armor` INT NULL,
+  PRIMARY KEY (`Human_SaladSN`),
+  CONSTRAINT `fk_Vehicle_Human1`
+    FOREIGN KEY (`Human_SaladSN`)
+    REFERENCES `FungIsle`.`Human` (`SaladSN`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_Vehicle_Human1_idx` ON `FungIsle`.`Vehicle` (`Human_SaladSN` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `FungIsle`.`Animal`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `FungIsle`.`Animal` (
+  `Name` VARCHAR(45) NOT NULL,
+  `species` VARCHAR(45) NULL,
+  `health` INT NULL,
+  `attack` INT NULL,
+  `defense` INT NULL,
+  `skill` VARCHAR(45) NULL,
+  `HumanOwnerSSN` INT NOT NULL,
+  PRIMARY KEY (`Name`),
+  CONSTRAINT `fk_Animal_Human1`
+    FOREIGN KEY (`HumanOwnerSSN`)
+    REFERENCES `FungIsle`.`Human` (`SaladSN`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_Animal_Human1_idx` ON `FungIsle`.`Animal` (`HumanOwnerSSN` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `FungIsle`.`Human_has_Food`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `FungIsle`.`Human_has_Food` (
+  `Human_SaladSN` INT NOT NULL,
+  `Food_Name` VARCHAR(45) NOT NULL,
+  `remaining` INT NULL,
+  PRIMARY KEY (`Human_SaladSN`, `Food_Name`),
+  CONSTRAINT `fk_Human_has_Food_Human1`
+    FOREIGN KEY (`Human_SaladSN`)
+    REFERENCES `FungIsle`.`Human` (`SaladSN`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Human_has_Food_Food1`
+    FOREIGN KEY (`Food_Name`)
+    REFERENCES `FungIsle`.`Food` (`Name`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_Human_has_Food_Food1_idx` ON `FungIsle`.`Human_has_Food` (`Food_Name` ASC);
+
+CREATE INDEX `fk_Human_has_Food_Human1_idx` ON `FungIsle`.`Human_has_Food` (`Human_SaladSN` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `FungIsle`.`Animal_has_Food`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `FungIsle`.`Animal_has_Food` (
+  `Animal_Name` VARCHAR(45) NOT NULL,
+  `Food_Name` VARCHAR(45) NOT NULL,
+  `remaining` INT NULL,
+  PRIMARY KEY (`Animal_Name`, `Food_Name`),
+  CONSTRAINT `fk_Animal_has_Food_Animal1`
+    FOREIGN KEY (`Animal_Name`)
+    REFERENCES `FungIsle`.`Animal` (`Name`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Animal_has_Food_Food1`
+    FOREIGN KEY (`Food_Name`)
+    REFERENCES `FungIsle`.`Food` (`Name`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_Animal_has_Food_Food1_idx` ON `FungIsle`.`Animal_has_Food` (`Food_Name` ASC);
+
+CREATE INDEX `fk_Animal_has_Food_Animal1_idx` ON `FungIsle`.`Animal_has_Food` (`Animal_Name` ASC);
+
+
+-- -----------------------------------------------------
+-- Table `FungIsle`.`Human_fights_Human`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `FungIsle`.`Human_fights_Human` (
+  `Human_Fighter1SSN` INT NOT NULL,
+  `Human_Fighter2SSN` INT NOT NULL,
+  `Animal_Name` VARCHAR(45) NOT NULL,
+  `Human_VictorSSN` INT NULL,
+  PRIMARY KEY (`Human_Fighter1SSN`, `Human_Fighter2SSN`),
+  CONSTRAINT `fk_Human_has_Human_Human1`
+    FOREIGN KEY (`Human_Fighter1SSN`)
+    REFERENCES `FungIsle`.`Human` (`SaladSN`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Human_has_Human_Human2`
+    FOREIGN KEY (`Human_Fighter2SSN`)
+    REFERENCES `FungIsle`.`Human` (`SaladSN`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Human_fights_Human_Animal1`
+    FOREIGN KEY (`Animal_Name`)
+    REFERENCES `FungIsle`.`Animal` (`Name`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE INDEX `fk_Human_has_Human_Human2_idx` ON `FungIsle`.`Human_fights_Human` (`Human_Fighter2SSN` ASC);
+
+CREATE INDEX `fk_Human_has_Human_Human1_idx` ON `FungIsle`.`Human_fights_Human` (`Human_Fighter1SSN` ASC);
+
+CREATE INDEX `fk_Human_fights_Human_Animal1_idx` ON `FungIsle`.`Human_fights_Human` (`Animal_Name` ASC);
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;

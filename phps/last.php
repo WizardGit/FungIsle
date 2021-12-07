@@ -51,7 +51,7 @@ and the accompanying php methods
        </div>
        <div id="codeview">
               <p>
-              You can view the files for this project <a href="https://github.com/WizardGit/FungIsle">HERE</a>.
+              You can view the files/documentation for this project <a href="https://github.com/WizardGit/FungIsle">HERE</a>.
               </p>
               <p>
                      Game Guide is <a href="../guide.html">HERE</a>
