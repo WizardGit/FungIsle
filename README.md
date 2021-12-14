@@ -1,7 +1,7 @@
 # FungIsle
 CIS 451 Final Project
 
-Visit: https://ix.cs.uoregon.edu/~kaisers/FungIsle/index.html to see website in total action
+Visit: https://ix.cs.uoregon.edu/~kaisers/FungIsle/phps/index.php to see website in total action
 
 The whole program is almost entirely php with html/css for basic frontend
 All changes are made to db, so if multiple users use the application at once, it'll throw things out of whack.
