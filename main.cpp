@@ -50,22 +50,22 @@ int main(int argc, char* argv[])
     int numOfBoxes = stoi(line);
 
     cout << "Number of boxes: " << numOfBoxes << endl;
-    Box* boxes = new Box[numOfBoxes];
-    cout << "Our boxes: " << endl;
+    //Box* boxes = new Box[numOfBoxes];
+    //cout << "Our boxes: " << endl;
 
     for (int i = 0; i < numOfBoxes; i++)
     {
         getline(cin, line,' ');
         cout << line << endl;
-        boxes[i].length = stoi(line);
+        //boxes[i].length = stoi(line);
         getline(cin, line,' ');
         cout << line << endl;
-        boxes[i].width = stoi(line);
+        //boxes[i].width = stoi(line);
         getline(cin, line,' ');
         cout << line << endl;
-        boxes[i].height = stoi(line);
+        //boxes[i].height = stoi(line);
 
-        boxes[i].print();
+        //boxes[i].print();
     }
        
     return 0;
