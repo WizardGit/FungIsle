@@ -302,7 +302,7 @@ int main(int argc, char** argv)
 
     //Call our greedy algorithm
     //int total = greedyAlgorithm(boxes, numOfBoxes);
-    cout << "Greedy Algorithm says that the smallest number of visible boxes is " << total << endl;
+    //cout << "Greedy Algorithm says that the smallest number of visible boxes is " << total << endl;
 
 
     return 0;
