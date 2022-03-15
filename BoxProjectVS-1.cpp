@@ -339,13 +339,13 @@ int main()
         //cout << "line: " << line << endl;
 
         getline(cin, line,' ');
-        cout << line << endl;
+        cout << "line" << line << endl;
         boxes[i].length = stoi(line);
         getline(cin, line,' ');
-        cout << line << endl;
+        cout << "line" << line << endl;
         boxes[i].length = stoi(line);
         getline(cin, line,' ');
-        cout << line << endl;
+        cout << "line" << line << endl;
         boxes[i].length = stoi(line);
 
         boxes[i].print();
