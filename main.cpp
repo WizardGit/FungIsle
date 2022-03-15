@@ -43,11 +43,30 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
+    // Parse the File and read all the input into an array of struct boxes
     string line;
 
     getline(cin, line);
     int numOfBoxes = stoi(line);
-    cout << numOfBoxes << endl;
+
+    cout << "Number of boxes: " << numOfBoxes << endl;
+    Box* boxes = new Box[numOfBoxes];
+    cout << "Our boxes: " << endl;
+
+    for (int i = 0; i < numOfBoxes; i++)
+    {
+        getline(cin, line,' ');
+        cout << line << endl;
+        boxes[i].length = stoi(line);
+        getline(cin, line,' ');
+        cout << line << endl;
+        boxes[i].width = stoi(line);
+        getline(cin, line,' ');
+        cout << line << endl;
+        boxes[i].height = stoi(line);
+
+        boxes[i].print();
+    }
        
     return 0;
 }

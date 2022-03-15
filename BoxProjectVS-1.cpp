@@ -335,16 +335,15 @@ int main()
 
     for (int i = 0; i < numOfBoxes; i++)
     {
-        getline(InputFile, line);
-
-        stringstream x(line);
-        string t;
-        getline(x, t, ' ');
-        boxes[i].length = stoi(t);
-        getline(x, t, ' ');
-        boxes[i].width = stoi(t);
-        getline(x, t, ' ');
-        boxes[i].height = stoi(t);
+        getline(cin, line,' ');
+        cout << line << endl;
+        boxes[i].length = stoi(line);
+        getline(cin, line,' ');
+        cout << line << endl;
+        boxes[i].width = stoi(line);
+        getline(cin, line,' ');
+        cout << line << endl;
+        boxes[i].height = stoi(line);
 
         boxes[i].print();
     }
