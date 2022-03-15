@@ -260,6 +260,8 @@ int greedyAlgorithm(Box boxes[], int numOfBoxes)
 int main(int argc, char** argv)
 {
     cout << "beginning" << endl;
+    cout << argc << endl;
+    cout << argv[0] << endl;
     string filename;
     filename = argv[1];
     cout << filename << endl;
