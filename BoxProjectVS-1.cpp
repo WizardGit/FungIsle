@@ -343,10 +343,10 @@ int main()
         boxes[i].length = stoi(line);
         getline(cin, line,' ');
         cout << "line" << line << endl;
-        boxes[i].length = stoi(line);
+        boxes[i].width = stoi(line);
         getline(cin, line,'\n');
         cout << "line" << line << endl;
-        boxes[i].length = stoi(line);
+        boxes[i].height = stoi(line);
 
         boxes[i].print();
     }
