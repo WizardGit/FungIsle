@@ -338,12 +338,16 @@ int main()
         getline(cin, line);        
         cout << "line: " << line << endl;
 
-        getline(cin, line,' ');
-        boxes[i].length = stoi(line);
-        getline(cin, line,' ');
-        boxes[i].width = stoi(line);
-        getline(cin, line,' ');
-        boxes[i].height = stoi(line);
+        string t = "";
+        getline(line, t,' ');
+        cout << t << endl;
+        boxes[i].length = stoi(t);
+        getline(line, t,' ');
+        cout << t << endl;
+        boxes[i].length = stoi(t);
+        getline(line, t,' ');
+        cout << t << endl;
+        boxes[i].length = stoi(t);
 
         boxes[i].print();
     }
