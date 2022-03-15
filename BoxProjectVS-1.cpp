@@ -321,36 +321,13 @@ int greedyAlgorithm(Box boxes[], int numOfBoxes)
 
     return total;
 }
-int main(int argc, char* argv[])
-{
-string filename;
-	if (argc <= 1)
-    {
-        cout << "you have not specified a file.  Don't use the '<' character!" << endl;
-        return 0;
-    }
-    else
-{
-cout << "You specified the file: " << argv[1] << endl;
-    
-    filename = argv[1];
-}
-        
+int main()
+{    
     // Parse the File and read all the input into an array of struct boxes
     string line;
 
-    ifstream InputFile(filename);
-
-    if (InputFile.is_open() == false)
-    {
-        cout << "Cannot open the file named: " << filename << endl;
-        return -1;
-    }
-
-    getline(InputFile, line);
-    stringstream ss(line);
-    int numOfBoxes = 0;
-    ss >> numOfBoxes;
+    getline(cin, line);
+    int numOfBoxes = stoi(line);
 
     cout << "Number of boxes: " << numOfBoxes << endl;
     Box* boxes = new Box[numOfBoxes];

@@ -43,29 +43,11 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-    string filename;
-
-    getline(cin, filename);
-    cout << filename << endl;
-	
-        
-    // Parse the File and read all the input into an array of struct boxes
     string line;
 
-    ifstream InputFile(filename);
-
-    if (InputFile.is_open() == false)
-    {
-        cout << "Cannot open the file named: " << filename << endl;
-        return -1;
-    }
-
-    getline(InputFile, line);
-    stringstream ss(line);
-    int numOfBoxes = 0;
-    ss >> numOfBoxes;
-
-    cout << "Number of boxes: " << numOfBoxes << endl;
+    getline(cin, line);
+    int numOfBoxes = stoi(line);
+    cout << numOfBoxes << endl;
        
     return 0;
 }
