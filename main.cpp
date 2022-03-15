@@ -321,7 +321,7 @@ int greedyAlgorithm(Box boxes[], int numOfBoxes)
 
     return total;
 }
-int main(int argc, char** argv)
+int main()
 {
     // Parse the File and read all the input into an array of struct boxes
     string line;
@@ -336,13 +336,10 @@ int main(int argc, char** argv)
     for (int i = 0; i < numOfBoxes; i++)
     {
         getline(cin, line,' ');
-        cout << "line" << line << endl;
         boxes[i].length = stoi(line);
         getline(cin, line,' ');
-        cout << "line" << line << endl;
         boxes[i].width = stoi(line);
         getline(cin, line,'\n');
-        cout << "line" << line << endl;
         boxes[i].height = stoi(line);
 
         boxes[i].print();
