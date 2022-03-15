@@ -335,7 +335,7 @@ int main()
 
     for (int i = 0; i < numOfBoxes; i++)
     {
-        getline(cin, line,' ');
+        getline(cin, line);
         cout << line << endl;
         boxes[i].length = stoi(line);
         getline(cin, line,' ');
