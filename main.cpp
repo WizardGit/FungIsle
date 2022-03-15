@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 {
     string filename;
 
-    cout << getline(cin);
+    cout << getline(cin, filename);
 	
         
     // Parse the File and read all the input into an array of struct boxes
@@ -65,9 +65,6 @@ int main(int argc, char* argv[])
     ss >> numOfBoxes;
 
     cout << "Number of boxes: " << numOfBoxes << endl;
-    Box* boxes = new Box[numOfBoxes];
-    cout << "Our boxes: " << endl;
-
-   
+       
     return 0;
 }
