@@ -335,19 +335,18 @@ int main()
 
     for (int i = 0; i < numOfBoxes; i++)
     {
-        getline(cin, line);        
-        cout << "line: " << line << endl;
+        //getline(cin, line);        
+        //cout << "line: " << line << endl;
 
-        string t = "";
-        getline(line, t,' ');
-        cout << t << endl;
-        boxes[i].length = stoi(t);
-        getline(line, t,' ');
-        cout << t << endl;
-        boxes[i].length = stoi(t);
-        getline(line, t,' ');
-        cout << t << endl;
-        boxes[i].length = stoi(t);
+        getline(cin, line,' ');
+        cout << line << endl;
+        boxes[i].length = stoi(line);
+        getline(cin, line,' ');
+        cout << line << endl;
+        boxes[i].length = stoi(line);
+        getline(cin, line,' ');
+        cout << line << endl;
+        boxes[i].length = stoi(line);
 
         boxes[i].print();
     }
