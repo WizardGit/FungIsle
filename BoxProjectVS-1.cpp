@@ -323,15 +323,20 @@ int greedyAlgorithm(Box boxes[], int numOfBoxes)
 }
 int main(int argc, char** argv)
 {
+string filename;
 	if (argc <= 1)
     {
         cout << "you have not specified a file.  Don't use the '<' character!" << endl;
-        return 0;
+        cin >> filename;
+return 0;
     }
     else
-        cout << "You specified the file: " << argv[1] << endl;
-    string filename;
+{
+cout << "You specified the file: " << argv[1] << endl;
+    
     filename = argv[1];
+}
+        
     // Parse the File and read all the input into an array of struct boxes
     string line;
 
