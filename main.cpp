@@ -45,70 +45,6 @@ using namespace std;
 #define M 20
 #define N 20
 
-bool bpm(bool bpGraph[M][N], int m, int n, int u, bool seen[], int matchR[])
-{
-    // Try every job one by one
-    for (int v = 0; v < n; v++)
-    {
-        // If applicant u is interested in
-        // job v and v is not visited
-        if (bpGraph[u][v] && !seen[v])
-        {
-            // Mark v as visited
-            seen[v] = true;
-
-            // If job 'v' is not assigned to an
-            // applicant OR previously assigned
-            // applicant for job v (which is matchR[v])
-            // has an alternate job available.
-            // Since v is marked as visited in
-            // the above line, matchR[v] in the following
-            // recursive call will not get job 'v' again
-            if (matchR[v] < 0 || bpm(bpGraph, m, n, matchR[v], seen, matchR))
-            {
-                matchR[v] = u;
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-// Returns maximum number
-// of matching from M to N
-int maxBPM(bool bpGraph[M][N], int m, int n)
-{
-    // An array to keep track of the
-    // applicants assigned to jobs.
-    // The value of matchR[i] is the
-    // applicant number assigned to job i,
-    // the value -1 indicates nobody is
-    // assigned.
-    int* matchR = new int[n];
-    for (int j = 0; j < n; j++)
-    {
-        matchR[j] = -1;
-    }
-
-    // Count of jobs assigned to applicants
-    int result = 0;
-    for (int u = 0; u < n; u++)
-    {
-        // Mark all jobs as not seen
-        // for next applicant.
-        bool* seen = new bool[n];
-        for (int j = 0; j < n; j++)
-        {
-            seen[j] = 0;
-        }
-
-        // Find if the applicant 'u' can get a job
-        if (bpm(bpGraph, m, n, u, seen, matchR))
-            result++;
-    }
-    return result;
-}
-
 /* Returns true if there is a path from source 's' to sink
 't' in residual graph. Also fills parent[] to store the
 path */
@@ -402,27 +338,5 @@ int main(int argc, char** argv)
     cout << "Ford-Fulkerson Algorithm says that the smallest number of visible boxes is  " << numOfBoxes - fordFulkerson(graph, allnodes, 0, allnodes - 1) << endl;
     //cout << "The maximum possible flow is "<< fordFulkerson(graph2, 6, 0, 5) << endl;
 
-    bool bpGraph2[M][N] = { {0, 1, 1, 0, 0, 0},
-                          {1, 0, 0, 1, 0, 0},
-                          {0, 0, 1, 0, 0, 0},
-                          {0, 0, 1, 1, 0, 0},
-                          {0, 0, 0, 0, 0, 0},
-                          {0, 0, 0, 0, 0, 1} };
-
-    bool bpGraph[M][N] = { 0 };
-
-    for (int i = 0; i < numOfBoxes; i++)
-    {
-        for (int j = 0; j < numOfBoxes; j++)
-        {
-            if (boxes[i].canFitIn(boxes[j]) == true)
-                bpGraph[i][j] = 1;
-            else
-                bpGraph[i][j] = 0;
-        }
-    }
-
-    cout << "Maximum Bipartite Matching says that the smallest number of visible boxes is " << numOfBoxes - maxBPM(bpGraph, numOfBoxes, numOfBoxes) << endl;
-    //cout << "Maximum number of applicants that can get job is " << maxBPM(bpGraph, 6,6) << endl;
     return 0;
 }
