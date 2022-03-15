@@ -323,30 +323,11 @@ int greedyAlgorithm(Box boxes[], int numOfBoxes)
 }
 int main(int argc, char** argv)
 {
-    if (argc <= 1)
-    {
-        cout << "you have not specified a file.  Don't use the '<' character!" << endl;
-        return 0;
-    }
-    else
-        cout << "You specified the file: " << argv[1] << endl;
-    string filename;
-    filename = argv[1];
     // Parse the File and read all the input into an array of struct boxes
     string line;
 
-    ifstream InputFile(filename);
-
-    if (InputFile.is_open() == false)
-    {
-        cout << "Cannot open the file named: " << filename << endl;
-        return -1;
-    }
-
-    getline(InputFile, line);
-    stringstream ss(line);
-    int numOfBoxes = 0;
-    ss >> numOfBoxes;
+    getline(cin, line);
+    int numOfBoxes = stoi(line);
 
     cout << "Number of boxes: " << numOfBoxes << endl;
     Box* boxes = new Box[numOfBoxes];
@@ -354,20 +335,18 @@ int main(int argc, char** argv)
 
     for (int i = 0; i < numOfBoxes; i++)
     {
-        getline(InputFile, line);
-
-        stringstream x(line);
-        string t;
-        getline(x, t, ' ');
-        boxes[i].length = stoi(t);
-        getline(x, t, ' ');
-        boxes[i].width = stoi(t);
-        getline(x, t, ' ');
-        boxes[i].height = stoi(t);
+        getline(cin, line,' ');
+        cout << "line" << line << endl;
+        boxes[i].length = stoi(line);
+        getline(cin, line,' ');
+        cout << "line" << line << endl;
+        boxes[i].width = stoi(line);
+        getline(cin, line,'\n');
+        cout << "line" << line << endl;
+        boxes[i].height = stoi(line);
 
         boxes[i].print();
     }
-    InputFile.close();
 
     //Call our greedy algorithm
     int total = greedyAlgorithm(boxes, numOfBoxes);
