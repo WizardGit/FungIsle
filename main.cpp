@@ -302,41 +302,6 @@ int main(int argc, char** argv)
     int total = greedyAlgorithm(boxes, numOfBoxes);
     cout << "Greedy Algorithm says that the smallest number of visible boxes is " << total << endl;
 
-    int allnodes = (numOfBoxes * 2) + 2;
-    // Let us create a graph shown in the above example
-    int graph[V][V] = { 0 };
-    for (int i = 0; i < V; i++)
-    {
-        for (int j = 0; j < V; j++)
-        {
-            graph[i][j] = 0;
-        }
-    }
-
-    for (int i = 1; i < (allnodes / 2); i++)
-    {
-        graph[0][i] = 1;
-    }
-    for (int i = (allnodes / 2); i < (allnodes - 1); i++)
-    {
-        graph[i][allnodes - 1] = 1;
-    }
-    for (int i = 1; i < (allnodes / 2); i++)
-    {
-        for (int j = 1; j < (allnodes / 2); j++)
-        {
-            if (boxes[i - 1].canFitIn(boxes[j - 1]) == true)
-                graph[i][j + numOfBoxes] = 1;
-            else
-                graph[i][j + numOfBoxes] = 0;
-        }
-    }
-
-    int graph2[V][V] = { { 0, 16, 13, 0, 0, 0 }, { 0, 0, 10, 12, 0, 0 },
-            { 0, 4, 0, 0, 14, 0 },  { 0, 0, 9, 0, 0, 20 },
-            { 0, 0, 0, 7, 0, 4 },   { 0, 0, 0, 0, 0, 0 } };
-    cout << "Ford-Fulkerson Algorithm says that the smallest number of visible boxes is  " << numOfBoxes - fordFulkerson(graph, allnodes, 0, allnodes - 1) << endl;
-    //cout << "The maximum possible flow is "<< fordFulkerson(graph2, 6, 0, 5) << endl;
 
     return 0;
 }
