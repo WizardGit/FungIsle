@@ -259,8 +259,10 @@ int greedyAlgorithm(Box boxes[], int numOfBoxes)
 }
 int main(int argc, char** argv)
 {
+    cout << "beginning" << endl;
     string filename;
     filename = argv[1];
+    cout << filename << endl;
     // Parse the File and read all the input into an array of struct boxes
     string line;
 
@@ -299,7 +301,7 @@ int main(int argc, char** argv)
     InputFile.close();
 
     //Call our greedy algorithm
-    int total = greedyAlgorithm(boxes, numOfBoxes);
+    //int total = greedyAlgorithm(boxes, numOfBoxes);
     cout << "Greedy Algorithm says that the smallest number of visible boxes is " << total << endl;
 
 
