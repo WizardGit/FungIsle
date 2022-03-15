@@ -321,14 +321,13 @@ int greedyAlgorithm(Box boxes[], int numOfBoxes)
 
     return total;
 }
-int main(int argc, char** argv)
+int main(int argc, char* argv[])
 {
 string filename;
 	if (argc <= 1)
     {
         cout << "you have not specified a file.  Don't use the '<' character!" << endl;
-        cin >> filename;
-return 0;
+        return 0;
     }
     else
 {
