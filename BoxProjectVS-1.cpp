@@ -344,7 +344,7 @@ int main()
         getline(cin, line,' ');
         cout << "line" << line << endl;
         boxes[i].length = stoi(line);
-        getline(cin, line,' ');
+        getline(cin, line,'\n');
         cout << "line" << line << endl;
         boxes[i].length = stoi(line);
 
