@@ -347,7 +347,6 @@ int main()
 
         boxes[i].print();
     }
-    InputFile.close();
 
     //Call our greedy algorithm
     int total = greedyAlgorithm(boxes, numOfBoxes);
