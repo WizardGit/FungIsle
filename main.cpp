@@ -45,7 +45,8 @@ int main(int argc, char* argv[])
 {
     string filename;
 
-    cout << getline(cin, filename);
+    getline(cin, filename);
+    cout << filename << endl;
 	
         
     // Parse the File and read all the input into an array of struct boxes
