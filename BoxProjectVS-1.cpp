@@ -335,14 +335,14 @@ int main()
 
     for (int i = 0; i < numOfBoxes; i++)
     {
-        getline(cin, line);
-        cout << line << endl;
+        getline(cin, line);        
+        cout << "line: " << line << endl;
+
+        getline(cin, line,' ');
         boxes[i].length = stoi(line);
         getline(cin, line,' ');
-        cout << line << endl;
         boxes[i].width = stoi(line);
         getline(cin, line,' ');
-        cout << line << endl;
         boxes[i].height = stoi(line);
 
         boxes[i].print();
